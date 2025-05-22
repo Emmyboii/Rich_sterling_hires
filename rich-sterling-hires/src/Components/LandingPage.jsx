@@ -27,6 +27,7 @@ import Woman3 from '../Images/Woman3.png';
 import Woman4 from '../Images/Woman4.png';
 import Woman5 from '../Images/Woman5.png';
 import Woman6 from '../Images/Woman6.png';
+import Woman7 from '../Images/Woman7.png';
 import Star from '../Images/Star.png';
 import Vector from '../Images/Vector.png';
 import Dollar from '../Images/Dollar.png';
@@ -34,7 +35,6 @@ import frame1 from '../Images/Frame1.png';
 import frame2 from '../Images/Frame2.png';
 import frame3 from '../Images/Frame3.png';
 import frame4 from '../Images/Frame4.png';
-import avatar from '../Images/Avatar.png';
 import access1 from '../Images/Access1.png';
 import access2 from '../Images/Access2.png';
 import access3 from '../Images/Access3.png';
@@ -200,10 +200,10 @@ const LandingPage = () => {
                 <div className='2xl:w-[200%] mp:w-[60%] flex mp:block flex-col mp:items-start items-center pt-3'>
                     <div className='flex items-center justify-center rounded-[100px] gap-1 bg-[#0066FF] px-5 max-w-[450px] py-2 text-white'>
                         <img className='size-6' src={Badge} alt="" />
-                        <p className='text-center'>Our clients save an average of 65% on hiring costs</p>
+                        <p className='text-center'>Our clients save an average of 70% on hiring costs</p>
                     </div>
                     <p data-aos='fade-up' data-aos-delay='100' className='xl:text-[64px] sm:text-[50px] sr:text-[40px] text-[28px] text-[#002B6B] text-center mp:text-start xl:leading-[76px] sr:leading-[60px] mt-6 font-semibold'>
-                        Join 2,000+ Companies Cutting Costs by 70% with Elite African Talent
+                        Join 136+ Companies Cutting Costs by 70% with Elite African Talent
                     </p>
                     <p data-aos='fade-up' data-aos-delay='300' className='xl:text-[20px] sr:text-[17px] text--[15px] font-medium mt-3 text-center mp:text-start'>
                         Rich Sterling Hires connects you with exceptional African professionals who deliver outstanding results at a fraction of the costs
@@ -322,7 +322,7 @@ const LandingPage = () => {
                 <Professions profession={profession} />
             </div>
 
-            <div className='my-16'>
+            <div className='mt-16 overflow-hidden'>
                 <h1 data-aos='zoom-in' className='font-semibold sm:mx-[90px] mx-5 text-[33px] leading-10 text-center text-[#002B6B]'>
                     Meet Some of Our Exceptional Talent
                 </h1>
@@ -330,13 +330,13 @@ const LandingPage = () => {
                     Watch short intro videos of vetted candidates so you can see their communication skills, <br className='xl:block hidden' />
                     professionalism, and cultural fit
                 </p>
-                <div className='relative md:mt-24'>
+                <div className='relative md:mt-24 overflow-y-hidden'>
                     <img
                         className="absolute left-1/2 xl:top-16 md:top-10 sa:block hidden sm:top-[56%] top-[55%] -translate-y-1/2 md:-translate-y-0 transform -translate-x-1/2 lg:w-[560px] sp:w-[500px] w-full max-w-full"
                         src={BG}
                         alt=""
                     />
-                    <Slider className='xl:mx-[90px] mx-0' {...settings}>
+                    <Slider className='xl:mx-[90px]' {...settings}>
                         <div>
                             <div className='flex md:flex-row flex-col items-center justify-center md:justify-between 2xl:justify-center xl:mt-20 md:mt-10 md:px-16 px-5 gap-5 w-full'>
                                 <div className='text-[17px] flex md:flex-col sm:flex-row flex-col gap-4 md:w-[30%] mt-20'>
@@ -490,7 +490,7 @@ const LandingPage = () => {
                     </Slider>
                 </div>
             </div >
-            <div id='steps' className='lg:px-[60px] overflow-hidden px-5 py-16'>
+            <div id='steps' className='lg:px-[60px] overflow-hidden px-5 pb-16'>
                 <h1 data-aos='zoom-in' className='font-semibold text-[33px] leading-10 text-center text-[#002B6B]'>
                     Access Global Talent in 4 Easy Steps
                 </h1>
@@ -507,18 +507,18 @@ const LandingPage = () => {
                             </div>
                         </div>
                         <div className='flex items-center sa:flex-row flex-col-reverse xl:mt-[-30px] mt-5 xl:gap-10 sa:gap-5'>
-                            <div data-aos='fade-up' data-aos-delay='700' className='flex gap-4 items-center rounded-[20px] w-full mp:w-[430px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] shadow-[#c9d6e8] xl:py-5 p-3'>
+                            <div data-aos='fade-up' data-aos-delay='300' className='flex gap-4 items-center rounded-[20px] w-full mp:w-[430px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] shadow-[#c9d6e8] xl:py-5 p-3'>
                                 <img className='xl:size-[50px] size-[40px]' src={access2} alt="" />
                                 <div>
                                     <p className='xl:text-[20px] font-manrope font-medium text-[#1E242C]'>Meet Pre-Screened Candidates</p>
                                     <p className='xl:text-[15px] text-[13.5px] font-manrope font-normal text-[#414D60]'>Meet vetted professionals who match your needs</p>
                                 </div>
                             </div>
-                            <p data-aos='fade-up' data-aos-delay='500' className='font-medium xl:text-[110px] text-[80px] text-[#cddbf0]'>02</p>
+                            <p data-aos='fade-up' data-aos-delay='200' className='font-medium xl:text-[110px] text-[80px] text-[#cddbf0]'>02</p>
                         </div>
                         <div className='flex items-center sa:flex-row flex-col xl:mt-[-30px] mt-5 xl:gap-10 sa:gap-5'>
-                            <p data-aos='fade-up' data-aos-delay='700' className='font-medium xl:text-[110px] text-[80px] text-[#cddbf0]'>03</p>
-                            <div data-aos='fade-up' data-aos-delay='900' className='flex gap-4 items-center rounded-[20px] w-full mp:w-[430px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] shadow-[#c9d6e8] xl:p-5 p-3'>
+                            <p data-aos='fade-up' data-aos-delay='200' className='font-medium xl:text-[110px] text-[80px] text-[#cddbf0]'>03</p>
+                            <div data-aos='fade-up' data-aos-delay='300' className='flex gap-4 items-center rounded-[20px] w-full mp:w-[430px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] shadow-[#c9d6e8] xl:p-5 p-3'>
                                 <img className='xl:size-[50px] size-[40px]' src={access3} alt="" />
                                 <div>
                                     <p className='xl:text-[20px] font-manrope font-medium text-[#1E242C]'>Hire With Confidence</p>
@@ -527,26 +527,26 @@ const LandingPage = () => {
                             </div>
                         </div>
                         <div className='flex items-center sa:flex-row flex-col-reverse xl:mt-[-30px] mt-5 xl:gap-10 sa:gap-5'>
-                            <div data-aos='fade-up' data-aos-delay='1000' className='flex gap-4 items-center rounded-[20px] w-full mp:w-[430px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] shadow-[#c9d6e8] xl:p-5 p-3'>
+                            <div data-aos='fade-up' data-aos-delay='300' className='flex gap-4 items-center rounded-[20px] w-full mp:w-[430px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] shadow-[#c9d6e8] xl:p-5 p-3'>
                                 <img className='xl:size-[50px] size-[40px]' src={access4} alt="" />
                                 <div>
                                     <p className='xl:text-[20px] font-manrope font-medium text-[#1E242C]'>Thrive With Continuous Support</p>
                                     <p className='xl:text-[15px] text-[13.5px] font-manrope font-normal text-[#414D60]'>Success managers ensure smooth operations</p>
                                 </div>
                             </div>
-                            <p data-aos='fade-up' data-aos-delay='900' className='font-medium xl:text-[110px] text-[80px] text-[#cddbf0]'>04</p>
+                            <p data-aos='fade-up' data-aos-delay='200' className='font-medium xl:text-[110px] text-[80px] text-[#cddbf0]'>04</p>
                         </div>
                     </div>
                     <div className='flex sa:flex-row flex-col sa:gap-2 gap-5 mt-12 mp:w-[50%] relative'>
                         <img data-aos='zoom-in' className='xl:w-[270px] sa:block hidden w-[200px] h-[300px] 2xl:w-[90%] 2xl:h-[90%] object-cover rounded-[20px] xl:h-[400px]' src={Man6} alt="" />
                         <img data-aos='zoom-in' className='xl:w-[270px] sa:w-[200px] h-[400px] 2xl:w-full 2xl:h-full object-cover rounded-[20px] xl:h-[500px]' src={Woman6} alt="" />
                         <div className='flex sa:absolute z-50 bg-white bottom-[2%] 2xl:bottom-12 gap-4 2xl:w-[50%] items-center rounded-[20px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] shadow-[#c9d6e8] p-4'>
-                            <img className='size-[40px]' src={avatar} alt="" />
-                            <img className='size-[40px] ml-[-20px]' src={avatar} alt="" />
-                            <img className='size-[40px] ml-[-20px]' src={avatar} alt="" />
-                            <img className='size-[40px] ml-[-20px]' src={avatar} alt="" />
+                            <img className='size-[40px] rounded-full' src={Man1} alt="" />
+                            <img className='size-[40px] ml-[-20px] rounded-full' src={Woman7} alt="" />
+                            <img className='size-[40px] ml-[-20px] rounded-full' src={Man3} alt="" />
+                            <img className='size-[40px] ml-[-20px] rounded-full' src={Woman1} alt="" />
                             <div>
-                                <p className='text-[20px] font-manrope font-medium text-[#0066FF]'>2k+</p>
+                                <p className='text-[20px] font-manrope font-medium text-[#0066FF]'>136+</p>
                                 <p className='text-[15px] font-manrope font-normal text-[#414D60]'>Satisfied Clients</p>
                             </div>
                         </div>
@@ -581,8 +581,7 @@ const LandingPage = () => {
                                 our security posture. His expertise has been invaluable, and the cost was considerably more
                                 favorable than domestic options."
                             </p>
-                            <div className='flex gap-2 items-start'>
-                                <img className='size-[40px] mt-1' src={avatar} alt="" />
+                            <div className='flex gap-2 items-start text-center'>
                                 <div>
                                     <p>Jennifer Brown</p>
                                     <p className='text-black/70 text-[15px]'>Chief Information Security Officer, SecureTech Industries</p>
@@ -607,8 +606,7 @@ const LandingPage = () => {
                                 marketing strategies have significantly increased our brand awareness and lead generation. Her communication is top-notch,
                                 and the cost savings have been substantial."
                             </p>
-                            <div className='flex gap-2 items-start'>
-                                <img className='size-[40px] mt-1' src={avatar} alt="" />
+                            <div className='flex gap-2 items-start text-center mx-2'>
                                 <div>
                                     <p>James Olsen</p>
                                     <p className='text-black/70 text-[15px]'>Chief Marketing Officer, GlobalReach Corp.</p>
@@ -632,8 +630,7 @@ const LandingPage = () => {
                                 whose expertise in cloud automation and system optimization has been transformative. He's streamlined our deployments and enhanced our
                                 system stability, bringing a level of skill we struggled to find locally. His dedication and communication have been excellent."
                             </p>
-                            <div className='flex gap-2 items-start'>
-                                <img className='size-[40px] mt-1' src={avatar} alt="" />
+                            <div className='flex gap-2 items-start text-center mx-2'>
                                 <div>
                                     <p>David Miller</p>
                                     <p className='text-black/70 text-[15px]'>VP of Engineering, CloudLeap Technologies</p>
@@ -658,8 +655,8 @@ const LandingPage = () => {
                                 contributions and proactive approach have accelerated our research significantly, all at a much more accessible cost than local hires.
                                 A truly valuable asset to our team."
                             </p>
-                            <div className='flex gap-2 items-start'>
-                                <img className='size-[40px] mt-1' src={avatar} alt="" />
+                            <div className='flex gap-2 items-start text-center'>
+                                {/* <img className='size-[40px] mt-1' src={avatar} alt="" /> */}
                                 <div>
                                     <p>Dr. Eleanor Vance</p>
                                     <p className='text-black/70 text-[15px]'>VP of Research & Development, DataWise Analytics</p>
@@ -687,7 +684,7 @@ const LandingPage = () => {
                                     <FaCheck className='text-[#0066FF] text-[24px]' />
                                     <p className='text-[19px] font-medium'>Huge Cost Savings</p>
                                 </div>
-                                <p data-aos='fade-down' data-aos-delay='200' className='text-[19px] font-normal'>Clients save up to 80% compared to local hiring while maintaining world-class quality.</p>
+                                <p data-aos='fade-down' data-aos-delay='200' className='text-[19px] font-normal'>Clients save up to 70% compared to local hiring while maintaining world-class quality.</p>
                             </div>
                             <div>
                                 <div data-aos='fade-down' data-aos-delay='1100' className='flex items-start gap-1'>
@@ -699,18 +696,18 @@ const LandingPage = () => {
                         </div>
                         <div className='flex sk:flex-row flex-col items-center gap-16'>
                             <div>
-                                <div data-aos='fade-up' data-aos-delay='800' className='flex items-start gap-1'>
+                                <div data-aos='fade-up' data-aos-delay='200' className='flex items-start gap-1'>
                                     <FaCheck className='text-[#0066FF] text-[24px]' />
                                     <p className='text-[19px] font-medium'>Access to Vetted Talent</p>
                                 </div>
-                                <p data-aos='fade-up' data-aos-delay='1100' className='text-[19px] font-normal'>Top 2% of candidates across Africa in tech, design, marketing, and operations roles.</p>
+                                <p data-aos='fade-up' data-aos-delay='500' className='text-[19px] font-normal'>Top 2% of candidates across Africa in tech, design, marketing, and operations roles.</p>
                             </div>
                             <div>
-                                <div data-aos='fade-up' data-aos-delay='900' className='flex items-start gap-1'>
+                                <div data-aos='fade-up' data-aos-delay='800' className='flex items-start gap-1'>
                                     <FaCheck className='text-[#0066FF] text-[24px]' />
                                     <p className='text-[19px] font-medium'>End-to-End Admin Support</p>
                                 </div>
-                                <p data-aos='fade-up' data-aos-delay='1200' className='text-[19px] font-normal'>We handle the contracts, time tracking, and local compliance so you don’t have to.</p>
+                                <p data-aos='fade-up' data-aos-delay='1100' className='text-[19px] font-normal'>We handle the contracts, time tracking, and local compliance so you don’t have to.</p>
                             </div>
                         </div>
                     </div>
