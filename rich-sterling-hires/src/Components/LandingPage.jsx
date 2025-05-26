@@ -83,7 +83,7 @@ const CustomNextArrow = (props) => {
 
 const LandingPage = () => {
     const [profession, setProfession] = useState('dev')
-
+    const videoRefs = useRef([]);
     const videoRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [showButton, setShowButton] = useState(true);
@@ -159,6 +159,8 @@ const LandingPage = () => {
 
     const shouldShowButton = !isPlaying || showButton || isHovered;
 
+    videoRefs.current = []
+
     const settings = {
         infinite: true,
         dots: true,
@@ -168,11 +170,39 @@ const LandingPage = () => {
         autoplaySpeed: 5000,
         waitForAnimate: false,
         pauseOnHover: false,
-        // autoplay: true,
         arrows: true,
         nextArrow: <CustomNextArrow />,
         prevArrow: <CustomPrevArrow />,
     };
+
+    const content = [
+        {
+            quote: "Finding a Product Designer who truly understood our user needs and could translate them into intuitive and engaging interfaces was a challenge. Rich Sterling Hires introduced us to Jennifer. Her design thinking process, coupled with her strong visual skills, has significantly improved the usability and aesthetics of our flagship product.",
+            client: "Jennifer Brown, Chief Information Security Officer, SecureTech Industries",
+            proficiency: "Fluent",
+            expertise: "Product Designer (UI/UX)",
+            experience: "4+ years experience",
+            skills: ["User Research", "Wireframing & Prototyping", "UI Design", "UX Design", "Usability Testing", "Design Thinking", "Communication", "Figma"]
+        },
+        {
+            quote: "Hiring David through Rich Sterling was one of the best decisions we made. In just a few weeks, he rebuilt our web app’s entire architecture—front to back—with clean, scalable code.",
+            client: "Sarah K., Head of Product, Fintech Startup (NY)",
+            proficiency: "Fluent",
+            expertise: "Full-Stack Developer",
+            experience: "5+ years experience",
+            skills: ["HTML", "CSS", "JavaScript", "React", "TailwindCSS", "REST API", "PostgreSQL", "MongoDB", "Git", "Docker", "AWS", "Vercel"]
+        },
+        {
+            quote: "This team member went above and beyond to lead our digital transformation project. Their leadership and innovation helped us reach new levels of operational efficiency.",
+            client: "Michael Y., COO, GlobalTech Ventures",
+            proficiency: "Fluent",
+            expertise: "Technical Project Manager",
+            experience: "6+ years experience",
+            skills: ["Agile Methodology", "Scrum", "JIRA", "Confluence", "Cross-functional Teams", "Stakeholder Management", "Risk Assessment", "Roadmap Planning"]
+        }
+    ];
+
+    const videos = [video1, video2, video3]
 
     useEffect(() => {
         AOS.init({
@@ -243,6 +273,7 @@ const LandingPage = () => {
                     </div>
                 </div>
             </div>
+            <img data-aos='zoom-in-up' data-aos-delay='800' className='sm:px-[15px] mp:hidden mq:object-cover block rounded-[100px] mt-10 px-5 w-full h-[60vh]' src={Man6} alt="" />
             <div className='font-manrope overflow-hidden sm:px-[75px] px-5 my-16'>
                 <h1 data-aos='zoom-in' className='font-semibold text-[30px] leading-10 text-center text-[#002B6B]'>
                     Why Leading US Companies Choose<br className='sm:block hidden' /> Rich Sterling Hires
@@ -337,156 +368,56 @@ const LandingPage = () => {
                         alt=""
                     />
                     <Slider className='xl:mx-[90px]' {...settings}>
-                        <div>
-                            <div className='flex md:flex-row flex-col items-center justify-center md:justify-between 2xl:justify-center xl:mt-20 md:mt-10 md:px-16 px-5 gap-5 w-full'>
-                                <div className='text-[17px] flex md:flex-col sm:flex-row flex-col gap-4 md:w-[30%] mt-20'>
-                                    <div className='flex flex-col gap-3 rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)] bg-white shadow-[#002b6b53] lg:p-4 sm:p-2 p-4'>
-                                        <p className='font-semibold lg:text-[18px]'>Client Quote:</p>
-                                        <p className='text-[15px]'>
-                                            Finding a Product Designer who truly understood our user needs and could translate them into intuitive and engaging interfaces was a challenge.
-                                            Rich Sterling Hires introduced us to Jennifer. Her design thinking process, coupled with her strong visual skills, has significantly improved
-                                            the usability and aesthetics of our flagship product.
+                        {videos.map((videoSrc, index) => (
+                            <div key={index}>
+                                <div className='flex md:flex-row flex-col items-center justify-center md:justify-between 2xl:justify-center xl:mt-20 md:mt-10 md:px-16 px-5 gap-5 w-full'>
+
+                                    <div className='text-[17px] flex md:flex-col sm:flex-row flex-col gap-4 md:w-[30%] mt-20'>
+                                        <div className='flex flex-col gap-3 rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)] bg-white shadow-[#002b6b53] lg:p-4 sm:p-2 p-4'>
+                                            <p className='font-semibold lg:text-[20px]'>Client Quote:</p>
+                                            <p className='lg:text-[17px] text-[15px]'>{content[index].quote}</p>
+                                            <p className='lg:text-[17px] text-[15px]'>{content[index].client}</p>
+                                        </div>
+                                        <p className='text-[#1E242C] font-semibold bg-white lg:text-[18px] rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] lg:p-4 sm:p-2 p-4 w-full'>
+                                            English Proficiency: <br /> {content[index].proficiency}
                                         </p>
-                                        <p className='text-[15px]'>Jennifer Brown, Chief Information Security Officer, SecureTech Industries</p>
                                     </div>
-                                    <p className='text-[#1E242C] font-semibold bg-white lg:text-[16px] rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] lg:p-4 sm:p-2 p-4 w-full'>English Proficiency: <br /> Fluent</p>
-                                </div>
-                                <div className='relative group'
-                                    onMouseEnter={() => setIsHovered(true)}
-                                    onMouseLeave={() => setIsHovered(false)}
-                                >
-                                    <video
-                                        ref={videoRef}
-                                        className="w-full h-[520px] z-50 rounded-[20px] will-change-transform"
-                                        playsInline
-                                        controls
-                                        src={video1}
-                                    />
-                                    {/* <div
-                                        className={`
-                                                    absolute z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                                                    flex items-center justify-center
-                                                    transition-opacity duration-500 ease-in-out
-                                                    ${shouldShowButton ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
-                                                `}
-                                    >
-                                        <button
-                                            onClick={togglePlayPause}
-                                            className="text-blue-500 bg-white rounded-full text-[50px]"
-                                        >
-                                            {isPlaying ? <FaPauseCircle /> : <FaPlayCircle />}
-                                        </button>
-                                    </div> */}
-                                </div>
-                                <div className='text-[17px] flex md:flex-col sm:flex-row flex-col gap-4 md:w-[30%] z-50 md:mt-10'>
-                                    <div className='flex flex-col gap-3 rounded-[20px] w-full shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] bg-white lg:p-4 sm:p-2 p-4'>
-                                        <p className='font-semibold lg:text-[17px]'>Expertise: <br /> Product Designer (UI/UX)</p>
-                                        <p className='text-[15px]'>4+ years experience</p>
+
+                                    <div className='relative'>
+                                        <video
+                                            ref={(el) => (videoRefs.current[index] = el)}
+                                            className='w-full h-[520px] z-50 rounded-[20px]'
+                                            controls
+                                            playsInline
+                                            src={videoSrc}
+                                        />
                                     </div>
-                                    <div className='text-[#1E242C] rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] bg-white lg:p-2 sm:p-2 p-4'>
-                                        <p className='font-semibold lg:text-[20px]'>Skills:</p>
-                                        <div className='flex flex-wrap gap-1 mt-3'>
-                                            <p className='border rounded-[100px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>User Research</p>
-                                            <p className='border rounded-[100px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>Wireframing & Prototyping</p>
-                                            <p className='border rounded-[100px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>User Interface (UI) Design</p>
-                                            <p className='border rounded-[100px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>User Experience (UX) Design</p>
-                                            <p className='border rounded-[100px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>Usability Testing</p>
-                                            <p className='border rounded-[100px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>Design Thinking</p>
-                                            <p className='border rounded-[100px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>Collaboration & Communication</p>
-                                            <p className='border rounded-[100px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>Figma</p>
+
+                                    <div className='text-[17px] flex md:flex-col sm:flex-row flex-col gap-4 md:w-[30%] z-50 md:mt-10'>
+                                        <div className='flex flex-col gap-3 rounded-[20px] w-full shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] bg-white lg:p-4 sm:p-2 p-4'>
+                                            <p className='font-semibold lg:text-[20px]'>
+                                                Expertise: <br />
+                                                {content[index].expertise}
+                                            </p>
+                                            <p className='lg:text-[17px] text-[15px]'>{content[index].experience}</p>
+                                        </div>
+                                        <div className='text-[#1E242C] rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] bg-white lg:p-4 sm:p-2 p-4'>
+                                            <p className='font-semibold lg:text-[20px]'>Skills:</p>
+                                            <div className='flex flex-wrap gap-1 mt-3'>
+                                                {content[index].skills.map((skill, skillIndex) => (
+                                                    <p
+                                                        key={skillIndex}
+                                                        className='border rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'
+                                                    >
+                                                        {skill}
+                                                    </p>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div>
-                            <div className='flex md:flex-row flex-col items-center justify-center md:justify-between 2xl:justify-center xl:mt-20 md:mt-10 md:px-16 px-5 gap-5 w-full'>
-                                <div className='text-[17px] flex md:flex-col sm:flex-row flex-col gap-4 md:w-[30%] mt-20'>
-                                    <div className='flex flex-col gap-3 rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)] bg-white shadow-[#002b6b53] lg:p-4 sm:p-2 p-4'>
-                                        <p className='font-semibold lg:text-[20px]'>Client Quote:</p>
-                                        <p className='lg:text-[17px] text-[15px]'>
-                                            Hiring David through Rich Sterling was one of the best decision we made.
-                                            In just a few weeks, he rebuilt our web app’s entire architecture—front to
-                                            back—with clean, scalable code.
-                                        </p>
-                                        <p className='lg:text-[17px] text-[15px]'>Sarah K., Head of Product, Fintech Startup (NY)</p>
-                                    </div>
-                                    <p className='text-[#1E242C] font-semibold bg-white lg:text-[18px] rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] lg:p-4 sm:p-2 p-4 w-full'>English Proficiency: <br /> Fluent</p>
-                                </div>
-                                <div>
-                                    <video className='w-full rounded-[20px] h-[520px]' controls>
-                                        <source src={video2} type="video/mp4" />
-                                    </video>
-                                </div>
-                                <div className='text-[17px] flex md:flex-col sm:flex-row flex-col gap-4 md:w-[30%] z-50 md:mt-10'>
-                                    <div className='flex flex-col gap-3 rounded-[20px] w-full shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] bg-white lg:p-4 sm:p-2 p-4'>
-                                        <p className='font-semibold lg:text-[20px]'>Expertise: <br />Full-Stack Developer</p>
-                                        <p className='lg:text-[17px] text-[15px]'>5+ years experience</p>
-                                    </div>
-                                    <div className='text-[#1E242C] rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] bg-white lg:p-4 sm:p-2 p-4'>
-                                        <p className='font-semibold lg:text-[20px]'>Skills:</p>
-                                        <div className='flex flex-wrap lg:gap-2 gap-1 mt-3'>
-                                            <p className='border rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>HTML</p>
-                                            <p className='border rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>CSS</p>
-                                            <p className='border rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>JavaScript</p>
-                                            <p className='border rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>React</p>
-                                            <p className='border rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>TailwindCSS</p>
-                                            <p className='border rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>REST API</p>
-                                            <p className='border rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>Postgre SQL</p>
-                                            <p className='border rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>Mongo DB</p>
-                                            <p className='border rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>Git</p>
-                                            <p className='border rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>Docker</p>
-                                            <p className='border rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>AWS</p>
-                                            <p className='border rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>Vercel</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div className='flex md:flex-row flex-col items-center justify-center md:justify-between 2xl:justify-center xl:mt-20 md:mt-10 md:px-16 px-5 gap-5 w-full'>
-                                <div className='text-[17px] flex md:flex-col sm:flex-row flex-col gap-4 md:w-[30%] mt-20'>
-                                    <div className='flex flex-col gap-3 rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)] bg-white shadow-[#002b6b53] lg:p-4 sm:p-2 p-4'>
-                                        <p className='font-semibold lg:text-[20px]'>Client Quote:</p>
-                                        <p className='lg:text-[17px] text-[15px]'>
-                                            Hiring David through Rich Sterling was one of the best decision we made.
-                                            In just a few weeks, he rebuilt our web app’s entire architecture—front to
-                                            back—with clean, scalable code.
-                                        </p>
-                                        <p className='lg:text-[17px] text-[15px]'>Sarah K., Head of Product, Fintech Startup (NY)</p>
-                                    </div>
-                                    <p className='text-[#1E242C] font-semibold bg-white lg:text-[18px] rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] lg:p-4 sm:p-2 p-4 w-full'>English Proficiency: <br /> Fluent</p>
-                                </div>
-                                <div>
-                                    <video className='w-full rounded-[20px] h-[520px]' controls>
-                                        <source src={video3} type="video/mp4" />
-                                    </video>
-                                </div>
-                                <div className='text-[17px] flex md:flex-col sm:flex-row flex-col gap-4 md:w-[30%] z-50 md:mt-10'>
-                                    <div className='flex flex-col gap-3 rounded-[20px] w-full shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] bg-white lg:p-4 sm:p-2 p-4'>
-                                        <p className='font-semibold lg:text-[20px]'>Expertise: <br />Full-Stack Developer</p>
-                                        <p className='lg:text-[17px] text-[15px]'>5+ years experience</p>
-                                    </div>
-                                    <div className='text-[#1E242C] rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] bg-white lg:p-4 sm:p-2 p-4'>
-                                        <p className='font-semibold lg:text-[20px]'>Skills:</p>
-                                        <div className='flex flex-wrap lg:gap-2 gap-1 mt-3'>
-                                            <p className='border rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>HTML</p>
-                                            <p className='border rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>CSS</p>
-                                            <p className='border rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>JavaScript</p>
-                                            <p className='border rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>React</p>
-                                            <p className='border rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>TailwindCSS</p>
-                                            <p className='border rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>REST API</p>
-                                            <p className='border rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>Postgre SQL</p>
-                                            <p className='border rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>Mongo DB</p>
-                                            <p className='border rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>Git</p>
-                                            <p className='border rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>Docker</p>
-                                            <p className='border rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>AWS</p>
-                                            <p className='border rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'>Vercel</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        ))}
                     </Slider>
                 </div>
             </div >
