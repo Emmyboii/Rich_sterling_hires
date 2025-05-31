@@ -4,7 +4,7 @@ import 'aos/dist/aos.css';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { FaLinkedinIn, FaPauseCircle, FaPlayCircle, FaRegCheckCircle, FaStar, FaYoutube } from "react-icons/fa";
+import { FaLinkedinIn, FaRegCheckCircle, FaStar, FaYoutube } from "react-icons/fa";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaCheck, FaXTwitter } from "react-icons/fa6";
 import group from '../Images/Logo.png';
@@ -21,6 +21,7 @@ import Man3 from '../Images/Man3.png';
 import Man4 from '../Images/Man4.png';
 import Man5 from '../Images/Man5.png';
 import Man6 from '../Images/Man6.png';
+import Man7 from '../Images/Man7.png';
 import Woman1 from '../Images/Woman1.png';
 import Woman2 from '../Images/Woman2.png';
 import Woman3 from '../Images/Woman3.png';
@@ -55,6 +56,7 @@ import Rich from '../Images/Rich.png'
 import SH from '../Images/Sterling Hires.png'
 import small from '../Images/small.png'
 import small3 from '../Images/small3.png'
+import ReactPlayer from 'react-player';
 
 const CustomPrevArrow = (props) => {
     const { onClick } = props;
@@ -83,97 +85,30 @@ const CustomNextArrow = (props) => {
 
 const LandingPage = () => {
     const [profession, setProfession] = useState('dev')
-    const videoRefs = useRef([]);
-    const videoRef = useRef(null);
-    const [isPlaying, setIsPlaying] = useState(false);
-    const [showButton, setShowButton] = useState(true);
-    const [isHovered, setIsHovered] = useState(false);
-    const hideTimeoutRef = useRef(null);
+    const internalVideoElements = useRef([]);
 
-    const togglePlayPause = async () => {
-        if (!videoRef.current) return;
-
-        try {
-            const video = videoRef.current;
-
-            // Force repaint
-            video.style.display = 'none';
-            void video.offsetHeight;
-            video.style.display = '';
-
-            if (video.paused) {
-                await video.play();
-                setIsPlaying(true);
-            } else {
-                video.pause();
-                setIsPlaying(false);
-            }
-
-            setShowButton(true);
-            resetHideTimer();
-        } catch (err) {
-            console.error("Video play error:", err);
-        }
+    const pauseAllVideos = () => {
+        internalVideoElements.current.forEach((player) => {
+            try {
+                player?.pause?.();
+            } catch (_) { }
+        });
     };
-
-
-
-    const resetHideTimer = () => {
-        if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current);
-
-        if (!videoRef.current?.paused) {
-            hideTimeoutRef.current = setTimeout(() => {
-                setShowButton(false);
-            }, 3000); // hide after 3s
-        }
-    };
-
-    useEffect(() => {
-        const video = videoRef.current;
-
-        const handlePlay = () => {
-            setIsPlaying(true);
-            setShowButton(true);
-            resetHideTimer();
-        };
-
-        const handlePause = () => {
-            setIsPlaying(false);
-            setShowButton(true);
-            if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current);
-        };
-
-        if (video) {
-            video.addEventListener("play", handlePlay);
-            video.addEventListener("pause", handlePause);
-        }
-
-        return () => {
-            if (video) {
-                video.removeEventListener("play", handlePlay);
-                video.removeEventListener("pause", handlePause);
-            }
-            if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current);
-        };
-    }, []);
-
-    const shouldShowButton = !isPlaying || showButton || isHovered;
-
-    videoRefs.current = []
 
     const settings = {
-        infinite: true,
+        infinite: false,
         dots: true,
-        speed: 4000,
+        speed: 2000,
         slidesToShow: 1,
         slidesToScroll: 1,
-        autoplaySpeed: 5000,
         waitForAnimate: false,
         pauseOnHover: false,
         arrows: true,
         nextArrow: <CustomNextArrow />,
         prevArrow: <CustomPrevArrow />,
+        beforeChange: pauseAllVideos
     };
+
 
     const content = [
         {
@@ -226,16 +161,16 @@ const LandingPage = () => {
                     </button>
                 </a>
             </div>
-            <div className='flex overflow-hidden pt-8 w-full justify-between lg:pl-[75px] md:px-10 mp:pr-0 px-5 font-manrope'>
+            <div className='flex overflow-hidden pt-8 w-full justify-between lg:pl-[75px] md:px-10 mp:pr-0 px-0 font-manrope'>
                 <div className='2xl:w-[200%] mp:w-[60%] flex mp:block flex-col mp:items-start items-center pt-3'>
-                    <div className='flex items-center justify-center rounded-[100px] gap-1 bg-[#0066FF] px-5 max-w-[450px] py-2 text-white'>
+                    <div className='flex items-center justify-center rounded-[100px] gap-1 bg-[#0066FF] sm:px-5 px-3 max-w-[450px] py-2 text-white'>
                         <img className='size-6' src={Badge} alt="" />
-                        <p className='text-center'>Our clients save an average of 70% on hiring costs</p>
+                        <p className='text-center sm:text-[15px] text-[14px]'>Our clients save an average of 70% on hiring costs</p>
                     </div>
-                    <p data-aos='fade-up' data-aos-delay='100' className='xl:text-[64px] sm:text-[50px] sr:text-[40px] text-[28px] text-[#002B6B] text-center mp:text-start xl:leading-[76px] sr:leading-[60px] mt-6 font-semibold'>
+                    <p data-aos='fade-up' data-aos-delay='100' className='xl:text-[64px] sm:text-[50px] text-[43px] text-[#002B6B] text-center mp:text-start xl:leading-[76px] sr:leading-[60px] mt-6 font-semibold'>
                         Join 136+ Companies Cutting Costs by 70% with Elite African Talent
                     </p>
-                    <p data-aos='fade-up' data-aos-delay='300' className='xl:text-[20px] sr:text-[17px] text--[15px] font-medium mt-3 text-center mp:text-start'>
+                    <p data-aos='fade-up' data-aos-delay='300' className='xl:text-[20px] text-[17px] font-medium mt-3 text-center mp:text-start'>
                         Rich Sterling Hires connects you with exceptional African professionals who deliver outstanding results at a fraction of the costs
                     </p>
                     <a href='/register' target='_blank'>
@@ -244,6 +179,16 @@ const LandingPage = () => {
                             <img src={send} className='size-[40px]' alt="" />
                         </button>
                     </a>
+                    <div className='flex flex-col mp:hidden gap-2 items-center mt-5 justify-center'>
+                        <div className='flex items-center gap-2'>
+                            <img data-aos='zoom-in-up' className='w-[180px]' src={Woman1} alt="" />
+                            <img data-aos='zoom-in-up' className='w-[180px]' src={Man7} alt="" />
+                        </div>
+                        <div className='flex items-cente gap-2'>
+                            <img data-aos='zoom-in-up' data-aos-delay='300' className='w-[180px]' src={Man1} alt="" />
+                            <img data-aos='zoom-in-up' data-aos-delay='300' className='w-[180px]' src={Woman3} alt="" />
+                        </div>
+                    </div>
                     <div className='mt-10'>
                         <p data-aos='zoom-in' data-aos-delay='500' className='text-[20px] text-center lk:text-start font-medium'>Trusted by top companies</p>
                         <div className='flex flex-wrap justify-center sp:justify-start gap-10 items-center'>
@@ -253,6 +198,7 @@ const LandingPage = () => {
                             <img data-aos='fade-up' data-aos-delay='400' className='lg:w-[120px] w-[90px] lg:h-[40px] h-[30px]' src={Group4} alt="" />
                         </div>
                     </div>
+
                 </div>
                 <div className='mp:w-[50%] mp:flex hidden gap-3'>
                     <div className='flex flex-col gap-3 mt-1'>
@@ -273,7 +219,8 @@ const LandingPage = () => {
                     </div>
                 </div>
             </div>
-            <img data-aos='zoom-in-up' data-aos-delay='800' className='sm:px-[15px] mp:hidden mq:object-cover block rounded-[100px] mt-10 px-5 w-full h-[60vh]' src={Man6} alt="" />
+
+            {/* <img data-aos='zoom-in-up' data-aos-delay='800' className='sm:px-[15px] mp:hidden mq:object-cover block rounded-[100px] mt-10 px-5 w-full h-[60vh]' src={Man6} alt="" /> */}
             <div className='font-manrope overflow-hidden sm:px-[75px] px-5 my-16'>
                 <h1 data-aos='zoom-in' className='font-semibold text-[30px] leading-10 text-center text-[#002B6B]'>
                     Why Leading US Companies Choose<br className='sm:block hidden' /> Rich Sterling Hires
@@ -353,7 +300,7 @@ const LandingPage = () => {
                 <Professions profession={profession} />
             </div>
 
-            <div className='mt-16 overflow-hidden'>
+            <div className='overflow-hidden py-16'>
                 <h1 data-aos='zoom-in' className='font-semibold sm:mx-[90px] mx-5 text-[33px] leading-10 text-center text-[#002B6B]'>
                     Meet Some of Our Exceptional Talent
                 </h1>
@@ -361,7 +308,7 @@ const LandingPage = () => {
                     Watch short intro videos of vetted candidates so you can see their communication skills, <br className='xl:block hidden' />
                     professionalism, and cultural fit
                 </p>
-                <div className='relative md:mt-24 overflow-y-hidden'>
+                <div className='relative md:mt-24 md:block hidden'>
                     <img
                         className="absolute left-1/2 xl:top-16 md:top-10 sa:block hidden sm:top-[56%] top-[55%] -translate-y-1/2 md:-translate-y-0 transform -translate-x-1/2 lg:w-[560px] sp:w-[500px] w-full max-w-full"
                         src={BG}
@@ -370,7 +317,7 @@ const LandingPage = () => {
                     <Slider className='xl:mx-[90px]' {...settings}>
                         {videos.map((videoSrc, index) => (
                             <div key={index}>
-                                <div className='flex md:flex-row flex-col items-center justify-center md:justify-between 2xl:justify-center xl:mt-20 md:mt-10 md:px-16 px-5 gap-5 w-full'>
+                                <div className='flex items-center justify-between 2xl:justify-center xl:mt-20 md:mt-10 md:px-16 px-5 gap-5 w-full'>
 
                                     <div className='text-[17px] flex md:flex-col sm:flex-row flex-col gap-4 md:w-[30%] mt-20'>
                                         <div className='flex flex-col gap-3 rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)] bg-white shadow-[#002b6b53] lg:p-4 sm:p-2 p-4'>
@@ -384,16 +331,20 @@ const LandingPage = () => {
                                     </div>
 
                                     <div className='relative'>
-                                        <video
-                                            ref={(el) => (videoRefs.current[index] = el)}
-                                            className='w-full h-[520px] z-50 rounded-[20px]'
+                                        <ReactPlayer
+                                            url={videoSrc}
                                             controls
-                                            playsInline
-                                            src={videoSrc}
+                                            width='100%'
+                                            height='520px'
+                                            playing={false}
+                                            onReady={(player) => {
+                                                const internal = player.getInternalPlayer();
+                                                internalVideoElements.current[index] = internal;
+                                            }}
                                         />
                                     </div>
 
-                                    <div className='text-[17px] flex md:flex-col sm:flex-row flex-col gap-4 md:w-[30%] z-50 md:mt-10'>
+                                    <div className='text-[17px] flex items-center justify-between flex-col gap-4 md:w-[30%] z-50 md:mt-10'>
                                         <div className='flex flex-col gap-3 rounded-[20px] w-full shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] bg-white lg:p-4 sm:p-2 p-4'>
                                             <p className='font-semibold lg:text-[20px]'>
                                                 Expertise: <br />
@@ -407,7 +358,7 @@ const LandingPage = () => {
                                                 {content[index].skills.map((skill, skillIndex) => (
                                                     <p
                                                         key={skillIndex}
-                                                        className='border rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'
+                                                        className='border-[1.3px] border-[#6C7787] rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'
                                                     >
                                                         {skill}
                                                     </p>
@@ -420,15 +371,78 @@ const LandingPage = () => {
                         ))}
                     </Slider>
                 </div>
+                <div className='relative mt-24 block md:hidden'>
+                    <img
+                        className="absolute w-[80%] left-1/2 -translate-x-1/2"
+                        src={BG}
+                        alt=""
+                    />
+                    <Slider className='xl:mx-[90px]' {...settings}>
+                        {videos.map((videoSrc, index) => (
+                            <div key={index}>
+                                <div className='fle items-center justify-between 2xl:justify-center xl:mt-20 md:mt-10 md:px-16 px-5 gap-5 w-full'>
+
+                                    <div className='relative'>
+                                        <ReactPlayer
+                                            url={videoSrc}
+                                            controls
+                                            width='100%'
+                                            height='520px'
+                                            playing={false}
+                                            onReady={(player) => {
+                                                const internal = player.getInternalPlayer();
+                                                internalVideoElements.current[index] = internal;
+                                            }}
+                                        />
+                                    </div>
+                                    <div className='flex sp:flex-row flex-col gap-3 mt-3'>
+                                        <div className='flex sp:flex-col gap-2'>
+                                            <div className='flex flex-col gap-3 border-[#6C7787] border-[1.2px] sp:w-[180px] rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] bg-white lg:p-4 sm:p-2 p-4'>
+                                                <p className='font-semibold lg:text-[20px]'>
+                                                    Expertise: <br />
+                                                    {content[index].expertise}
+                                                </p>
+                                                <p className='lg:text-[17px] text-[15px]'>{content[index].experience}</p>
+                                            </div>
+                                            <p className='text-[#1E242C] border-[#6C7787] border-[1.2px] sp:w-[180px] font-semibold bg-white lg:text-[18px] rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] lg:p-4 sm:p-2 p-4 w-'>
+                                                English Proficiency: <br /> {content[index].proficiency}
+                                            </p>
+                                        </div>
+                                        <div className='text-[#1E242C] rounded-[20px] border-[#6C7787] border-[1.2px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] bg-white lg:p-4 sm:p-2 p-4'>
+                                            <p className='font-semibold lg:text-[20px]'>Skills:</p>
+                                            <div className='flex flex-wrap gap-2 mt-3'>
+                                                {content[index].skills.map((skill, skillIndex) => (
+                                                    <p
+                                                        key={skillIndex}
+                                                        className='border-[1.3px] border-[#6C7787] rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'
+                                                    >
+                                                        {skill}
+                                                    </p>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className='flex flex-col mt-3 border-[#6C7787] border-[1.2px] mb-5 gap-3 rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)] bg-white shadow-[#002b6b53] lg:p-4 sm:p-2 p-4'>
+                                        <p className='font-semibold lg:text-[20px]'>Client Quote:</p>
+                                        <p className='lg:text-[17px] text-[15px]'>{content[index].quote}</p>
+                                        <p className='lg:text-[17px] text-[15px]'>{content[index].client}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </Slider>
+                </div>
             </div >
-            <div id='steps' className='lg:px-[60px] overflow-hidden px-5 pb-16'>
+            <div id='steps' className='lg:px-[60px] overflow-hidden px-3 py-16'>
                 <h1 data-aos='zoom-in' className='font-semibold text-[33px] leading-10 text-center text-[#002B6B]'>
                     Access Global Talent in 4 Easy Steps
                 </h1>
                 <div className='flex mp:flex-row flex-col items-center w-full mp:gap-10'>
                     <div className='mt-10 mp:w-[50%]'>
-                        <div className='flex items-center sa:flex-row flex-col xl:gap-10 sa:gap-5'>
-                            <p data-aos='fade-up' className='font-medium xl:text-[110px] text-[80px] text-[#cddbf0]'>01</p>
+                        <div className='flex items-center xl:gap-10 sa:gap-5 gap-2'>
+                            <p data-aos='fade-up' className='font-medium xl:text-[110px] sa:block hidden text-[80px] text-[#cddbf0]'>01</p>
+                            <p data-aos='fade-up' className='font-medium xl:text-[110px] block sa:hidden text-[80px] font-mono text-[#cddbf0]'>1</p>
                             <div data-aos='fade-up' data-aos-delay='300' className='flex gap-4 items-center rounded-[20px] w-full mp:w-[430px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] shadow-[#c9d6e8] xl:p-5 p-3'>
                                 <img className='xl:size-[44px] size-[40px]' src={access1} alt="" />
                                 <div>
@@ -437,7 +451,7 @@ const LandingPage = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className='flex items-center sa:flex-row flex-col-reverse xl:mt-[-30px] mt-5 xl:gap-10 sa:gap-5'>
+                        <div className='flex items-center xl:mt-[-30px] mt-5 xl:gap-10 sa:gap-5 gap-1'>
                             <div data-aos='fade-up' data-aos-delay='300' className='flex gap-4 items-center rounded-[20px] w-full mp:w-[430px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] shadow-[#c9d6e8] xl:py-5 p-3'>
                                 <img className='xl:size-[50px] size-[40px]' src={access2} alt="" />
                                 <div>
@@ -445,10 +459,12 @@ const LandingPage = () => {
                                     <p className='xl:text-[15px] text-[13.5px] font-manrope font-normal text-[#414D60]'>Meet vetted professionals who match your needs</p>
                                 </div>
                             </div>
-                            <p data-aos='fade-up' data-aos-delay='200' className='font-medium xl:text-[110px] text-[80px] text-[#cddbf0]'>02</p>
+                            <p data-aos='fade-up' data-aos-delay='200' className='font-medium xl:text-[110px] sa:block hidden text-[80px] text-[#cddbf0]'>02</p>
+                            <p data-aos='fade-up' data-aos-delay='200' className='font-medium xl:text-[110px] block sa:hidden text-[80px] font-mono text-[#cddbf0]'>2</p>
                         </div>
-                        <div className='flex items-center sa:flex-row flex-col xl:mt-[-30px] mt-5 xl:gap-10 sa:gap-5'>
-                            <p data-aos='fade-up' data-aos-delay='200' className='font-medium xl:text-[110px] text-[80px] text-[#cddbf0]'>03</p>
+                        <div className='flex items-center  xl:mt-[-30px] mt-5 xl:gap-10 sa:gap-5 gap-2'>
+                            <p data-aos='fade-up' data-aos-delay='200' className='font-medium xl:text-[110px] sa:block hidden text-[80px] text-[#cddbf0]'>03</p>
+                            <p data-aos='fade-up' data-aos-delay='200' className='font-medium xl:text-[110px] block sa:hidden text-[80px] font-mono text-[#cddbf0]'>3</p>
                             <div data-aos='fade-up' data-aos-delay='300' className='flex gap-4 items-center rounded-[20px] w-full mp:w-[430px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] shadow-[#c9d6e8] xl:p-5 p-3'>
                                 <img className='xl:size-[50px] size-[40px]' src={access3} alt="" />
                                 <div>
@@ -457,7 +473,7 @@ const LandingPage = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className='flex items-center sa:flex-row flex-col-reverse xl:mt-[-30px] mt-5 xl:gap-10 sa:gap-5'>
+                        <div className='flex items-center xl:mt-[-30px] mt-5 xl:gap-10 sa:gap-5 gap-2'>
                             <div data-aos='fade-up' data-aos-delay='300' className='flex gap-4 items-center rounded-[20px] w-full mp:w-[430px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] shadow-[#c9d6e8] xl:p-5 p-3'>
                                 <img className='xl:size-[50px] size-[40px]' src={access4} alt="" />
                                 <div>
@@ -465,7 +481,8 @@ const LandingPage = () => {
                                     <p className='xl:text-[15px] text-[13.5px] font-manrope font-normal text-[#414D60]'>Success managers ensure smooth operations</p>
                                 </div>
                             </div>
-                            <p data-aos='fade-up' data-aos-delay='200' className='font-medium xl:text-[110px] text-[80px] text-[#cddbf0]'>04</p>
+                            <p data-aos='fade-up' data-aos-delay='200' className='font-medium xl:text-[110px] sa:block hidden text-[80px] text-[#cddbf0]'>04</p>
+                            <p data-aos='fade-up' data-aos-delay='200' className='font-medium xl:text-[110px] block sa:hidden text-[80px] font-mono text-[#cddbf0]'>4</p>
                         </div>
                     </div>
                     <div className='flex sa:flex-row flex-col sa:gap-2 gap-5 mt-12 mp:w-[50%] relative'>
@@ -822,7 +839,67 @@ const LandingPage = () => {
                     </a>
                 </div>
             </div>
-            <div className='relative mt-10'>
+            <div className='mx-5 mt-10 block sp:hidden'>
+                <div className='flex justify-between'>
+                    <a href="/">
+                        <img onClick={() => window.scrollTo(0, 0)} src={group} className='w-[130px] h-[40px]' alt="" />
+                    </a>
+                    <div className='flex items-center gap-5 text-[24px] text-[#002B6B]'>
+                        <a href="/"><AiFillInstagram /></a>
+                        <a href="/"><FaLinkedinIn /></a>
+                        <a href="/"><FaXTwitter /></a>
+                        <a href="/"><FaYoutube /></a>
+                    </div>
+                </div>
+                <div className='flex justify-between items-start gap-10 mt-5'>
+                    <div className='w-full'>
+                        <p className='text-[14px] mt-3 font-normal font-jakarta'><span className='font-bold font-manrope'>Corporate Head Office</span>: <br className='sa:hidden block' /> New york City, Lagos Nigeria, Nairobi Kenya.</p>
+                        <div className='mt-4 flex flex-col gap-2'>
+                            <p className='text-[14px] font-normal font-jakarta'><span className='font-bold font-manrope'>Phone</span>: 843-496-7759</p>
+                            <p className='text-[14px] font-normal font-jakarta'><span className='font-bold font-manrope'>Fax</span>: 02-222264303</p>
+                            <p className='text-[14px] font-normal font-jakarta'><span className='font-bold font-manrope'>Email</span>: info@richsterling.com</p>
+                        </div>
+                    </div>
+                    <div className='flex flex-col mt-2 gap-[13px] text-[15px] text-[#414D60] font-normal w-1/2'>
+                        <h1 className='text-[18px] text-[#1E242C] font-bold'>Quick Links</h1>
+                        <a href="#pricing">
+                            <p>Pricing</p>
+                        </a>
+                        <a href="#careers">
+                            <p>Сareers</p>
+                        </a>
+                        <a href="/contact">
+                            <p>Contact Us</p>
+                        </a>
+                    </div>
+                </div>
+                <div className='flex justify-between mt-7'>
+                    <div className='flex flex-col gap-[13px] text-[15px] text-[#414D60] font-normal xl:w-[150px]'>
+                        <h1 className='text-[18px] text-[#1E242C] font-bold'>Others</h1>
+                        <a href="#steps">
+                            <p>How it works</p>
+                        </a>
+                        <a href="/t&c">
+                            <p>Terms and condition</p>
+                        </a>
+                        <a href="/privacy">
+                            <p>Privacy Policy</p>
+                        </a>
+                        <a href="/about">
+                            <p>About Us</p>
+                        </a>
+                    </div>
+                    <div className='flex flex-col gap-[13px] text-[15px] text-[#414D60] font-normal xl:w-[150px]'>
+                        <h1 className='text-[18px] text-[#1E242C] font-bold'>About us</h1>
+                        <p>Company milestone</p>
+                        <p>Web mail</p>
+                        <p>Board of Directors</p>
+                        <p>Senior Management</p>
+                    </div>
+                </div>
+                <p className='text-[15px] text-center mt-10 text-[#002B6B] font-normal'>©2025 All rights reserved</p>
+            </div>
+            <div className='relative mt-10 sp:flex hidden'>
                 {/* <img className='w-full top- blur-[20px] absolute' src={SH} alt="" /> */}
                 <div className='md:mx-[60px] mx-5 w-[90%] absolute top-0'>
                     <div className='flex mp:flex-row flex-col gap-10 mp:gap-0 justify-between'>
@@ -876,7 +953,7 @@ const LandingPage = () => {
 
                     </div>
                     <div className='flex sr:flex-row flex-col gap-5 items-center justify-between mt-16 mb-10'>
-                        <p className='text-[15px] font-normal'>©2025 All rights reserved</p>
+                        <p className='text-[15px] text-[#002B6B] font-normal'>©2025 All rights reserved</p>
                         <div className='flex items-center gap-5 text-[24px] text-[#002B6B]'>
                             <a href="/"><AiFillInstagram /></a>
                             <a href="/"><FaLinkedinIn /></a>
