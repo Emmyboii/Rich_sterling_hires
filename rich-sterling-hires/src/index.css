@@ -5,7 +5,7 @@
 * {
   scroll-behavior: smooth;
   margin: 0;
-    font-family: 'Poppins', sans-serif;
+  font-family: 'DM Serif Display', Georgia, sans-serif;
 }
 
 .slick-dots li button:before {
@@ -16,6 +16,11 @@
 
 .slick-dots li.slick-active button:before {
   color: #0066FF;
+}
+
+.slick-slide>div {
+  padding: 0 8px;
+  /* smaller than Tailwind's px-2 */
 }
 
 .scrollbar-hide {

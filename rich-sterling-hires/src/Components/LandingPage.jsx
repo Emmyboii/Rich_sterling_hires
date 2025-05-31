@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaLinkedinIn, FaRegCheckCircle, FaStar, FaYoutube } from "react-icons/fa";
 import { AiFillInstagram } from "react-icons/ai";
-import { FaCheck, FaXTwitter } from "react-icons/fa6";
+import { FaCheck, FaPlus, FaXTwitter } from "react-icons/fa6";
 import group from '../Images/Logo.png';
 import send from '../Images/Send.png';
 import send2 from '../Images/send2.png';
@@ -42,13 +42,12 @@ import access3 from '../Images/Access3.png';
 import access4 from '../Images/Access4.png';
 import coin from '../Images/Coins.png';
 import Professions from './Professions';
-import Thumbnail1 from '../Images/Thumbnail1.jpg';
+import Thumbnail1 from '../Images/Thumbnail1.png';
 import Thumbnail2 from '../Images/Thumbnail2.png';
 import Thumbnail3 from '../Images/Thumbnail3.png';
 import ArrowLeftCircle from '../Images/ArrowLeftCircle.png'
 import ArrowRightCircle from '../Images/ArrowRightCircle.png'
 import question from '../Images/Question.png'
-import cancle from '../Images/Cancel.png'
 import element1 from '../Images/Element1.png'
 import element2 from '../Images/Element2.png'
 import BG from '../Images/BG.png'
@@ -89,6 +88,14 @@ const LandingPage = () => {
 
     const [playingIndex, setPlayingIndex] = useState(null);
 
+    const [faq1, setFaq1] = useState(false);
+    const [faq2, setFaq2] = useState(false);
+    const [faq3, setFaq3] = useState(false);
+    const [faq4, setFaq4] = useState(false);
+    const [faq5, setFaq5] = useState(false);
+    const [faq6, setFaq6] = useState(false);
+
+
 
     const pauseAllVideos = () => {
         internalVideoElements.current.forEach((player) => {
@@ -114,6 +121,39 @@ const LandingPage = () => {
         nextArrow: <CustomNextArrow />,
         prevArrow: <CustomPrevArrow />,
         beforeChange: pauseAllVideos
+    };
+
+    const settings2 = {
+        infinite: true,
+        dots: true,
+        speed: 5000,
+        slidesToShow: 1.1,
+        swipe: true,
+        slidesToScroll: 1,
+        waitForAnimate: false,
+        pauseOnHover: false,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        responsive: [
+            {
+                breakpoint: 700,
+                settings: {
+                    slidesToShow: 1.7,
+                }
+            },
+            {
+                breakpoint: 550,
+                settings: {
+                    slidesToShow: 1.3,
+                }
+            },
+            {
+                breakpoint: 390,
+                settings: {
+                    slidesToShow: 1.1,
+                }
+            }
+        ]
     };
 
 
@@ -175,13 +215,13 @@ const LandingPage = () => {
             <div className='flex overflow-hidden pt-8 w-full justify-between lg:pl-[75px] md:px-10 mp:pr-0 px-0'>
                 <div className='2xl:w-[200%] mp:w-[60%] flex mp:block flex-col mp:items-start items-center pt-3'>
                     <div className='flex items-center justify-center rounded-[100px] gap-1 bg-[#0066FF] sm:px-5 px-3 max-w-[450px] py-2 text-white'>
-                        <img className='size-6' src={Badge} alt="" />
-                        <p className='text-center sm:text-[15px] text-[14px]'>Our clients save an average of 70% on hiring costs</p>
+                        <img className='size-5' src={Badge} alt="" />
+                        <p className='text-center sm:text-[15px] text-[13px]'>Our clients save an average of 70% on hiring costs</p>
                     </div>
-                    <p data-aos='fade-up' data-aos-delay='100' className='xl:text-[64px] sm:text-[50px] text-[43px] text-[#002B6B] text-center mp:text-start xl:leading-[76px] sr:leading-[60px] mt-6 font-semibold'>
+                    <p data-aos='fade-up' data-aos-delay='100' className='xl:text-[64px] sm:text-[50px] text-[30px] text-[#002B6B] text-center mp:text-start sm:leading-[70px] px-2 sr:leading-[40px] leading-[35px] mt-6 font-semibold'>
                         Join 136+ Companies Cutting Costs by 70% with Elite African Talent
                     </p>
-                    <p data-aos='fade-up' data-aos-delay='300' className='xl:text-[20px] text-[17px] font-medium mt-3 text-center mp:text-start'>
+                    <p data-aos='fade-up' data-aos-delay='300' className='xl:text-[20px] px-5 text-[16px] font-medium mt-3 text-center mp:text-start'>
                         Rich Sterling Hires connects you with exceptional African professionals who deliver outstanding results at a fraction of the costs
                     </p>
                     <a href='/register' target='_blank'>
@@ -232,31 +272,62 @@ const LandingPage = () => {
             </div>
 
             <div className='font-manrope overflow-hidden sm:px-[75px] px-5 my-16'>
-                <h1 data-aos='zoom-in' className='font-semibold text-[30px] leading-10 text-center text-[#002B6B]'>
+                <h1 data-aos='zoom-in' className='font-semibold text-[25px] mq:text-[30px] leading-8 text-center text-[#002B6B]'>
                     Why Leading US Companies Choose<br className='sm:block hidden' /> Rich Sterling Hires
                 </h1>
                 <div className='flex justify-center flex-wrap gap-4 mt-10'>
-                    <div data-aos='flip-up' data-aos-delay='100' className='shadow-[0_1px_20px_rgba(0,0,0,0.2)] mq:border-none border-[1.7px] border-[#6C7787] w-full sm:w-[48%] lg:w-[30%] px-3 shadow-[#002b6b53] rounded-[25px] p-5 flex flex-col items-center gap-3'>
-                        <img src={Dollar} className='size-[20px]' alt="" />
-                        <p className='text-[25px] px-10 font-semibold text-center'>Save Up to 70% on Hiring Costs</p>
-                        <p className='text-[17px] text-center'>
+                    <div data-aos='fade-up' className='mq:hidden block'>
+                        <div className='flex items-center gap-1'>
+                            <FaCheck className='text-[#0066FF] text-[24px]' />
+                            <p className='text-[18px] font-semibold'>Save Up to 70% on Hiring Costs</p>
+                        </div>
+                        <p className='text-[17px] font-normal mt-1'>
                             Our African professionals deliver the same or better quality work at a fraction of
                             US salary rates. The average company saves $38,000 per hire while maintaining or improving
                             quality standards.
                         </p>
                     </div>
-                    <div data-aos='flip-down' data-aos-delay='400' className='shadow-[0_1px_20px_rgba(0,0,0,0.2)] mq:border-none border-[1.7px] border-[#6C7787] w-full sm:w-[48%] lg:w-[30%] px-3 shadow-[#002b6b53] rounded-[25px] p-5 flex flex-col items-center gap-3'>
-                        <img src={Star} className='size-[20px]' alt="" />
-                        <p className='text-[25px] px-10 font-semibold text-center'>Rigorously Vetted Top 2% Talent</p>
-                        <p className='text-[17px] text-center'>
+                    <div data-aos='fade-up' className='mq:hidden block mt-3'>
+                        <div className='flex items-center gap-1'>
+                            <FaCheck className='text-[#0066FF] text-[24px]' />
+                            <p className='text-[18px] font-semibold'>Rigorously Vetted Top 2% Talent</p>
+                        </div>
+                        <p className='text-[17px] font-normal mt-1'>
                             Every candidate undergoes our proprietary 5-stage assessment process, testing technical skills,
                             communication abilities, and cultural fit. We only present professionals who exceeds US standards.
                         </p>
                     </div>
-                    <div data-aos='flip-up' data-aos-delay='700' className='shadow-[0_1px_20px_rgba(0,0,0,0.2)] mq:border-none border-[1.7px] border-[#6C7787] w-full sm:w-[48%] lg:w-[30%] px-3 shadow-[#002b6b53] rounded-[25px] p-5 flex flex-col items-center gap-3'>
+                    <div data-aos='fade-up' className='mq:hidden block mt-3'>
+                        <div className='flex items-center gap-1'>
+                            <FaCheck className='text-[#0066FF] text-[24px]' />
+                            <p className='text-[18px] font-semibold'>Effortless Global Team Building</p>
+                        </div>
+                        <p className='text-[17px] font-normal mt-1'>
+                            We handle everything from legal compliance to payment structures and time zone coordination.
+                            Your new team members integrate smoothly with your existing processes and culture
+                        </p>
+                    </div>
+                    <div data-aos='flip-up' data-aos-delay='100' className='shadow-[0_1px_20px_rgba(0,0,0,0.2)] hidden mq:border-none border-[1.7px] border-[#6C7787] w-full sm:w-[48%] lg:w-[30%] px-3 shadow-[#002b6b53] rounded-[25px] p-5 mq:flex flex-col items-center gap-3'>
+                        <img src={Dollar} className='size-[20px]' alt="" />
+                        <p className='text-[19px] px-10 font-semibold text-center'>Save Up to 70% on Hiring Costs</p>
+                        <p className='text-[15px] text-center'>
+                            Our African professionals deliver the same or better quality work at a fraction of
+                            US salary rates. The average company saves $38,000 per hire while maintaining or improving
+                            quality standards.
+                        </p>
+                    </div>
+                    <div data-aos='flip-down' data-aos-delay='300' className='shadow-[0_1px_20px_rgba(0,0,0,0.2)] hidden mq:border-none border-[1.7px] border-[#6C7787] w-full sm:w-[48%] lg:w-[30%] px-3 shadow-[#002b6b53] rounded-[25px] p-5 mq:flex flex-col items-center gap-3'>
+                        <img src={Star} className='size-[20px]' alt="" />
+                        <p className='text-[19px] px-10 font-semibold text-center'>Rigorously Vetted Top 2% Talent</p>
+                        <p className='text-[15px] text-center'>
+                            Every candidate undergoes our proprietary 5-stage assessment process, testing technical skills,
+                            communication abilities, and cultural fit. We only present professionals who exceeds US standards.
+                        </p>
+                    </div>
+                    <div data-aos='flip-up' data-aos-delay='500' className='shadow-[0_1px_20px_rgba(0,0,0,0.2)] hidden mq:border-none border-[1.7px] border-[#6C7787] w-full sm:w-[48%] lg:w-[30%] px-3 shadow-[#002b6b53] rounded-[25px] p-5 mq:flex flex-col items-center gap-3'>
                         <img src={Vector} className='size-[20px]' alt="" />
-                        <p className='text-[25px] px-1 font-semibold text-center'>Effortless Global Team Building</p>
-                        <p className='text-[17px] text-center'>
+                        <p className='text-[19px] px-1 font-semibold text-center'>Effortless Global Team Building</p>
+                        <p className='text-[15px] text-center'>
                             We handle everything from legal compliance to payment structures and time zone coordination.
                             Your new team members integrate smoothly with your existing processes and culture
                         </p>
@@ -269,56 +340,60 @@ const LandingPage = () => {
                     </button>
                 </a>
             </div>
-            <div id='careers' className='md:px-[90px] overflow-hidden px-5 my-16'>
-                <h1 data-aos='zoom-in' className='font-semibold text-[33px] leading-10 text-center text-[#002B6B]'>
+            <div id='careers' className='md:px-[75px] overflow-hidden px-5 my-16'>
+                <h1 data-aos='zoom-in' className='font-semibold mq:text-[30px] text-[25px] mq:leading-10 text-center text-[#002B6B]'>
                     World-Class African Talent <br className='sp:block hidden' /> Across Key Disciplines
                 </h1>
-                <p data-aos="fade-left" className='font-normal text-[22px] leading-8 mt-7 text-center text-[#000000]'>
+                <p data-aos="fade-left" className='font-normal text-[14px] mq:text-[16px] mt-4 text-center text-[#000000]'>
                     Whatever your business needs, we have thoroughly vetted professionals ready to deliver <br className='xl:block hidden' />
                     exceptional results at 60-70% lower costs.
                 </p>
-                <div className='text-[16px] font-medium overflow-x-auto scrollbar-hide scroll-smooth snap-x flex gap-10 text-[#6C7787] border-b border-[#6C7787] mt-14'>
-                    <div
-                        onClick={() => setProfession('dev')}
-                        className={`flex min-w-max snap-start relative items-center gap-2 cursor-pointer border-b py-3 ${profession === 'dev' ? 'text-[#0066FF] after:content-[""] after:absolute after:left-0 after:right-0 after:bottom-[6px] after:h-[4px] after:blur-md after:bg-[#0066FF] after:opacity-60 after:z-[-1] border-b-[#0066FF]' : ''}`}
-                    >
-                        <img className='size-5' src={frame1} alt="" />
-                        <p className=''>Development & Engineering</p>
+                <div className='text-[16px] font-medium flex mp:flex-row flex-col items-center justify-center mq:gap-10 gap-2 text-[#6C7787] mp:border-b border-[#6C7787] mt-14'>
+                    <div className='flex gap-10 border-b mp:border-b-0 border-[#6C7787]'>
+                        <div
+                            onClick={() => setProfession('dev')}
+                            className={`flex relative items-center gap-2 cursor-pointer border-b py-3 ${profession === 'dev' ? 'text-[#0066FF] after:content-[""] after:absolute after:left-0 after:right-0 after:bottom-[6px] after:h-[4px] after:blur-md after:bg-[#0066FF] after:opacity-60 after:z-[-1] border-b-[#0066FF]' : ''}`}
+                        >
+                            <img className='sp:size-5 size-2' src={frame1} alt="" />
+                            <p className='sp:text-[18px] text-[12px]'>Development & Engineering</p>
+                        </div>
+                        <div
+                            onClick={() => setProfession('design')}
+                            className={`flex relative items-center gap-2 cursor-pointer border-b py-3 ${profession === 'design' ? 'text-[#0066FF] after:content-[""] after:absolute after:left-0 after:right-0 after:bottom-[6px] after:h-[4px] after:blur-md after:bg-[#0066FF] after:opacity-60 after:z-[-1] border-b-[#0066FF]' : ''}`}
+                        >
+                            <img className='sp:size-5 size-2' src={frame2} alt="" />
+                            <p className='sp:text-[18px] text-[12px]'>Design & Creative</p>
+                        </div>
                     </div>
-                    <div
-                        onClick={() => setProfession('design')}
-                        className={`flex min-w-max snap-start relative items-center gap-2 cursor-pointer border-b py-3 ${profession === 'design' ? 'text-[#0066FF] after:content-[""] after:absolute after:left-0 after:right-0 after:bottom-[6px] after:h-[4px] after:blur-md after:bg-[#0066FF] after:opacity-60 after:z-[-1] border-b-[#0066FF]' : ''}`}
-                    >
-                        <img className='size-5' src={frame2} alt="" />
-                        <p>Design & Creative</p>
-                    </div>
-                    <div
-                        onClick={() => setProfession('admin')}
-                        className={`flex min-w-max snap-start relative items-center gap-2 cursor-pointer border-b py-3 ${profession === 'admin' ? 'text-[#0066FF] after:content-[""] after:absolute after:left-0 after:right-0 after:bottom-[6px] after:h-[4px] after:blur-md after:bg-[#0066FF] after:opacity-60 after:z-[-1] border-b-[#0066FF]' : ''}`}
-                    >
-                        <img className='size-4' src={frame3} alt="" />
-                        <p>Administrative Support</p>
-                    </div>
-                    <div
-                        onClick={() => setProfession('market')}
-                        className={`flex min-w-max snap-start relative items-center gap-2 cursor-pointer border-b py-3 ${profession === 'market' ? 'text-[#0066FF] after:content-[""] after:absolute after:left-0 after:right-0 after:bottom-[6px] after:h-[4px] after:blur-md after:bg-[#0066FF] after:opacity-60 after:z-[-1] border-b-[#0066FF]' : ''}`}
-                    >
-                        <img className='size-5' src={frame4} alt="" />
-                        <p>Marketing & Digital Growth</p>
+                    <div className='flex gap-10 border-b mp:border-b-0 border-[#6C7787]'>
+                        <div
+                            onClick={() => setProfession('admin')}
+                            className={`flex relative items-center gap-2 cursor-pointer border-b py-3 ${profession === 'admin' ? 'text-[#0066FF] after:content-[""] after:absolute after:left-0 after:right-0 after:bottom-[6px] after:h-[4px] after:blur-md after:bg-[#0066FF] after:opacity-60 after:z-[-1] border-b-[#0066FF]' : ''}`}
+                        >
+                            <img className='sp:size-4 size-2' src={frame3} alt="" />
+                            <p className='sp:text-[18px] text-[12px]'>Administrative Support</p>
+                        </div>
+                        <div
+                            onClick={() => setProfession('market')}
+                            className={`flex relative items-center gap-2 cursor-pointer border-b py-3 ${profession === 'market' ? 'text-[#0066FF] after:content-[""] after:absolute after:left-0 after:right-0 after:bottom-[6px] after:h-[4px] after:blur-md after:bg-[#0066FF] after:opacity-60 after:z-[-1] border-b-[#0066FF]' : ''}`}
+                        >
+                            <img className='sp:size-5 size-2' src={frame4} alt="" />
+                            <p className='sp:text-[18px] text-[12px] flex gap-1'>Marketing & Digital <span className='mq:block hidden'>Growth</span></p>
+                        </div>
                     </div>
                 </div>
                 <Professions profession={profession} />
             </div>
 
-            <div className='overflow-hidden py-16'>
-                <h1 data-aos='zoom-in' className='font-semibold sm:mx-[90px] mx-5 text-[33px] leading-10 text-center text-[#002B6B]'>
+            <div className='overflow-hidden pb-16'>
+                <h1 data-aos='zoom-in' className='font-semibold sm:mx-[90px] mx-5 mq:text-[30px] text-[25px] mq:leading-10 text-center text-[#002B6B]'>
                     Meet Some of Our Exceptional Talent
                 </h1>
-                <p data-aos="fade-left" className='font-normal sm:mx-[90px] mx-5 text-[22px] leading-8 mt-7 text-center text-[#000000]'>
+                <p data-aos="fade-left" className='font-normal sm:mx-[90px] mx-5 mq:text-[20px] text-[17px] mq:leading-8 mt-7 text-center text-[#000000]'>
                     Watch short intro videos of vetted candidates so you can see their communication skills, <br className='xl:block hidden' />
                     professionalism, and cultural fit
                 </p>
-                <div className='relative md:mt-24 mp:block hidden'>
+                <div className='relative md:mt-16 mp:block hidden'>
                     <img
                         className="absolute left-1/2 xl:top-16 md:top-10 sa:block hidden sm:top-[56%] top-[55%] -translate-y-1/2 md:-translate-y-0 transform -translate-x-1/2 lg:w-[560px] sp:w-[500px] w-full max-w-full"
                         src={BG}
@@ -384,7 +459,7 @@ const LandingPage = () => {
                         ))}
                     </Slider>
                 </div>
-                <div className='relative mt-24 block mp:hidden'>
+                <div className='relative mt-16 block mp:hidden'>
                     <img
                         className="absolute w-[80%] left-1/2 -translate-x-1/2"
                         src={BG}
@@ -411,8 +486,8 @@ const LandingPage = () => {
                                             />
                                         </div>
                                     </div>
-                                    <div className='flex sp:flex-row flex-col gap-3 mt-10'>
-                                        <div className='flex sp:flex-col gap-2'>
+                                    <div className='flex mq:flex-row flex-col gap-3 mt-10'>
+                                        <div className='flex mq:flex-col gap-2 justify-center mb-5 mq:mb-0'>
                                             <div className='flex flex-col gap-3 mp:border-none border-[#6C7787] border-[1.7px] sp:w-[180px] rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] bg-white lg:p-4 sm:p-2 p-4'>
                                                 <p className='font-semibold lg:text-[20px]'>
                                                     Expertise: <br />
@@ -424,7 +499,7 @@ const LandingPage = () => {
                                                 English Proficiency: <br /> <span className='font-normal'>{content[index].proficiency}</span>
                                             </p>
                                         </div>
-                                        <div className='text-[#1E242C] rounded-[20px] mp:border-none border-[#6C7787] border-[1.7px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] bg-white lg:p-4 sm:p-2 p-4'>
+                                        <div className='text-[#1E242C] mq:block hidden rounded-[20px] mp:border-none border-[#6C7787] border-[1.7px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] bg-white lg:p-4 sm:p-2 p-4'>
                                             <p className='font-semibold lg:text-[20px]'>Skills:</p>
                                             <div className='flex flex-wrap gap-2 mt-3'>
                                                 {content[index].skills.map((skill, skillIndex) => (
@@ -439,7 +514,7 @@ const LandingPage = () => {
                                         </div>
                                     </div>
 
-                                    <div className='flex flex-col mt-3 border-[#6C7787] mp:border-none border-[1.7px] mb-5 gap-3 rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)] bg-white shadow-[#002b6b53] lg:p-4 sm:p-2 p-4'>
+                                    <div className='mq:flex hidden flex-col mt-3 border-[#6C7787] mp:border-none border-[1.7px] mb-5 gap-3 rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)] bg-white shadow-[#002b6b53] lg:p-4 sm:p-2 p-4'>
                                         <p className='font-semibold lg:text-[20px]'>Client Quote:</p>
                                         <p className='lg:text-[17px] text-[15px]'>{content[index].quote}</p>
                                         <p className='lg:text-[16px] font-semibold text-[14px]'>{content[index].client}</p>
@@ -462,39 +537,39 @@ const LandingPage = () => {
                             <div data-aos='fade-up' data-aos-delay='300' className='flex gap-4 items-center mp:border-none border-[#9ba5b6] border-[1.5px] rounded-[20px] w-full mp:w-[430px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] shadow-[#c9d6e8] xl:p-5 p-3'>
                                 <img className='xl:size-[44px] size-[40px]' src={access1} alt="" />
                                 <div>
-                                    <p className='xl:text-[20px] font-manrope font-medium text-[#1E242C]'>Share Your Requirements</p>
-                                    <p className='xl:text-[15px] text-[13.5px] font-manrope font-normal text-[#414D60]'>Define your specific needs and business goals</p>
+                                    <p className='xl:text-[18px] mq:text-[17px] text-[15px] font-manrope font-medium text-[#1E242C]'>Share Your Requirements</p>
+                                    <p className='xl:text-[14px] text-[13.5px] font-manrope font-normal text-[#414D60]'>Define your specific needs and business goals</p>
                                 </div>
                             </div>
                         </div>
-                        <div className='flex items-center xl:mt-[-30px] mt-5 xl:gap-10 sa:gap-5 gap-1'>
+                        <div className='flex items-center xl:mt-[-14px] mt-5 xl:gap-10 sa:gap-5 gap-1'>
                             <div data-aos='fade-up' data-aos-delay='300' className='flex gap-4 items-center mp:border-none border-[#9ba5b6] border-[1.5px] rounded-[20px] w-full mp:w-[430px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] shadow-[#c9d6e8] xl:py-5 p-3'>
                                 <img className='xl:size-[50px] size-[40px]' src={access2} alt="" />
                                 <div>
-                                    <p className='xl:text-[20px] font-manrope font-medium text-[#1E242C]'>Meet Pre-Screened Candidates</p>
-                                    <p className='xl:text-[15px] text-[13.5px] font-manrope font-normal text-[#414D60]'>Meet vetted professionals who match your needs</p>
+                                    <p className='xl:text-[18px] mq:text-[17px] text-[15px] font-manrope font-medium text-[#1E242C]'>Meet Pre-Screened Candidates</p>
+                                    <p className='xl:text-[14px] text-[13.5px] font-manrope font-normal text-[#414D60]'>Meet vetted professionals who match your needs</p>
                                 </div>
                             </div>
                             <p data-aos='fade-up' data-aos-delay='200' className='font-medium xl:text-[110px] sa:block hidden text-[80px] text-[#cddbf0]'>02</p>
                             <p data-aos='fade-up' data-aos-delay='200' className='font-medium xl:text-[110px] block sa:hidden text-[80px] font-mono text-[#cddbf0]'>2</p>
                         </div>
-                        <div className='flex items-center  xl:mt-[-30px] mt-5 xl:gap-10 sa:gap-5 gap-2'>
+                        <div className='flex items-center xl:mt-[-14px] mt-5 xl:gap-10 sa:gap-5 gap-2'>
                             <p data-aos='fade-up' data-aos-delay='200' className='font-medium xl:text-[110px] sa:block hidden text-[80px] text-[#cddbf0]'>03</p>
                             <p data-aos='fade-up' data-aos-delay='200' className='font-medium xl:text-[110px] block sa:hidden text-[80px] font-mono text-[#cddbf0]'>3</p>
                             <div data-aos='fade-up' data-aos-delay='300' className='flex gap-4 items-center mp:border-none border-[#9ba5b6] border-[1.5px] rounded-[20px] w-full mp:w-[430px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] shadow-[#c9d6e8] xl:p-5 p-3'>
                                 <img className='xl:size-[50px] size-[40px]' src={access3} alt="" />
                                 <div>
-                                    <p className='xl:text-[20px] font-manrope font-medium text-[#1E242C]'>Hire With Confidence</p>
-                                    <p className='xl:text-[15px] text-[13.5px] font-manrope font-normal text-[#414D60]'>Onboard your chosen talent seamlessly </p>
+                                    <p className='xl:text-[18px] mq:text-[17px] text-[15px] font-manrope font-medium text-[#1E242C]'>Hire With Confidence</p>
+                                    <p className='xl:text-[14px] text-[13.5px] font-manrope font-normal text-[#414D60]'>Onboard your chosen talent seamlessly </p>
                                 </div>
                             </div>
                         </div>
-                        <div className='flex items-center xl:mt-[-30px] mt-5 xl:gap-10 sa:gap-5 gap-2'>
+                        <div className='flex items-center xl:mt-[-14px] mt-5 xl:gap-10 sa:gap-5 gap-2'>
                             <div data-aos='fade-up' data-aos-delay='300' className='flex gap-4 items-center mp:border-none border-[#9ba5b6] border-[1.5px] rounded-[20px] w-full mp:w-[430px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] shadow-[#c9d6e8] xl:p-5 p-3'>
                                 <img className='xl:size-[50px] size-[40px]' src={access4} alt="" />
                                 <div>
-                                    <p className='xl:text-[20px] font-manrope font-medium text-[#1E242C]'>Thrive With Continuous Support</p>
-                                    <p className='xl:text-[15px] text-[13.5px] font-manrope font-normal text-[#414D60]'>Success managers ensure smooth operations</p>
+                                    <p className='xl:text-[18px] mq:text-[17px] text-[14px] font-manrope font-medium text-[#1E242C]'>Thrive With Continuous Support</p>
+                                    <p className='xl:text-[14px] text-[13.5px] font-manrope font-normal text-[#414D60]'>Success managers ensure smooth operations</p>
                                 </div>
                             </div>
                             <p data-aos='fade-up' data-aos-delay='200' className='font-medium xl:text-[110px] sa:block hidden text-[80px] text-[#cddbf0]'>04</p>
@@ -505,10 +580,10 @@ const LandingPage = () => {
                         <img data-aos='zoom-in' className='xl:w-[270px] sa:block hidden w-[200px] h-[300px] 2xl:w-[90%] 2xl:h-[90%] object-cover rounded-[20px] xl:h-[400px]' src={Man6} alt="" />
                         <img data-aos='zoom-in' className='xl:w-[270px] sa:w-[200px] h-[400px] 2xl:w-full 2xl:h-full object-cover rounded-[20px] xl:h-[500px]' src={Woman6} alt="" />
                         <div className='flex sa:absolute z-50 bg-white bottom-[2%] 2xl:bottom-12 gap-4 2xl:w-[50%] items-center rounded-[20px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] shadow-[#c9d6e8] p-4'>
-                            <img className='size-[40px] rounded-full' src={Man1} alt="" />
+                            <img className='size-[40px] rounded-full' src={Thumbnail1} alt="" />
                             <img className='size-[40px] ml-[-20px] rounded-full' src={Woman7} alt="" />
-                            <img className='size-[40px] ml-[-20px] rounded-full' src={Man3} alt="" />
-                            <img className='size-[40px] ml-[-20px] rounded-full' src={Woman1} alt="" />
+                            <img className='size-[40px] ml-[-20px] rounded-full' src={Thumbnail2} alt="" />
+                            <img className='size-[40px] ml-[-20px] rounded-full' src={Thumbnail3} alt="" />
                             <div>
                                 <p className='text-[20px] font-manrope font-medium text-[#0066FF]'>136+</p>
                                 <p className='text-[15px] font-manrope font-normal text-[#414D60]'>Satisfied Clients</p>
@@ -517,17 +592,17 @@ const LandingPage = () => {
                     </div>
                 </div>
                 <a href='/register' target='_blank'>
-                    <button data-aos='fade-up' data-aos-delay='1500' className='flex items-center justify-center mx-auto text-white bg-[#0066FF] mt-10 gap-2 border-[1.2px] cursor-pointer border-[#0066FF] p-1 pl-5 rounded-[50px]'>
+                    <button data-aos='fade-up' data-aos-delay='200' className='flex items-center justify-center mx-auto text-white bg-[#0066FF] mt-10 gap-2 border-[1.2px] cursor-pointer border-[#0066FF] p-1 pl-5 rounded-[50px]'>
                         <p className='text-[16px] font-bold font-manrope'>Get Started Now</p>
                         <img src={send2} className='size-[40px]' alt="" />
                     </button>
                 </a>
             </div>
-            <div className='sm:px-[90px] overflow-hidden px-5 py-10'>
-                <h1 data-aos='zoom-out' className='font-semibold text-[33px] leading-10 text-center text-[#002B6B]'>
+            <div className='mp:px-[90px] overflow-hidden px-5 py-10'>
+                <h1 data-aos='zoom-out' className='font-semibold text-[30px] leading-10 text-center text-[#002B6B]'>
                     What our Clients are Saying
                 </h1>
-                <div className='flex w-full justify-center flex-wrap gap-5 mt-10'>
+                <div className='mq:flex hidden w-full justify-center flex-wrap gap-5 mt-10'>
                     <div data-aos='zoom-in' data-aos-delay='300' className='flex flex-col gap-5 items-center w-full mq:w-[48%] lg:w-[30%]'>
                         <div className='rounded-[20px] py-6 px-5 shadow-[0_1px_20px_rgba(0,0,0,0.2)] mp:border-none border-[#6C7787] border-[1.7px]  shadow-[#002b6b53] flex flex-col items-center gap-2'>
                             <div className='flex gap-2'>
@@ -620,13 +695,112 @@ const LandingPage = () => {
                                 A truly valuable asset to our team."
                             </p>
                             <div className='flex gap-2 items-start text-center'>
-                                {/* <img className='size-[40px] mt-1' src={avatar} alt="" /> */}
                                 <div>
                                     <p>Dr. Eleanor Vance</p>
                                     <p className='text-black/70 text-[15px]'>VP of Research & Development, DataWise Analytics</p>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <Slider className='my-10 flex mq:hidden' {...settings2}>
+                    <div className='flex flex-col gap-5 items-center w-full mb-5'>
+                        <div className='rounded-[20px] py-6 px-5 h-[300px] mp:border-none border-[#6C7787] border-[1.7px]  shadow-[#002b6b53] flex flex-col gap-2'>
+                            <div className='flex gap-2'>
+                                <FaStar className='text-[17px] text-[#0066FF]' />
+                                <FaStar className='text-[17px] text-[#0066FF]' />
+                                <FaStar className='text-[17px] text-[#0066FF]' />
+                                <FaStar className='text-[17px] text-[#0066FF]' />
+                                <FaStar className='text-[17px] text-[#0066FF]' />
+                            </div>
+                            <p className='font-normal mq:text-[16px] text-[12px]'>
+                                "Securing our digital assets is crucial. Rich Sterling Hires connected us with Kofi Mensah, a Senior Cybersecurity
+                                Analyst from Ghana. His expertise in threat intelligence and incident response has greatly strengthened our security—at
+                                a much lower cost than local alternatives."
+                            </p>
+                            <div className='flex gap-2 items-start'>
+                                <div>
+                                    <p className='text-[14px]'>Jennifer Brown</p>
+                                    <p className='text-black/70 text-[14px]'>Chief Information Security Officer, SecureTech Industries</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='flex flex-col gap-5 items-center w-full'>
+                        <div className='rounded-[20px] py-6 px-4 h-[300px] mp:border-none border-[#6C7787] border-[1.7px]  shadow-[#002b6b53] flex flex-col gap-2'>
+                            <div className='flex gap-2'>
+                                <FaStar className='text-[17px] text-[#0066FF]' />
+                                <FaStar className='text-[17px] text-[#0066FF]' />
+                                <FaStar className='text-[17px] text-[#0066FF]' />
+                                <FaStar className='text-[17px] text-[#0066FF]' />
+                                <FaStar className='text-[17px] text-[#0066FF]' />
+                            </div>
+                            <p className='font-normal mq:text-[16px] text-[12px]'>
+                                "Expanding our reach into Sub-Saharan Africa required a culturally astute Marketing Manager. Zola Mkhize from South
+                                Africa, sourced by Rich Sterling Hires, has been exceptional. Her understanding of the regional nuances and her effective
+                                marketing strategies have significantly increased our brand awareness."
+                            </p>
+                            <div className='flex gap-2 items-start'>
+                                <div>
+                                    <p className='text-[14px]'>James Olsen</p>
+                                    <p className='text-black/70 text-[14px]'>Chief Marketing Officer, GlobalReach Corp.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='flex flex-col gap-5 items-center w-full'>
+                        <div className='rounded-[20px] py-6 px-4  h-[300px] mp:border-none border-[#6C7787] border-[1.7px]  shadow-[#002b6b53] flex flex-col gap-2'>
+                            <div className='flex gap-2'>
+                                <FaStar className='text-[17px] text-[#0066FF]' />
+                                <FaStar className='text-[17px] text-[#0066FF]' />
+                                <FaStar className='text-[17px] text-[#0066FF]' />
+                                <FaStar className='text-[17px] text-[#0066FF]' />
+                                <FaStar className='text-[17px] text-[#0066FF]' />
+                            </div>
+                            <p className='font-normal mq:text-[16px] text-[12px]'>
+                                "Scaling our infrastructure efficiently was critical. Rich Sterling Hires found us Adewale Adebayo from Nigeria, a Senior DevOps Engineer
+                                whose expertise in cloud automation and system optimization has been transformative. He's streamlined our deployments and enhanced our
+                                system stability, bringing a level of skill we struggled to find locally."
+                            </p>
+                            <div className='flex gap-2 items-start'>
+                                <div>
+                                    <p className='text-[14px]'>David Miller</p>
+                                    <p className='text-black/70 text-[14px]'>VP of Engineering, CloudLeap Technologies</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='flex flex-col gap-5 items-center w-full'>
+                        <div className='rounded-[20px] py-6 px-4  h-[300px] mp:border-none border-[#6C7787] border-[1.7px]  shadow-[#002b6b53] flex flex-col gap-2'>
+                            <div className='flex gap-2'>
+                                <FaStar className='text-[17px] text-[#0066FF]' />
+                                <FaStar className='text-[17px] text-[#0066FF]' />
+                                <FaStar className='text-[17px] text-[#0066FF]' />
+                                <FaStar className='text-[17px] text-[#0066FF]' />
+                                <FaStar className='text-[17px] text-[#0066FF]' />
+                            </div>
+                            <p className='font-normal mq:text-[16px] text-[12px]'>
+                                "Our search for a specialized AI data scientist felt endless until we partnered with Rich Sterling Hires. They connected us with Dr.
+                                Imani Nkosi from Kenya, whose expertise in machine learning has been instrumental in refining our predictive models. Her insightful
+                                contributions and proactive approach have accelerated our research significantly."
+                            </p>
+                            <div className='flex gap-2 items-start'>
+                                <div>
+                                    <p className='text-[14px]'>Dr. Eleanor Vance</p>
+                                    <p className='text-black/70 text-[14px]'>VP of Research & Development, DataWise Analytics</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </Slider>
+                <div className='flex mq:hidden flex-col gap-5 justify-center'>
+                    <div className='flex gap-5'>
+                        <p className='text-[17px] font-medium'><span className='text-[#0066FF]'>136+</span> businesses trust us to Hire</p>
+                        <p className='text-[17px] font-medium'>Over <span className='text-[#0066FF]'>$2 million+</span> Saved by Clients </p>
+                    </div>
+                    <div className='flex gap-5'>
+                        <p className='text-[17px] font-medium'><span className='text-[#0066FF]'>98%</span> Client Satisfaction Rate</p>
+                        <p className='text-[17px] font-medium'><span className='text-[#0066FF]'>1000+</span> Vetted African Professionals</p>
                     </div>
                 </div>
                 <a href='/register' target='_blank'>
@@ -637,7 +811,7 @@ const LandingPage = () => {
                 </a>
             </div>
             <div id='pricing' className='lg:px-[50px] overflow-hidden xl:px-[90px] mp:px-5 md:px-[90px] px-7 py-10'>
-                <div data-aos='zoom-in' data-aos-delay='200' className='font-semibold text-[33px] leading-10 items-center justify-center text-[#002B6B] flex flex-wrap gap-1'>
+                <div data-aos='zoom-in' data-aos-delay='200' className='font-semibold text-[31px] leading-10 items-center justify-center text-[#002B6B] flex flex-wrap gap-1'>
                     <p className='flex items-center gap-1'>Start Saving <img className='size-[40px]' src={coin} alt="" /> and</p><p> Scaling Today</p>
                 </div>
                 <div className='flex mp:flex-row flex-col items-center justify-between gap-10 mp:mt-20'>
@@ -686,8 +860,8 @@ const LandingPage = () => {
                             <p className='flex items-center gap-3'><FaRegCheckCircle /> Fast Matching, Within Days</p>
                             <p className='flex items-center gap-3'><FaRegCheckCircle /> Dedicated Success Managers</p>
                         </div>
-                        <a href='/register' target='_blank'>
-                            <button className='bg-white rounded-xl text-black w-[300px] h-[60px] mt-7 text-[20px] font-medium'>Get Started</button>
+                        <a href='/pricing' target='_blank'>
+                            <button className='bg-white rounded-xl text-black h-[60px] w-full mt-7 text-[20px] font-medium'>See our Price Guide Here</button>
                         </a>
                     </div>
                 </div>
@@ -698,105 +872,129 @@ const LandingPage = () => {
                     <img className='sp:size-[34px] sr:size-[26px] size-[21px]' src={question} alt="" />
                 </h1>
                 <div>
-                    <div className='grid mq:grid-cols-2 justify-center lg:gap-5 gap-3 mt-14 font-manrope'>
-                        <div data-aos='zoom-in' data-aos-delay='200' className='bg-[#EDEEF0] border-[#AAAAAA] border rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] p-5 flex mp:flex-row flex-col mp:items-start gap-4'>
+                    <div className='grid mq:grid-cols-2 items-start justify-center lg:gap-5 gap-3 mt-14 font-manrope'>
+                        <div data-aos='zoom-in' data-aos-delay='200' className='bg-[#EDEEF0] border-[#AAAAAA] border rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] p-5 flex flex-col gap-4'>
                             <div className='flex justify-between items-center'>
                                 <p className='bg-white text-black rounded-[70px] py-2 px-3'>01</p>
-                                <img src={cancle} className='mp:hidden block' alt="" />
+                                <FaPlus
+                                    className={`transform transition-transform text-blue-500 text-[20px] duration-300 ${faq1 ? 'rotate-45' : 'rotate-0'}`}
+                                    onClick={() => setFaq1(!faq1)}
+                                />
                             </div>
                             <div className='flex justify-between items-start'>
                                 <div className='flex flex-col gap-3'>
-                                    <p className='text-[#1E242C] text-[20px] font-medium w-[300px] leading-6'>How do you handle time zone differences?</p>
-                                    <p className='text-[#414D60] text-[15px] font-normal'>
-                                        Most of our professionals work in time zones with at least 4-6 hours of overlap with US business hours.
-                                        Many choose to align their schedules with their US employers for maximum collaboration. We also
-                                        provide tools and best practices for asynchronous work to ensure productivity around the clock.
-                                    </p>
+                                    <p className='text-[#1E242C] text-[17px] font-medium leading-6'>How do you handle time zone differences?</p>
+                                    {faq1 && (
+                                        <p className='text-[#414D60] text-[15px] font-normal'>
+                                            Most of our professionals work in time zones with at least 4-6 hours of overlap with US business hours.
+                                            Many choose to align their schedules with their US employers for maximum collaboration. We also
+                                            provide tools and best practices for asynchronous work to ensure productivity around the clock.
+                                        </p>
+                                    )}
                                 </div>
                             </div>
-                            <img className='hidden mp:block' src={cancle} alt="" />
                         </div>
-                        <div data-aos='zoom-in' data-aos-delay='400' className='bg-[#EDEEF0] border-[#AAAAAA] border rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] p-5 flex mp:flex-row flex-col mp:items-start gap-4'>
+                        <div data-aos='zoom-in' data-aos-delay='400' className='bg-[#EDEEF0] border-[#AAAAAA] border rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] p-5 flex flex-col gap-4'>
                             <div className='flex justify-between items-center'>
                                 <p className='bg-white text-black rounded-[70px] py-2 px-3'>02</p>
-                                <img src={cancle} className='mp:hidden block' alt="" />
+                                <FaPlus
+                                    className={`transform transition-transform text-blue-500 text-[20px] duration-300 ${faq2 ? 'rotate-45' : 'rotate-0'}`}
+                                    onClick={() => setFaq2(!faq2)}
+                                />
                             </div>
                             <div className='flex justify-between items-start'>
                                 <div className='flex flex-col gap-3'>
-                                    <p className='text-[#1E242C] text-[20px] font-medium w-[300px] leading-6'>What about language barriers and communication issues?</p>
-                                    <p className='text-[#414D60] text-[15px] font-normal'>
-                                        English proficiency is a core requirement in our vetting process. All our candidates undergo comprehensive language assessments
-                                        and demonstrate excellent written and verbal communication skills. Many have worked with US companies
-                                        before and understand American business communication styles.
-                                    </p>
+                                    <p className='text-[#1E242C] text-[17px] font-medium leading-6'>What about language barriers and communication issues?</p>
+                                    {faq2 && (
+                                        <p className='text-[#414D60] text-[15px] font-normal'>
+                                            English proficiency is a core requirement in our vetting process. All our candidates undergo comprehensive language assessments
+                                            and demonstrate excellent written and verbal communication skills. Many have worked with US companies
+                                            before and understand American business communication styles.
+                                        </p>
+                                    )}
                                 </div>
                             </div>
-                            <img src={cancle} className='hidden mp:block' alt="" />
                         </div>
-                        <div data-aos='zoom-in' data-aos-delay='200' className='bg-[#EDEEF0] border-[#AAAAAA] border rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] p-5 flex mp:flex-row flex-col mp:items-start gap-4'>
+                        <div data-aos='zoom-in' data-aos-delay='200' className='bg-[#EDEEF0] border-[#AAAAAA] border rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] p-5 flex flex-col gap-4'>
                             <div className='flex justify-between items-center'>
                                 <p className='bg-white text-black rounded-[70px] py-2 px-3'>03</p>
-                                <img src={cancle} className='mp:hidden block' alt="" />
+                                <FaPlus
+                                    className={`transform transition-transform text-blue-500 text-[20px] duration-300 ${faq3 ? 'rotate-45' : 'rotate-0'}`}
+                                    onClick={() => setFaq3(!faq3)}
+                                />
                             </div>
                             <div className='flex justify-between items-start'>
                                 <div className='flex flex-col gap-3'>
-                                    <p className='text-[#1E242C] text-[20px] font-medium w-[300px] leading-6'>How do you handle legal and compliance issues?</p>
-                                    <p className='text-[#414D60] text-[15px] font-normal'>
-                                        Our legal team manages all compliance aspects, including contracts, intellectual property protection, data security, and payment
-                                        structures. We create compliant arrangements that protect your business while ensuring proper
-                                        classification.
-                                    </p>
+                                    <p className='text-[#1E242C] text-[17px] font-medium leading-6'>How do you handle legal and compliance issues?</p>
+                                    {faq3 && (
+                                        <p className='text-[#414D60] text-[15px] font-normal'>
+                                            Our legal team manages all compliance aspects, including contracts, intellectual property protection, data security, and payment
+                                            structures. We create compliant arrangements that protect your business while ensuring proper
+                                            classification.
+                                        </p>
+                                    )}
                                 </div>
                             </div>
-                            <img src={cancle} className='hidden mp:block' alt="" />
                         </div>
-                        <div data-aos='zoom-in' data-aos-delay='400' className='bg-[#EDEEF0] border-[#AAAAAA] border rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] p-5 flex mp:flex-row flex-col mp:items-start gap-4'>
+                        <div data-aos='zoom-in' data-aos-delay='400' className='bg-[#EDEEF0] border-[#AAAAAA] border rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] p-5 flex flex-col gap-4'>
                             <div className='flex justify-between items-center'>
                                 <p className='bg-white text-black rounded-[70px] py-2 px-3'>04</p>
-                                <img src={cancle} className='mp:hidden block' alt="" />
+                                <FaPlus
+                                    className={`transform transition-transform text-blue-500 text-[20px] duration-300 ${faq4 ? 'rotate-45' : 'rotate-0'}`}
+                                    onClick={() => setFaq4(!faq4)}
+                                />
                             </div>
                             <div className='flex justify-between items-start'>
                                 <div className='flex flex-col gap-3'>
-                                    <p className='text-[#1E242C] text-[20px] font-medium w-[300px] leading-6'>What types of roles can I fill through Rich Sterling Hires?</p>
-                                    <p className='text-[#414D60] text-[15px] font-normal'>
-                                        We specialize in knowledge worker roles including software development, digital marketing, design, customer support, and administrative
-                                        functions. Our talent pool includes entry-level to senior executive professionals across these domains.
-                                    </p>
+                                    <p className='text-[#1E242C] text-[17px] font-medium leading-6'>What types of roles can I fill through Rich Sterling Hires?</p>
+                                    {faq4 && (
+                                        <p className='text-[#414D60] text-[15px] font-normal'>
+                                            We specialize in knowledge worker roles including software development, digital marketing, design, customer support, and administrative
+                                            functions. Our talent pool includes entry-level to senior executive professionals across these domains.
+                                        </p>
+                                    )}
                                 </div>
                             </div>
-                            <img src={cancle} className='hidden mp:block' alt="" />
                         </div>
-                        <div data-aos='zoom-in' data-aos-delay='200' className='bg-[#EDEEF0] border-[#AAAAAA] border rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] p-5 flex mp:flex-row flex-col mp:items-start gap-4'>
+                        <div data-aos='zoom-in' data-aos-delay='200' className='bg-[#EDEEF0] border-[#AAAAAA] border rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] p-5 flex flex-col gap-4'>
                             <div className='flex justify-between items-center'>
                                 <p className='bg-white text-black rounded-[70px] py-2 px-3'>05</p>
-                                <img src={cancle} className='mp:hidden block' alt="" />
+                                <FaPlus
+                                    className={`transform transition-transform text-blue-500 text-[20px] duration-300 ${faq5 ? 'rotate-45' : 'rotate-0'}`}
+                                    onClick={() => setFaq5(!faq5)}
+                                />
                             </div>
                             <div className='flex justify-between items-start'>
                                 <div className='flex flex-col gap-3'>
-                                    <p className='text-[#1E242C] text-[20px] font-medium w-[300px] leading-6'>How do you ensure the security of our company data?</p>
-                                    <p className='text-[#414D60] text-[15px] font-normal'>
-                                        All professionals sign comprehensive NDAs and security agreements. We provide security training and can implement your company's
-                                        security protocols. For highly sensitive industries, we can arrange dedicated secure workspaces and equipment.
-                                    </p>
+                                    <p className='text-[#1E242C] text-[17px] font-medium leading-6'>How do you ensure the security of our company data?</p>
+                                    {faq5 && (
+                                        <p className='text-[#414D60] text-[15px] font-normal'>
+                                            All professionals sign comprehensive NDAs and security agreements. We provide security training and can implement your company's
+                                            security protocols. For highly sensitive industries, we can arrange dedicated secure workspaces and equipment.
+                                        </p>
+                                    )}
                                 </div>
                             </div>
-                            <img src={cancle} className='hidden mp:block' alt="" />
                         </div>
-                        <div data-aos='zoom-in' data-aos-delay='400' className='bg-[#EDEEF0] border-[#AAAAAA] border rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] p-5 flex mp:flex-row flex-col mp:items-start gap-4'>
+                        <div data-aos='zoom-in' data-aos-delay='200' className='bg-[#EDEEF0] border-[#AAAAAA] border rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] p-5 flex flex-col gap-4'>
                             <div className='flex justify-between items-center'>
                                 <p className='bg-white text-black rounded-[70px] py-2 px-3'>06</p>
-                                <img src={cancle} className='mp:hidden block' alt="" />
+                                <FaPlus
+                                    className={`transform transition-transform text-blue-500 text-[20px] duration-300 ${faq6 ? 'rotate-45' : 'rotate-0'}`}
+                                    onClick={() => setFaq6(!faq6)}
+                                />
                             </div>
                             <div className='flex justify-between items-start'>
                                 <div className='flex flex-col gap-3'>
-                                    <p className='text-[#1E242C] text-[20px] font-medium w-[300px] leading-6'>Do I need to worry about contracts, benefits, or compliance?</p>
-                                    <p className='text-[#414D60] text-[15px] font-normal'>
-                                        One of the biggest advantages of working with Rich Sterling Hires is that your hired talent functions as an independent contractor, not a
-                                        local employee, you get the output and commitment of a full-time team member — without the traditional overhead.
-                                    </p>
+                                    <p className='text-[#1E242C] text-[17px] font-medium leading-6'>Do I need to worry about contracts, benefits, or compliance?</p>
+                                    {faq6 && (
+                                        <p className='text-[#414D60] text-[15px] font-normal'>
+                                            One of the biggest advantages of working with Rich Sterling Hires is that your hired talent functions as an independent contractor, not a
+                                            local employee, you get the output and commitment of a full-time team member — without the traditional overhead.
+                                        </p>
+                                    )}
                                 </div>
                             </div>
-                            <img src={cancle} className='hidden mp:block' alt="" />
                         </div>
                     </div>
                     <a href='/register' target='_blank'>
@@ -923,7 +1121,7 @@ const LandingPage = () => {
                             <a href="/">
                                 <img onClick={() => window.scrollTo(0, 0)} src={group} className='w-[130px] h-[40px]' alt="" />
                             </a>
-                            <p className='text-[14px] mt-3 font-normal text-center font-jakarta'><span className='font-bold font-manrope'>Corporate Head Office</span>: <br className='sa:hidden block' /> New york City, Lagos Nigeria, Nairobi Kenya.</p>
+                            <p className='text-[14px] mt-3 font-normal text- font-jakarta'><span className='font-bold font-manrope'>Corporate Head Office</span>: <br className='sa:hidden block' /> New york City, Lagos Nigeria, Nairobi Kenya.</p>
                             <div className='mt-4 flex flex-col gap-2'>
                                 <p className='text-[14px] font-normal text-center sa:text-start font-jakarta'><span className='font-bold font-manrope'>Phone</span>: <br className='sa:hidden block' /> 843-496-7759</p>
                                 <p className='text-[14px] font-normal text-center sa:text-start font-jakarta'><span className='font-bold font-manrope'>Fax</span>: <br className='sa:hidden block' /> 02-222264303</p>
@@ -931,8 +1129,8 @@ const LandingPage = () => {
                             </div>
                         </div>
                         <div className='flex sa:flex-row flex-col flex-wrap gap-10 items-center text-center sa:text-start sa:items-start sa:justify-between w-full mp:w-[60%]'>
-                            <div className='flex flex-col gap-[13px] text-[15px] text-[#414D60] font-normal xl:w-[150px]'>
-                                <h1 className='text-[18px] text-[#1E242C] font-bold'>Quick Links</h1>
+                             <div className='flex flex-col gap-[13px] text-[13px] text-[#414D60] font-normal xl:w-[150px]'>
+                                <h1 className='text-[17px] text-[#1E242C] font-bold'>Quick Links</h1>
                                 <a href="#pricing">
                                     <p>Pricing</p>
                                 </a>
@@ -943,8 +1141,8 @@ const LandingPage = () => {
                                     <p>Contact Us</p>
                                 </a>
                             </div>
-                            <div className='flex flex-col gap-[13px] text-[15px] text-[#414D60] font-normal xl:w-[150px]'>
-                                <h1 className='text-[18px] text-[#1E242C] font-bold'>Others</h1>
+                            <div className='flex flex-col gap-[13px] text-[13px] text-[#414D60] font-normal xl:w-[150px]'>
+                                <h1 className='text-[17px] text-[#1E242C] font-bold'>Others</h1>
                                 <a href="#steps">
                                     <p>How it works</p>
                                 </a>
@@ -958,8 +1156,8 @@ const LandingPage = () => {
                                     <p>About Us</p>
                                 </a>
                             </div>
-                            <div className='flex flex-col gap-[13px] text-[15px] text-[#414D60] font-normal xl:w-[150px]'>
-                                <h1 className='text-[18px] text-[#1E242C] font-bold'>About us</h1>
+                            <div className='flex flex-col gap-[13px] text-[13px] text-[#414D60] font-normal xl:w-[150px]'>
+                                <h1 className='text-[17px] text-[#1E242C] font-bold'>About us</h1>
                                 <p>Company milestone</p>
                                 <p>Web mail</p>
                                 <p>Board of Directors</p>
