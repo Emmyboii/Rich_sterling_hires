@@ -42,9 +42,9 @@ import access3 from '../Images/Access3.png';
 import access4 from '../Images/Access4.png';
 import coin from '../Images/Coins.png';
 import Professions from './Professions';
-import video1 from '../Images/Video1.mp4';
-import video2 from '../Images/Video2.mp4';
-import video3 from '../Images/Video3.mp4';
+import Thumbnail1 from '../Images/Thumbnail1.jpg';
+import Thumbnail2 from '../Images/Thumbnail2.png';
+import Thumbnail3 from '../Images/Thumbnail3.png';
 import ArrowLeftCircle from '../Images/ArrowLeftCircle.png'
 import ArrowRightCircle from '../Images/ArrowRightCircle.png'
 import question from '../Images/Question.png'
@@ -56,7 +56,7 @@ import Rich from '../Images/Rich.png'
 import SH from '../Images/Sterling Hires.png'
 import small from '../Images/small.png'
 import small3 from '../Images/small3.png'
-import ReactPlayer from 'react-player';
+import ReactPlayer from 'react-player/youtube';
 
 const CustomPrevArrow = (props) => {
     const { onClick } = props;
@@ -87,18 +87,25 @@ const LandingPage = () => {
     const [profession, setProfession] = useState('dev')
     const internalVideoElements = useRef([]);
 
+    const [playingIndex, setPlayingIndex] = useState(null);
+
+
     const pauseAllVideos = () => {
         internalVideoElements.current.forEach((player) => {
             try {
-                player?.pause?.();
+                const internalPlayer = player.getInternalPlayer();
+                if (internalPlayer && internalPlayer.pause) {
+                    internalPlayer.pause();
+                }
             } catch (_) { }
         });
+        setPlayingIndex(null);
     };
 
     const settings = {
         infinite: false,
         dots: true,
-        speed: 2000,
+        speed: 3000,
         slidesToShow: 1,
         slidesToScroll: 1,
         waitForAnimate: false,
@@ -112,32 +119,36 @@ const LandingPage = () => {
 
     const content = [
         {
-            quote: "Finding a Product Designer who truly understood our user needs and could translate them into intuitive and engaging interfaces was a challenge. Rich Sterling Hires introduced us to Jennifer. Her design thinking process, coupled with her strong visual skills, has significantly improved the usability and aesthetics of our flagship product.",
-            client: "Jennifer Brown, Chief Information Security Officer, SecureTech Industries",
+            quote: "Our customer satisfaction scores have soared since we brought on Ada as a Customer Support Specialist via Rich Sterling Hires. Her empathy, clear communication, and dedication to resolving issues quickly have made a profound difference to our clients. Outstanding talent!",
+            client: "Aisha Bello, Head of Customer Experience, Connect Africa Services",
             proficiency: "Fluent",
-            expertise: "Product Designer (UI/UX)",
-            experience: "4+ years experience",
-            skills: ["User Research", "Wireframing & Prototyping", "UI Design", "UX Design", "Usability Testing", "Design Thinking", "Communication", "Figma"]
-        },
-        {
-            quote: "Hiring David through Rich Sterling was one of the best decisions we made. In just a few weeks, he rebuilt our web app’s entire architecture—front to back—with clean, scalable code.",
-            client: "Sarah K., Head of Product, Fintech Startup (NY)",
-            proficiency: "Fluent",
-            expertise: "Full-Stack Developer",
+            expertise: "Customer Support Specialist",
             experience: "5+ years experience",
-            skills: ["HTML", "CSS", "JavaScript", "React", "TailwindCSS", "REST API", "PostgreSQL", "MongoDB", "Git", "Docker", "AWS", "Vercel"]
+            skills: ["Active Listening", "Empathy & Patience", "Clear Communication", "Problem Diagnosis & Resolution", "Conflict De-escalation", "Product/Service Knowledge", "CRM Software Proficiency", "Time Management", "Adaptability", "Positive Attitude"]
         },
         {
-            quote: "This team member went above and beyond to lead our digital transformation project. Their leadership and innovation helped us reach new levels of operational efficiency.",
-            client: "Michael Y., COO, GlobalTech Ventures",
+            quote: "Hiring Chukwuma as our Data Analyst through Rich Sterling Hires was a game-changer. His ability to unearth actionable insights from our complex datasets has directly influenced our strategic decisions, and the cost efficiency was remarkable. He's a true asset.",
+            client: "Dr. Ngozi Okoro, Head of Strategy, Apex Innovations",
             proficiency: "Fluent",
-            expertise: "Technical Project Manager",
-            experience: "6+ years experience",
-            skills: ["Agile Methodology", "Scrum", "JIRA", "Confluence", "Cross-functional Teams", "Stakeholder Management", "Risk Assessment", "Roadmap Planning"]
+            expertise: "Data Analyst",
+            experience: "5+ years experience",
+            skills: ["Data Manipulation & Cleaning", "Data Visualization", "SQL Proficiency", "Programming (Python/R)", "Critical Thinking", "Problem-Solving", "Domain Understanding", "Empathy & Patience", "Clear Communication", "Conflict De-escalation", "Product/Service Knowledge", "CRM Software Proficiency",]
+        },
+        {
+            quote: "Winner, our Virtual Assistant from Rich Sterling Hires, has transformed our daily operations. She handles everything from scheduling to research with incredible efficiency and professionalism. It's like having a full-time executive assistant without the overhead. Highly recommend!",
+            client: "Ekene, CEO, GrowthPath Consulting",
+            proficiency: "Fluent",
+            expertise: "Virtual Assistant",
+            experience: "4+ years experience",
+            skills: ["Organizational Skills", "Time Management", "Communication (Email, Phone)", "Calendar Management", "Document Preparation (Word, Excel)", "Research Skills", "Tech Savvy (G Suite, collaboration tools)", "Proactiveness", "Attention to Detail", "Discretion & Confidentiality"]
         }
     ];
 
-    const videos = [video1, video2, video3]
+    const videoThumbnails = [
+        ['https://youtube.com/shorts/1tbH74QEMV0?si=ZCGlxeKhRyAGauBK', Thumbnail1],
+        ['https://youtube.com/shorts/CPc-6qifLD0?si=IdColOh9-N-GZFEk', Thumbnail2],
+        ['https://youtube.com/shorts/bUyzd2wIQic?si=na50JKikh6tm2KVT', Thumbnail3]
+    ];
 
     useEffect(() => {
         AOS.init({
@@ -161,7 +172,7 @@ const LandingPage = () => {
                     </button>
                 </a>
             </div>
-            <div className='flex overflow-hidden pt-8 w-full justify-between lg:pl-[75px] md:px-10 mp:pr-0 px-0 font-manrope'>
+            <div className='flex overflow-hidden pt-8 w-full justify-between lg:pl-[75px] md:px-10 mp:pr-0 px-0'>
                 <div className='2xl:w-[200%] mp:w-[60%] flex mp:block flex-col mp:items-start items-center pt-3'>
                     <div className='flex items-center justify-center rounded-[100px] gap-1 bg-[#0066FF] sm:px-5 px-3 max-w-[450px] py-2 text-white'>
                         <img className='size-6' src={Badge} alt="" />
@@ -220,13 +231,12 @@ const LandingPage = () => {
                 </div>
             </div>
 
-            {/* <img data-aos='zoom-in-up' data-aos-delay='800' className='sm:px-[15px] mp:hidden mq:object-cover block rounded-[100px] mt-10 px-5 w-full h-[60vh]' src={Man6} alt="" /> */}
             <div className='font-manrope overflow-hidden sm:px-[75px] px-5 my-16'>
                 <h1 data-aos='zoom-in' className='font-semibold text-[30px] leading-10 text-center text-[#002B6B]'>
                     Why Leading US Companies Choose<br className='sm:block hidden' /> Rich Sterling Hires
                 </h1>
                 <div className='flex justify-center flex-wrap gap-4 mt-10'>
-                    <div data-aos='flip-up' data-aos-delay='100' className='shadow-[0_1px_20px_rgba(0,0,0,0.2)] w-full sm:w-[48%] lg:w-[30%] px-3 shadow-[#002b6b53] rounded-[25px] p-5 flex flex-col items-center gap-3'>
+                    <div data-aos='flip-up' data-aos-delay='100' className='shadow-[0_1px_20px_rgba(0,0,0,0.2)] mq:border-none border-[1.7px] border-[#6C7787] w-full sm:w-[48%] lg:w-[30%] px-3 shadow-[#002b6b53] rounded-[25px] p-5 flex flex-col items-center gap-3'>
                         <img src={Dollar} className='size-[20px]' alt="" />
                         <p className='text-[25px] px-10 font-semibold text-center'>Save Up to 70% on Hiring Costs</p>
                         <p className='text-[17px] text-center'>
@@ -235,7 +245,7 @@ const LandingPage = () => {
                             quality standards.
                         </p>
                     </div>
-                    <div data-aos='flip-down' data-aos-delay='400' className='shadow-[0_1px_20px_rgba(0,0,0,0.2)] w-full sm:w-[48%] lg:w-[30%] px-3 shadow-[#002b6b53] rounded-[25px] p-5 flex flex-col items-center gap-3'>
+                    <div data-aos='flip-down' data-aos-delay='400' className='shadow-[0_1px_20px_rgba(0,0,0,0.2)] mq:border-none border-[1.7px] border-[#6C7787] w-full sm:w-[48%] lg:w-[30%] px-3 shadow-[#002b6b53] rounded-[25px] p-5 flex flex-col items-center gap-3'>
                         <img src={Star} className='size-[20px]' alt="" />
                         <p className='text-[25px] px-10 font-semibold text-center'>Rigorously Vetted Top 2% Talent</p>
                         <p className='text-[17px] text-center'>
@@ -243,7 +253,7 @@ const LandingPage = () => {
                             communication abilities, and cultural fit. We only present professionals who exceeds US standards.
                         </p>
                     </div>
-                    <div data-aos='flip-up' data-aos-delay='700' className='shadow-[0_1px_20px_rgba(0,0,0,0.2)] w-full sm:w-[48%] lg:w-[30%] px-3 shadow-[#002b6b53] rounded-[25px] p-5 flex flex-col items-center gap-3'>
+                    <div data-aos='flip-up' data-aos-delay='700' className='shadow-[0_1px_20px_rgba(0,0,0,0.2)] mq:border-none border-[1.7px] border-[#6C7787] w-full sm:w-[48%] lg:w-[30%] px-3 shadow-[#002b6b53] rounded-[25px] p-5 flex flex-col items-center gap-3'>
                         <img src={Vector} className='size-[20px]' alt="" />
                         <p className='text-[25px] px-1 font-semibold text-center'>Effortless Global Team Building</p>
                         <p className='text-[17px] text-center'>
@@ -259,7 +269,7 @@ const LandingPage = () => {
                     </button>
                 </a>
             </div>
-            <div id='careers' className='sm:px-[90px] overflow-hidden px-5 my-16'>
+            <div id='careers' className='md:px-[90px] overflow-hidden px-5 my-16'>
                 <h1 data-aos='zoom-in' className='font-semibold text-[33px] leading-10 text-center text-[#002B6B]'>
                     World-Class African Talent <br className='sp:block hidden' /> Across Key Disciplines
                 </h1>
@@ -308,40 +318,43 @@ const LandingPage = () => {
                     Watch short intro videos of vetted candidates so you can see their communication skills, <br className='xl:block hidden' />
                     professionalism, and cultural fit
                 </p>
-                <div className='relative md:mt-24 md:block hidden'>
+                <div className='relative md:mt-24 mp:block hidden'>
                     <img
                         className="absolute left-1/2 xl:top-16 md:top-10 sa:block hidden sm:top-[56%] top-[55%] -translate-y-1/2 md:-translate-y-0 transform -translate-x-1/2 lg:w-[560px] sp:w-[500px] w-full max-w-full"
                         src={BG}
                         alt=""
                     />
                     <Slider className='xl:mx-[90px]' {...settings}>
-                        {videos.map((videoSrc, index) => (
+                        {videoThumbnails.map((videoUrl, index) => (
                             <div key={index}>
-                                <div className='flex items-center justify-between 2xl:justify-center xl:mt-20 md:mt-10 md:px-16 px-5 gap-5 w-full'>
+                                <div className='flex items-center justify-between 2xl:justify-center xl:my-20 md:my-10 md:px-16 px-5 gap-5 w-full'>
 
                                     <div className='text-[17px] flex md:flex-col sm:flex-row flex-col gap-4 md:w-[30%] mt-20'>
-                                        <div className='flex flex-col gap-3 rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)] bg-white shadow-[#002b6b53] lg:p-4 sm:p-2 p-4'>
+                                        <div className='flex flex-col gap-3 rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)] bg-white shadow-[#002b6b53] lg:p-3 sm:p-2 p-4'>
                                             <p className='font-semibold lg:text-[20px]'>Client Quote:</p>
                                             <p className='lg:text-[17px] text-[15px]'>{content[index].quote}</p>
-                                            <p className='lg:text-[17px] text-[15px]'>{content[index].client}</p>
+                                            <p className='lg:text-[16px] font-semibold text-[14px]'>{content[index].client}</p>
                                         </div>
                                         <p className='text-[#1E242C] font-semibold bg-white lg:text-[18px] rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] lg:p-4 sm:p-2 p-4 w-full'>
-                                            English Proficiency: <br /> {content[index].proficiency}
+                                            English Proficiency: <br /> <span className='font-normal'>{content[index].proficiency}</span>
                                         </p>
                                     </div>
 
-                                    <div className='relative'>
-                                        <ReactPlayer
-                                            url={videoSrc}
-                                            controls
-                                            width='100%'
-                                            height='520px'
-                                            playing={false}
-                                            onReady={(player) => {
-                                                const internal = player.getInternalPlayer();
-                                                internalVideoElements.current[index] = internal;
-                                            }}
-                                        />
+                                    <div className='mt-4 w-full max-w-[300px] flex justify-center items-center'>
+                                        <div className='cursor-pointer hover:scale-105 transition-transform duration-300 rounded-[20px] overflow-hidden shadow-md'>
+                                            <ReactPlayer
+                                                ref={el => {
+                                                    if (el) internalVideoElements.current[index] = el;
+                                                }}
+                                                url={videoUrl[0]}
+                                                width="300px"
+                                                height="450px"
+                                                light={videoUrl[1]}
+                                                playing={playingIndex === index}
+                                                controls
+                                                onClickPreview={() => setPlayingIndex(index)}
+                                            />
+                                        </div>
                                     </div>
 
                                     <div className='text-[17px] flex items-center justify-between flex-col gap-4 md:w-[30%] z-50 md:mt-10'>
@@ -352,13 +365,13 @@ const LandingPage = () => {
                                             </p>
                                             <p className='lg:text-[17px] text-[15px]'>{content[index].experience}</p>
                                         </div>
-                                        <div className='text-[#1E242C] rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] bg-white lg:p-4 sm:p-2 p-4'>
+                                        <div className='text-[#1E242C] rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)] shadow-[#002b6b53] bg-white p-2'>
                                             <p className='font-semibold lg:text-[20px]'>Skills:</p>
                                             <div className='flex flex-wrap gap-1 mt-3'>
                                                 {content[index].skills.map((skill, skillIndex) => (
                                                     <p
                                                         key={skillIndex}
-                                                        className='border-[1.3px] border-[#6C7787] rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'
+                                                        className='border-[1.3px] border-[#6C7787] rounded-[100px] lg:text-[15px] text-[13px] py-1 px-[5px]'
                                                     >
                                                         {skill}
                                                     </p>
@@ -371,50 +384,53 @@ const LandingPage = () => {
                         ))}
                     </Slider>
                 </div>
-                <div className='relative mt-24 block md:hidden'>
+                <div className='relative mt-24 block mp:hidden'>
                     <img
                         className="absolute w-[80%] left-1/2 -translate-x-1/2"
                         src={BG}
                         alt=""
                     />
                     <Slider className='xl:mx-[90px]' {...settings}>
-                        {videos.map((videoSrc, index) => (
+                        {videoThumbnails.map((videoUrl, index) => (
                             <div key={index}>
                                 <div className='fle items-center justify-between 2xl:justify-center xl:mt-20 md:mt-10 md:px-16 px-5 gap-5 w-full'>
 
-                                    <div className='relative'>
-                                        <ReactPlayer
-                                            url={videoSrc}
-                                            controls
-                                            width='100%'
-                                            height='520px'
-                                            playing={false}
-                                            onReady={(player) => {
-                                                const internal = player.getInternalPlayer();
-                                                internalVideoElements.current[index] = internal;
-                                            }}
-                                        />
+                                    <div className='mt-4 mx-auto w-full max-w-[300px] flex justify-center items-center'>
+                                        <div className='cursor-pointer hover:scale-105 transition-transform duration-300 rounded-[20px] overflow-hidden shadow-md'>
+                                            <ReactPlayer
+                                                ref={el => {
+                                                    if (el) internalVideoElements.current[index] = el;
+                                                }}
+                                                url={videoUrl[0]}
+                                                width="300px"
+                                                height="450px"
+                                                light={videoUrl[1]}
+                                                playing={playingIndex === index}
+                                                controls
+                                                onClickPreview={() => setPlayingIndex(index)}
+                                            />
+                                        </div>
                                     </div>
-                                    <div className='flex sp:flex-row flex-col gap-3 mt-3'>
+                                    <div className='flex sp:flex-row flex-col gap-3 mt-10'>
                                         <div className='flex sp:flex-col gap-2'>
-                                            <div className='flex flex-col gap-3 border-[#6C7787] border-[1.2px] sp:w-[180px] rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] bg-white lg:p-4 sm:p-2 p-4'>
+                                            <div className='flex flex-col gap-3 mp:border-none border-[#6C7787] border-[1.7px] sp:w-[180px] rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] bg-white lg:p-4 sm:p-2 p-4'>
                                                 <p className='font-semibold lg:text-[20px]'>
                                                     Expertise: <br />
                                                     {content[index].expertise}
                                                 </p>
                                                 <p className='lg:text-[17px] text-[15px]'>{content[index].experience}</p>
                                             </div>
-                                            <p className='text-[#1E242C] border-[#6C7787] border-[1.2px] sp:w-[180px] font-semibold bg-white lg:text-[18px] rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] lg:p-4 sm:p-2 p-4 w-'>
-                                                English Proficiency: <br /> {content[index].proficiency}
+                                            <p className='text-[#1E242C] border-[#6C7787] mp:border-none border-[1.7px] sp:w-[180px] font-semibold bg-white lg:text-[18px] rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] lg:p-4 sm:p-2 p-4 w-'>
+                                                English Proficiency: <br /> <span className='font-normal'>{content[index].proficiency}</span>
                                             </p>
                                         </div>
-                                        <div className='text-[#1E242C] rounded-[20px] border-[#6C7787] border-[1.2px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] bg-white lg:p-4 sm:p-2 p-4'>
+                                        <div className='text-[#1E242C] rounded-[20px] mp:border-none border-[#6C7787] border-[1.7px] shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] bg-white lg:p-4 sm:p-2 p-4'>
                                             <p className='font-semibold lg:text-[20px]'>Skills:</p>
                                             <div className='flex flex-wrap gap-2 mt-3'>
                                                 {content[index].skills.map((skill, skillIndex) => (
                                                     <p
                                                         key={skillIndex}
-                                                        className='border-[1.3px] border-[#6C7787] rounded-[100px] lg:text-[17px] text-[15px] lg:py-1 py-[2px] lg:px-3 px-2'
+                                                        className='border-[1.3px] border-[#6C7787] rounded-[100px] lg:text-[15px] text-[13px] lg:py-1 py-[2px] lg:px-3 px-2'
                                                     >
                                                         {skill}
                                                     </p>
@@ -423,10 +439,10 @@ const LandingPage = () => {
                                         </div>
                                     </div>
 
-                                    <div className='flex flex-col mt-3 border-[#6C7787] border-[1.2px] mb-5 gap-3 rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)] bg-white shadow-[#002b6b53] lg:p-4 sm:p-2 p-4'>
+                                    <div className='flex flex-col mt-3 border-[#6C7787] mp:border-none border-[1.7px] mb-5 gap-3 rounded-[20px] shadow-[0_1px_20px_rgba(0,0,0,0.2)] bg-white shadow-[#002b6b53] lg:p-4 sm:p-2 p-4'>
                                         <p className='font-semibold lg:text-[20px]'>Client Quote:</p>
                                         <p className='lg:text-[17px] text-[15px]'>{content[index].quote}</p>
-                                        <p className='lg:text-[17px] text-[15px]'>{content[index].client}</p>
+                                        <p className='lg:text-[16px] font-semibold text-[14px]'>{content[index].client}</p>
                                     </div>
                                 </div>
                             </div>
@@ -443,7 +459,7 @@ const LandingPage = () => {
                         <div className='flex items-center xl:gap-10 sa:gap-5 gap-2'>
                             <p data-aos='fade-up' className='font-medium xl:text-[110px] sa:block hidden text-[80px] text-[#cddbf0]'>01</p>
                             <p data-aos='fade-up' className='font-medium xl:text-[110px] block sa:hidden text-[80px] font-mono text-[#cddbf0]'>1</p>
-                            <div data-aos='fade-up' data-aos-delay='300' className='flex gap-4 items-center rounded-[20px] w-full mp:w-[430px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] shadow-[#c9d6e8] xl:p-5 p-3'>
+                            <div data-aos='fade-up' data-aos-delay='300' className='flex gap-4 items-center mp:border-none border-[#9ba5b6] border-[1.5px] rounded-[20px] w-full mp:w-[430px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] shadow-[#c9d6e8] xl:p-5 p-3'>
                                 <img className='xl:size-[44px] size-[40px]' src={access1} alt="" />
                                 <div>
                                     <p className='xl:text-[20px] font-manrope font-medium text-[#1E242C]'>Share Your Requirements</p>
@@ -452,7 +468,7 @@ const LandingPage = () => {
                             </div>
                         </div>
                         <div className='flex items-center xl:mt-[-30px] mt-5 xl:gap-10 sa:gap-5 gap-1'>
-                            <div data-aos='fade-up' data-aos-delay='300' className='flex gap-4 items-center rounded-[20px] w-full mp:w-[430px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] shadow-[#c9d6e8] xl:py-5 p-3'>
+                            <div data-aos='fade-up' data-aos-delay='300' className='flex gap-4 items-center mp:border-none border-[#9ba5b6] border-[1.5px] rounded-[20px] w-full mp:w-[430px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] shadow-[#c9d6e8] xl:py-5 p-3'>
                                 <img className='xl:size-[50px] size-[40px]' src={access2} alt="" />
                                 <div>
                                     <p className='xl:text-[20px] font-manrope font-medium text-[#1E242C]'>Meet Pre-Screened Candidates</p>
@@ -465,7 +481,7 @@ const LandingPage = () => {
                         <div className='flex items-center  xl:mt-[-30px] mt-5 xl:gap-10 sa:gap-5 gap-2'>
                             <p data-aos='fade-up' data-aos-delay='200' className='font-medium xl:text-[110px] sa:block hidden text-[80px] text-[#cddbf0]'>03</p>
                             <p data-aos='fade-up' data-aos-delay='200' className='font-medium xl:text-[110px] block sa:hidden text-[80px] font-mono text-[#cddbf0]'>3</p>
-                            <div data-aos='fade-up' data-aos-delay='300' className='flex gap-4 items-center rounded-[20px] w-full mp:w-[430px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] shadow-[#c9d6e8] xl:p-5 p-3'>
+                            <div data-aos='fade-up' data-aos-delay='300' className='flex gap-4 items-center mp:border-none border-[#9ba5b6] border-[1.5px] rounded-[20px] w-full mp:w-[430px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] shadow-[#c9d6e8] xl:p-5 p-3'>
                                 <img className='xl:size-[50px] size-[40px]' src={access3} alt="" />
                                 <div>
                                     <p className='xl:text-[20px] font-manrope font-medium text-[#1E242C]'>Hire With Confidence</p>
@@ -474,7 +490,7 @@ const LandingPage = () => {
                             </div>
                         </div>
                         <div className='flex items-center xl:mt-[-30px] mt-5 xl:gap-10 sa:gap-5 gap-2'>
-                            <div data-aos='fade-up' data-aos-delay='300' className='flex gap-4 items-center rounded-[20px] w-full mp:w-[430px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] shadow-[#c9d6e8] xl:p-5 p-3'>
+                            <div data-aos='fade-up' data-aos-delay='300' className='flex gap-4 items-center mp:border-none border-[#9ba5b6] border-[1.5px] rounded-[20px] w-full mp:w-[430px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] shadow-[#c9d6e8] xl:p-5 p-3'>
                                 <img className='xl:size-[50px] size-[40px]' src={access4} alt="" />
                                 <div>
                                     <p className='xl:text-[20px] font-manrope font-medium text-[#1E242C]'>Thrive With Continuous Support</p>
@@ -513,7 +529,7 @@ const LandingPage = () => {
                 </h1>
                 <div className='flex w-full justify-center flex-wrap gap-5 mt-10'>
                     <div data-aos='zoom-in' data-aos-delay='300' className='flex flex-col gap-5 items-center w-full mq:w-[48%] lg:w-[30%]'>
-                        <div className='rounded-[20px] py-6 px-5 shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] flex flex-col items-center gap-2'>
+                        <div className='rounded-[20px] py-6 px-5 shadow-[0_1px_20px_rgba(0,0,0,0.2)] mp:border-none border-[#6C7787] border-[1.7px]  shadow-[#002b6b53] flex flex-col items-center gap-2'>
                             <div className='flex gap-2'>
                                 <FaStar className='text-[25px] text-[#0066FF]' />
                                 <FaStar className='text-[25px] text-[#0066FF]' />
@@ -539,7 +555,7 @@ const LandingPage = () => {
                         <p className='text-[27px] text-center font-medium w-[260px]'><span className='text-[#0066FF]'>98%</span> Client Satisfaction Rate</p>
                     </div>
                     <div data-aos='zoom-in' data-aos-delay='600' className='flex flex-col gap-5 items-center w-full mq:w-[48%] lg:w-[30%]'>
-                        <div className='rounded-[20px] py-6 px-4 shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] flex flex-col items-center gap-2'>
+                        <div className='rounded-[20px] py-6 px-4 shadow-[0_1px_20px_rgba(0,0,0,0.2)] mp:border-none border-[#6C7787] border-[1.7px]  shadow-[#002b6b53] flex flex-col items-center gap-2'>
                             <div className='flex gap-2'>
                                 <FaStar className='text-[25px] text-[#0066FF]' />
                                 <FaStar className='text-[25px] text-[#0066FF]' />
@@ -564,7 +580,7 @@ const LandingPage = () => {
                         <p className='text-[27px] text-center font-medium w-[300px]'>Over <span className='text-[#0066FF]'>$2 million+</span> Saved by Clients </p>
                     </div>
                     <div data-aos='zoom-in' data-aos-delay='900' className='flex flex-col gap-5 items-center w-full mq:w-[48%] lg:w-[30%]'>
-                        <div className='rounded-[20px] py-6 px-4 shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] flex flex-col items-center gap-2'>
+                        <div className='rounded-[20px] py-6 px-4 shadow-[0_1px_20px_rgba(0,0,0,0.2)] mp:border-none border-[#6C7787] border-[1.7px]  shadow-[#002b6b53] flex flex-col items-center gap-2'>
                             <div className='flex gap-2'>
                                 <FaStar className='text-[25px] text-[#0066FF]' />
                                 <FaStar className='text-[25px] text-[#0066FF]' />
@@ -585,10 +601,10 @@ const LandingPage = () => {
                                 </div>
                             </div>
                         </div>
-                        <p className='text-[27px] text-center font-medium w-[250px]'><span className='text-[#0066FF]'>2000+</span> businesses trust us to Hire</p>
+                        <p className='text-[27px] text-center font-medium w-[250px]'><span className='text-[#0066FF]'>136+</span> businesses trust us to Hire</p>
                     </div>
                     <div data-aos='zoom-in' data-aos-delay='100' className='flex flex-col gap-5 items-center w-full mq:w-[48%] lg:w-[30%]'>
-                        <div className='rounded-[20px] py-6 px-4 shadow-[0_1px_20px_rgba(0,0,0,0.2)]  shadow-[#002b6b53] flex flex-col items-center gap-2'>
+                        <div className='rounded-[20px] py-6 px-4 shadow-[0_1px_20px_rgba(0,0,0,0.2)] mp:border-none border-[#6C7787] border-[1.7px]  shadow-[#002b6b53] flex flex-col items-center gap-2'>
                             <div className='flex gap-2'>
                                 <FaStar className='text-[25px] text-[#0066FF]' />
                                 <FaStar className='text-[25px] text-[#0066FF]' />

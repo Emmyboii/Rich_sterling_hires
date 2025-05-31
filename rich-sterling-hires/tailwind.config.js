@@ -5,11 +5,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        newsreader: ['"Newsreader"', 'serif'],
-        manrope: ['"Manrope"', 'sans-serif'],
-        jakarta: ['"Plus Jakarta Sans"', 'sans-serif'],
-      },
       screens: {
         lk: '1600px',
         sp: '500px',
