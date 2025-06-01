@@ -10,6 +10,8 @@ import { FaCheck, FaPlus, FaXTwitter } from "react-icons/fa6";
 import group from '../Images/Logo.png';
 import send from '../Images/Send.png';
 import send2 from '../Images/send2.png';
+import arrowUp from '../Images/ArrowUp.png';
+import arrowDown from '../Images/ArrowDown.png';
 import Badge from '../Images/Dollar badge.png';
 import Group1 from '../Images/Group1.png';
 import Group2 from '../Images/Group2.png';
@@ -29,10 +31,14 @@ import Woman4 from '../Images/Woman4.png';
 import Woman5 from '../Images/Woman5.png';
 import Woman6 from '../Images/Woman6.png';
 import Woman7 from '../Images/Woman7.png';
+import client1 from '../Images/Client1.jpg';
+import client2 from '../Images/Client2.jpg';
+import client3 from '../Images/Client3.jpg';
 import Star from '../Images/Star.png';
 import Vector from '../Images/Vector.png';
 import Dollar from '../Images/Dollar.png';
 import frame1 from '../Images/Frame1.png';
+import frame1_1 from '../Images/frame1_1.png';
 import frame2 from '../Images/Frame2.png';
 import frame3 from '../Images/Frame3.png';
 import frame4 from '../Images/Frame4.png';
@@ -199,9 +205,23 @@ const LandingPage = () => {
         AOS.refresh();
     }, []);
 
+    const [scroll, setScroll] = useState(false)
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScroll(window.scrollY > 10)
+        }
+
+        window.addEventListener('scroll', handleScroll)
+
+        handleScroll();
+
+        return () => window.removeEventListener('resize', handleScroll);
+    }, [])
+
     return (
-        <div className='my-6'>
-            <div className='flex overflow-hidden justify-between md:px-[75px] px-5 z-50 bg-white text-[#0066FF]'>
+        <div className='mb-6'>
+            <div className={`flex overflow-hidden sticky top-0 py-3 transition-all duration-200 justify-between md:px-[75px] px-5 z-50 bg-white text-[#0066FF] ${scroll ? 'shadow-lg' : 'shadow-none'}`}>
                 <a href="/">
                     <img onClick={() => window.scrollTo(0, 0)} src={group} className='w-[130px] h-[40px]' alt="" />
                 </a>
@@ -294,7 +314,7 @@ const LandingPage = () => {
                         </div>
                         <p className='text-[17px] font-normal mt-1'>
                             Every candidate undergoes our proprietary 5-stage assessment process, testing technical skills,
-                            communication abilities, and cultural fit. We only present professionals who exceeds US standards.
+                            communication abilities, and cultural fit. We only present professionals who exceed US standards.
                         </p>
                     </div>
                     <div data-aos='fade-up' className='mq:hidden block mt-3'>
@@ -321,7 +341,7 @@ const LandingPage = () => {
                         <p className='text-[19px] px-10 font-semibold text-center'>Rigorously Vetted Top 2% Talent</p>
                         <p className='text-[15px] text-center'>
                             Every candidate undergoes our proprietary 5-stage assessment process, testing technical skills,
-                            communication abilities, and cultural fit. We only present professionals who exceeds US standards.
+                            communication abilities, and cultural fit. We only present professionals who exceed US standards.
                         </p>
                     </div>
                     <div data-aos='flip-up' data-aos-delay='500' className='shadow-[0_1px_20px_rgba(0,0,0,0.2)] hidden mq:border-none border-[1.7px] border-[#6C7787] w-full sm:w-[48%] lg:w-[30%] px-3 shadow-[#002b6b53] rounded-[25px] p-5 mq:flex flex-col items-center gap-3'>
@@ -348,7 +368,43 @@ const LandingPage = () => {
                     Whatever your business needs, we have thoroughly vetted professionals ready to deliver <br className='xl:block hidden' />
                     exceptional results at 60-70% lower costs.
                 </p>
-                <div className='text-[16px] font-medium flex mp:flex-row flex-col items-center justify-center mq:gap-10 gap-2 text-[#6C7787] mp:border-b border-[#6C7787] mt-14'>
+                <div>
+                    <button onClick={() => setProfession('dev')} className='flex mq:hidden items-center justify-between w-full text-white bg-[#0066FF] mt-10 gap-2 border-[1.2px] cursor-pointer border-[#0066FF] p-1 pl-5 rounded-[50px]'>
+                        <div className='text-[16px] font-bold flex relative items-center gap-2'>
+                            <img className='sp:size-5 size-5' src={frame1_1} alt="" />
+                            <p className='sp:text-[18px] text-[17px]'>Development & Engineering</p>
+                        </div>
+                        <img src={profession === 'dev' ? arrowUp : arrowDown} className='sp:size-[40px] size-[35px]' alt="" />
+                    </button>
+                    {(profession === 'design' || profession === 'admin' || profession === 'market') && (
+                        <button onClick={() => setProfession('design')} className='flex items-center justify-between w-full text-white bg-[#0066FF] mt-8 gap-2 border-[1.2px] cursor-pointer border-[#0066FF] p-1 pl-5 rounded-[50px]'>
+                            <div className='text-[16px] font-bold flex relative items-center gap-2'>
+                                <img className='sp:size-5 size-5' src={frame2} alt="" />
+                                <p className='sp:text-[18px] text-[17px]'>Design & Creative</p>
+                            </div>
+                            <img src={profession === 'design' ? arrowUp : arrowDown} className='sp:size-[40px] size-[35px]' alt="" />
+                        </button>
+                    )}
+                    {(profession === 'admin' || profession === 'market') && (
+                        <button onClick={() => setProfession('admin')} className='flex items-center justify-between w-full text-white bg-[#0066FF] mt-4 gap-2 border-[1.2px] cursor-pointer border-[#0066FF] p-1 pl-5 rounded-[50px]'>
+                            <div className='text-[16px] font-bold flex relative items-center gap-2'>
+                                <img className='sp:size-5 size-5' src={frame3} alt="" />
+                                <p className='sp:text-[18px] text-[17px]'>Administrative Support</p>
+                            </div>
+                            <img src={profession === 'admin' ? arrowUp : arrowDown} className='sp:size-[40px] size-[35px]' alt="" />
+                        </button>
+                    )}
+                    {profession === 'market' && (
+                        <button onClick={() => setProfession('market')} className='flex items-center justify-between w-full text-white bg-[#0066FF] mt-4 gap-2 border-[1.2px] cursor-pointer border-[#0066FF] p-1 pl-5 rounded-[50px]'>
+                            <div className='text-[16px] font-bold flex relative items-center gap-2'>
+                                <img className='sp:size-5 size-5' src={frame4} alt="" />
+                                <p className='sp:text-[18px] text-[17px]'>Marketing & Digital Growth</p>
+                            </div>
+                            <img src={profession === 'market' ? arrowUp : arrowDown} className='sp:size-[40px] size-[35px]' alt="" />
+                        </button>
+                    )}
+                </div>
+                <div className='text-[16px] font-medium hidden mq:flex mp:flex-row flex-col items-center justify-center mq:gap-10 gap-2 text-[#6C7787] mp:border-b border-[#6C7787] mt-14'>
                     <div className='flex gap-10 border-b mp:border-b-0 border-[#6C7787]'>
                         <div
                             onClick={() => setProfession('dev')}
@@ -382,7 +438,7 @@ const LandingPage = () => {
                         </div>
                     </div>
                 </div>
-                <Professions profession={profession} />
+                <Professions profession={profession} setProfession={setProfession} />
             </div>
 
             <div className='overflow-hidden pb-16'>
@@ -580,10 +636,10 @@ const LandingPage = () => {
                         <img data-aos='zoom-in' className='xl:w-[270px] sa:block hidden w-[200px] h-[300px] 2xl:w-[90%] 2xl:h-[90%] object-cover rounded-[20px] xl:h-[400px]' src={Man6} alt="" />
                         <img data-aos='zoom-in' className='xl:w-[270px] sa:w-[200px] h-[400px] 2xl:w-full 2xl:h-full object-cover rounded-[20px] xl:h-[500px]' src={Woman6} alt="" />
                         <div className='flex sa:absolute z-50 bg-white bottom-[2%] 2xl:bottom-12 gap-4 2xl:w-[50%] items-center rounded-[20px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] shadow-[#c9d6e8] p-4'>
-                            <img className='size-[40px] rounded-full' src={Thumbnail1} alt="" />
+                            <img className='size-[40px] object-cover rounded-full' src={client1} alt="" />
+                            <img className='size-[40px] ml-[-20px] rounded-full' src={client2} alt="" />
                             <img className='size-[40px] ml-[-20px] rounded-full' src={Woman7} alt="" />
-                            <img className='size-[40px] ml-[-20px] rounded-full' src={Thumbnail2} alt="" />
-                            <img className='size-[40px] ml-[-20px] rounded-full' src={Thumbnail3} alt="" />
+                            <img className='size-[40px] object-fill ml-[-20px] rounded-full' src={client3} alt="" />
                             <div>
                                 <p className='text-[20px] font-manrope font-medium text-[#0066FF]'>136+</p>
                                 <p className='text-[15px] font-manrope font-normal text-[#414D60]'>Satisfied Clients</p>
@@ -1129,7 +1185,7 @@ const LandingPage = () => {
                             </div>
                         </div>
                         <div className='flex sa:flex-row flex-col flex-wrap gap-10 items-center text-center sa:text-start sa:items-start sa:justify-between w-full mp:w-[60%]'>
-                             <div className='flex flex-col gap-[13px] text-[13px] text-[#414D60] font-normal xl:w-[150px]'>
+                            <div className='flex flex-col gap-[13px] text-[13px] text-[#414D60] font-normal xl:w-[150px]'>
                                 <h1 className='text-[17px] text-[#1E242C] font-bold'>Quick Links</h1>
                                 <a href="#pricing">
                                     <p>Pricing</p>

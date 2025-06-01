@@ -89,7 +89,7 @@ const Register = () => {
                 },
                 attendees: [
                     { email: formData.work_email },
-                    { email: "olukoyae01@gmail.com" }
+                    { email: "rcwickles@gmail.com" }
                 ],
                 reminders: {
                     useDefault: true,

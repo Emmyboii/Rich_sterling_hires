@@ -8,7 +8,7 @@ import { FaXTwitter } from 'react-icons/fa6';
 
 const Pricing = () => {
     return (
-        <div>
+        <div className='my-6'>
             <div className='flex overflow-hidden justify-between md:px-[75px] px-5 z-50 bg-white text-[#0066FF]'>
                 <a href="/">
                     <img onClick={() => window.scrollTo(0, 0)} src={group} className='w-[130px] h-[40px]' alt="" />
@@ -25,98 +25,98 @@ const Pricing = () => {
                     <p className='flex items-center gap-1'>Start Saving <img className='size-[40px]' src={coin} alt="" /> and</p><p> Scaling Today</p>
                 </div>
                 <div className="overflow-x-auto w-full">
-                    <table className='table-auto bg-[#0066FF] mq:text-[15px] text-[12px] mt-5 text-center border-collapse border-4 border-white rounded-[30px] text-white mx-auto'>
+                    <table className='table-auto bg-[#0066FF] mq:text-[15px] sa:text-[11px] text-[9.5px] mt-5 text-center border-collapse border-4 border-white rounded-[30px] text-white mx-auto'>
                         <thead>
                             <tr>
-                                <th className='border-2 border-gray-300 px-3 py-5'>Role</th>
-                                <th className='border-2 border-gray-300 px-3 py-5'>Rich Sterling Hires</th>
-                                <th className='border-2 border-gray-300 px-3 py-5'>U.S Equivalent</th>
-                                <th className='border-2 border-gray-300 px-3 py-5'>U.S Agency</th>
-                                <th className='border-2 border-gray-300 px-3 py-5'>Savings</th>
+                                <th className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'>Role</th>
+                                <th className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'>Rich Sterling Hires</th>
+                                <th className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'>U.S Equivalent</th>
+                                <th className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'>U.S Agency</th>
+                                <th className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'>Savings</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td className='border-2 border-gray-300 px-3 py-5'>Virtual Assistant</td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$700/month ($4.38/hour)</p><p className='italic font-light text-white/70'>Streamline daily tasks with a dedicated VA</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$15–$50/hour</p><p className='italic font-light text-white/70'>($2,400–$8,000/month)</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$1,599–$2,000+/month</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>80%</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3 text-start sk:text-center'>Virtual Assistant</td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$700/month ($4.38/hour)</p><p className='italic font-light text-white/70'>Streamline daily tasks with a dedicated VA</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$15–$50/hour</p><p className='italic font-light text-white/70'>($2,400–$8,000/month)</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$1,599–$2,000+/month</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>80%</p></td>
                             </tr>
                             <tr>
-                                <td className='border-2 border-gray-300 px-3 py-5'>Customer Support Specialist</td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$700–$800/month ($4.38–$5/hour)</p><p className='italic font-light text-white/70'>Ensure customer satisfaction with consistent support.</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$10–$50/hour</p><p className='italic font-light text-white/70'>($1,600–$8,000/month)</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$500–$5,000/month</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>80%</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3 text-start sk:text-center'>Customer Support Specialist</td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$700–$800/month ($4.38–$5/hour)</p><p className='italic font-light text-white/70'>Ensure customer satisfaction with consistent support.</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$10–$50/hour</p><p className='italic font-light text-white/70'>($1,600–$8,000/month)</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$500–$5,000/month</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>80%</p></td>
                             </tr>
                             <tr>
-                                <td className='border-2 border-gray-300 px-3 py-5'>Social Media Manager</td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$700/month ($4.38–$12.50/hour)</p><p className='italic font-light text-white/70'>Grow your brand with ongoing social strategies.</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$35–$85/hour</p><p className='italic font-light text-white/70'>($5,600–$13,600/month)</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$2,000–$10,000/month</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>85%</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3 text-start sk:text-center'>Social Media Manager</td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$700/month ($4.38–$12.50/hour)</p><p className='italic font-light text-white/70'>Grow your brand with ongoing social strategies.</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$35–$85/hour</p><p className='italic font-light text-white/70'>($5,600–$13,600/month)</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$2,000–$10,000/month</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>85%</p></td>
                             </tr>
                             <tr>
-                                <td className='border-2 border-gray-300 px-3 py-5'>Bookkeeper</td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$800/month ($5/hour)</p><p className='italic font-light text-white/70'>Maintain financial health with daily oversight</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$20–$70/hour</p><p className='italic font-light text-white/70'>($3,200–$11,200/month)</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$1,000–$5,000+/month</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>80%</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3 text-start sk:text-center'>Bookkeeper</td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$800/month ($5/hour)</p><p className='italic font-light text-white/70'>Maintain financial health with daily oversight</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$20–$70/hour</p><p className='italic font-light text-white/70'>($3,200–$11,200/month)</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$1,000–$5,000+/month</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>80%</p></td>
                             </tr>
                             <tr>
-                                <td className='border-2 border-gray-300 px-3 py-5'>Content Writer</td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$800/month ($5/hour)</p><p className='italic font-light text-white/70'>Attract customers with consistent content.</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$25–$100/hour</p><p className='italic font-light text-white/70'>($4,000–$16,000/month)</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$1,000–$7,500+/month</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>85%</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3 text-start sk:text-center'>Content Writer</td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$800/month ($5/hour)</p><p className='italic font-light text-white/70'>Attract customers with consistent content.</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$25–$100/hour</p><p className='italic font-light text-white/70'>($4,000–$16,000/month)</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$1,000–$7,500+/month</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>85%</p></td>
                             </tr>
                             <tr>
-                                <td className='border-2 border-gray-300 px-3 py-5'>Video Editor</td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$1200/month ($7.50/hour)</p><p className='italic font-light text-white/70'>Create engaging videos for ongoing campaigns.</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$25–$100/hour</p><p className='italic font-light text-white/70'>($4,000–$16,000/month)</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$2,000–$10,000+/month</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>85%</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3 text-start sk:text-center'>Video Editor</td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$1200/month ($7.50/hour)</p><p className='italic font-light text-white/70'>Create engaging videos for ongoing campaigns.</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$25–$100/hour</p><p className='italic font-light text-white/70'>($4,000–$16,000/month)</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$2,000–$10,000+/month</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>85%</p></td>
                             </tr>
                             <tr>
-                                <td className='border-2 border-gray-300 px-3 py-5'>Graphics Designer</td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$1200/month ($7.50/hour)</p><p className='italic font-light text-white/70'>Build a cohesive brand with daily designs.</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$25–$90/hour</p><p className='italic font-light text-white/70'>($4,000–$14,400/month)</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$2,000–$8,000+/month</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>83%</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3 text-start sk:text-center'>Graphics Designer</td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$1200/month ($7.50/hour)</p><p className='italic font-light text-white/70'>Build a cohesive brand with daily designs.</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$25–$90/hour</p><p className='italic font-light text-white/70'>($4,000–$14,400/month)</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$2,000–$8,000+/month</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>83%</p></td>
                             </tr>
                             <tr>
-                                <td className='border-2 border-gray-300 px-3 py-5'>Software Engineer</td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$2000/month ($12.50/hour)</p><p className='italic font-light text-white/70'>Develop and maintain custom software solutions.</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$50–$150/hour</p><p className='italic font-light text-white/70'>($8,000–$24,000/month)</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$5,000–$20,000+/month</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>83%</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3 text-start sk:text-center'>Software Engineer</td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$2000/month ($12.50/hour)</p><p className='italic font-light text-white/70'>Develop and maintain custom software solutions.</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$50–$150/hour</p><p className='italic font-light text-white/70'>($8,000–$24,000/month)</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$5,000–$20,000+/month</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>83%</p></td>
                             </tr>
                             <tr>
-                                <td className='border-2 border-gray-300 px-3 py-5'>Project Manager</td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$800/month ($5/hour)</p><p className='italic font-light text-white/70'>Keep projects on track with daily oversight</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$30–$100/hour</p><p className='italic font-light text-white/70'>($4,800–$16,000/month)</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$3,000–$10,000+/month</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>83%</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3 text-start sk:text-center'>Project Manager</td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$800/month ($5/hour)</p><p className='italic font-light text-white/70'>Keep projects on track with daily oversight</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$30–$100/hour</p><p className='italic font-light text-white/70'>($4,800–$16,000/month)</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$3,000–$10,000+/month</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>83%</p></td>
                             </tr>
                             <tr>
-                                <td className='border-2 border-gray-300 px-3 py-5'>Marketing Assistant</td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$700/month ($4.38/hour)</p><p className='italic font-light text-white/70'>Support daily marketing efforts.</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$20–$60/hour</p><p className='italic font-light text-white/70'>($3,200–$9,600/month)</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$1,500–$6,000+/month</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>79%</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3 text-start sk:text-center'>Marketing Assistant</td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$700/month ($4.38/hour)</p><p className='italic font-light text-white/70'>Support daily marketing efforts.</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$20–$60/hour</p><p className='italic font-light text-white/70'>($3,200–$9,600/month)</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$1,500–$6,000+/month</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>79%</p></td>
                             </tr>
                             <tr>
-                                <td className='border-2 border-gray-300 px-3 py-5'>UI/UX Designer</td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$800/month ($5/hour)</p><p className='italic font-light text-white/70'>Enhance user experiences with ongoing designs</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$35–$120/hour</p><p className='italic font-light text-white/70'>($5,600–$19,200/month)</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>$3,000–$12,000+/month</p></td>
-                                <td className='border-2 border-gray-300 px-3 py-5'><p className='font-semibold'>83%</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3 text-start sk:text-center'>UI/UX Designer</td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$800/month ($5/hour)</p><p className='italic font-light text-white/70'>Enhance user experiences with ongoing designs</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$35–$120/hour</p><p className='italic font-light text-white/70'>($5,600–$19,200/month)</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>$3,000–$12,000+/month</p></td>
+                                <td className='border-2 border-gray-300 sk:px-3 sk:py-5 px-[1.7px] py-3'><p className='font-semibold'>83%</p></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <p className='text-center text-[20px] font-normal italic mt-7'>“Rates are indicative and may vary based on requirements.”</p>
+                <p className='text-center text-[20px] font-normal italic mt-7 px-2'>“Rates are indicative and may vary based on requirements.”</p>
             </div>
             <div className='mx-5 mt-20 block sp:hidden'>
                 <div className='flex justify-between'>
