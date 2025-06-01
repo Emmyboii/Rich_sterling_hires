@@ -9,7 +9,7 @@ import Pricing from './Components/Pricing';
 
 function App() {
   return (
-    <div className="my-6 w-full">
+    <div className="w-full">
       <GoogleInit />
       <Routes>
         <Route index element={<LandingPage />} />

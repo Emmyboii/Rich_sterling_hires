@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { gapi } from "gapi-script";
@@ -12,7 +12,6 @@ const Register = () => {
         company_name: '',
         roles_to_hire: '',
         heard_about_us: '',
-        meeting_title: '',
         meeting_start: '',
         meeting_end: ''
     });
@@ -49,39 +48,10 @@ const Register = () => {
             errors.roles_to_hire = 'We need to know the role(s) you need.';
         }
 
-        if (!formData.meeting_title || formData.meeting_title.trim() === '') {
-            errors.meeting_title = 'Meeting title is required.';
-        }
-
-        if (!formData.meeting_start) {
-            errors.meeting_start = 'Meeting start time is required.';
-        }
-
-        if (!formData.meeting_end) {
-            errors.meeting_end = 'Meeting end time is required.';
-        }
-
-        if (!formData.meeting_title && formData.meeting_title.trim() === '' && !formData.meeting_start && !formData.meeting_end) {
-            errors.meeting = 'Meeting information is needed.';
-        }
 
         setValidationErrors(errors);
         return Object.keys(errors).length === 0;
     };
-
-    useEffect(() => {
-        if (
-            formData.meeting_title.trim() !== '' &&
-            formData.meeting_start.trim() !== '' &&
-            formData.meeting_end.trim() !== ''
-        ) {
-            // Clear the grouped error if all fields are filled
-            setValidationErrors((prevErrors) => {
-                const { meeting, ...rest } = prevErrors;
-                return rest;
-            });
-        }
-    }, [formData.meeting_title, formData.meeting_start, formData.meeting_end]);
 
 
     const handleSubmit = async (e) => {
@@ -96,33 +66,36 @@ const Register = () => {
         setLoading(true);
 
         const submissionData = {
-            "full_name": formData.full_name,
-            "work_email": formData.work_email,
-            "company_name": formData.company_name,
-            "roles_to_hire": formData.roles_to_hire,
-            "heard_about_us": formData.heard_about_us
+            full_name: formData.full_name,
+            work_email: formData.work_email,
+            company_name: formData.company_name,
+            roles_to_hire: formData.roles_to_hire,
+            heard_about_us: formData.heard_about_us
         };
 
-        // Prepare Google Calendar event data
-        const event = {
-            summary: formData.meeting_title,
-            description: `Meeting with ${formData.full_name} from ${formData.company_name}`,
-            start: {
-                dateTime: new Date(formData.meeting_start).toISOString(),
-                timeZone: 'Africa/Lagos', // Set appropriate time zone
-            },
-            end: {
-                dateTime: new Date(formData.meeting_end).toISOString(),
-                timeZone: 'Africa/Lagos',
-            },
-            attendees: [
-                { email: formData.work_email },
-                { email: "rcwickles@gmail.com" }
-            ],
-            reminders: {
-                useDefault: true,
-            },
-        };
+        const shouldScheduleMeeting = formData.meeting_start && formData.meeting_end;
+
+        const event = shouldScheduleMeeting
+            ? {
+                summary: `A discovery call with ${formData.full_name} from ${formData.company_name}`,
+                description: `A discovery call with ${formData.full_name} from ${formData.company_name}`,
+                start: {
+                    dateTime: new Date(formData.meeting_start).toISOString(),
+                    timeZone: 'Africa/Lagos',
+                },
+                end: {
+                    dateTime: new Date(formData.meeting_end).toISOString(),
+                    timeZone: 'Africa/Lagos',
+                },
+                attendees: [
+                    { email: formData.work_email },
+                    { email: "olukoyae01@gmail.com" }
+                ],
+                reminders: {
+                    useDefault: true,
+                },
+            }
+            : null;
 
         try {
             const response = await axios.post('https://app-as-as-a-service-4d3b0169afc7.herokuapp.com/submit_feedback', submissionData);
@@ -132,39 +105,42 @@ const Register = () => {
                 return;
             }
 
-            // Ensure Google API is initialized
-            const initialized = await ensureGapiInitialized();
-            if (!initialized) {
-                alert("Failed to initialize Google API. Please try again.");
-                return;
+            // Proceed to calendar scheduling only if both date fields are filled
+            if (shouldScheduleMeeting && event) {
+                const initialized = await ensureGapiInitialized();
+                if (!initialized) {
+                    alert("Failed to initialize Google API. Please try again.");
+                    return;
+                }
+
+                const authInstance = gapi.auth2.getAuthInstance();
+                if (!authInstance) {
+                    alert("Google Auth instance not found. Please try again later.");
+                    return;
+                }
+
+                if (!authInstance.isSignedIn.get()) {
+                    await authInstance.signIn();
+                }
+
+                await createGoogleCalendarEvent(event);
+
+                alert("Your meeting has been scheduled! We've sent you a calendar invite. Please check your email and accept it to add it to your calendar.");
+            } else {
+                alert("Form submitted successfully!");
             }
 
-            // Sign in if not already signed in
-            const authInstance = gapi.auth2.getAuthInstance();
-            if (!authInstance) {
-                alert("Google Auth instance not found. Please try again later.");
-                return;
-            }
-
-            if (!authInstance.isSignedIn.get()) {
-                await authInstance.signIn();
-            }
-
-            // Use the helper to insert the event
-            await createGoogleCalendarEvent(event);
-
+            // Reset form
             setFormData({
                 full_name: '',
                 work_email: '',
                 company_name: '',
                 roles_to_hire: '',
                 heard_about_us: '',
-                meeting_title: '',
                 meeting_start: '',
                 meeting_end: ''
             });
 
-            alert("Your meeting has been scheduled! We’ve sent you a calendar invite. Please check your email and accept it to add it to your calendar.");
             navigate('/success');
 
         } catch (error) {
@@ -184,116 +160,120 @@ const Register = () => {
     };
 
     return (
-        <div>
-            <form onSubmit={handleSubmit} className="w-[90%] ms:w-[50%] mx-auto rounded-[30px] bg-white py-[35px] shadow-md shadow-black/50">
-                <p className='mx-5 text-[22px] font-medium'>Get Started</p>
-                <div className='flex w-full items-center'>
-                    <div className="m-5 w-full">
-                        <label className="text-[17px] sv:text-[20px] mo:text-[21px] font-normal" htmlFor="firstName">Full Name <span className='text-red-500'>*</span></label><br />
+        <div className="flex items-center justify-center min-h-screen bg-gray-100 py-10 px-4">
+            <form
+                onSubmit={handleSubmit}
+                className="w-full max-w-3xl bg-white rounded-3xl shadow-lg p-8 space-y-6"
+            >
+                <h2 className="text-3xl font-semibold text-gray-800 text-center">Get Started</h2>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label className="block text-lg font-medium text-gray-700">
+                            Full Name <span className='text-red-500'>*</span>
+                        </label>
                         <input
-                            className={`py-[8px] w-full pl-[15px] mt-3 rounded-[12px] text-[16px] border-black/20 border focus:border-blue-400 focus:shadow focus:shadow-blue-400 focus:border-2 outline-none ${validationErrors.full_name && 'border-red-500'}`}
+                            className={`mt-2 w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 ${validationErrors.full_name ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+                                }`}
                             type="text"
                             name="full_name"
                             value={formData.full_name}
                             onChange={handleChange}
-                            placeholder='John Doe'
+                            placeholder="John Doe"
                         />
-                        {validationErrors.full_name && <p className="text-red-500 absolute text-[16px] font-medium">{validationErrors.full_name}</p>}
+                        {validationErrors.full_name && <p className="text-red-500 mt-1 text-sm">{validationErrors.full_name}</p>}
                     </div>
-                    <div className="m-5 w-full">
-                        <label className="text-[17px] sv:text-[19px] ms:text-[18px] mo:text-[21px] font-normal" htmlFor="email">Email Address <span className='text-red-500'>*</span></label><br />
+
+                    <div>
+                        <label className="block text-lg font-medium text-gray-700">
+                            Email Address <span className='text-red-500'>*</span>
+                        </label>
                         <input
-                            className={`py-[8px] w-full pl-[15px] mt-3 rounded-[12px] text-[16px] border-black/20 border focus:border-blue-400 focus:shadow focus:shadow-blue-400 focus:border-2 outline-none ${validationErrors.work_email && 'border-red-500'}`}
+                            className={`mt-2 w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 ${validationErrors.work_email ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+                                }`}
                             type="email"
                             name="work_email"
                             value={formData.work_email}
                             onChange={handleChange}
-                            placeholder='johndoe@email.com'
+                            placeholder="johndoe@email.com"
                         />
-                        {validationErrors.work_email && (
-                            <p className="text-red-500 absolute text-[16px] font-medium">{validationErrors.work_email}</p>
-                        )}
+                        {validationErrors.work_email && <p className="text-red-500 mt-1 text-sm">{validationErrors.work_email}</p>}
                     </div>
                 </div>
-                <div className="m-5 mt-1">
-                    <label className="text-[17px] sv:text-[19px] ms:text-[18px] mo:text-[21px] font-normal" htmlFor="email">Company Name</label><br />
+
+                <div>
+                    <label className="block text-lg font-medium text-gray-700">Company Name</label>
                     <input
-                        className='py-[8px] w-full pl-[15px] mt-3 rounded-[12px] text-[16px] border-black/20 border focus:border-blue-400 focus:shadow focus:shadow-blue-400 focus:border-2 outline-none'
+                        className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
                         type="text"
                         name="company_name"
                         value={formData.company_name}
                         onChange={handleChange}
-                        placeholder='My company'
+                        placeholder="My company"
                     />
                 </div>
-                <div className="m-5">
-                    <label className="text-[17px] sv:text-[19px] ms:text-[18px] mo:text-[21px] font-normal" htmlFor="email">What role(s) are you looking to hire? <span className='text-red-500'>*</span></label><br />
+
+                <div>
+                    <label className="block text-[17px] font-medium text-gray-700">
+                        What role(s) are you looking to hire? <span className='text-red-500'>*</span>
+                    </label>
                     <textarea
-                        className={`py-[12px] w-full pl-[15px] h-[100px] mt-3 rounded-[12px] text-[16px] border-black/20 border focus:border-blue-400 focus:shadow focus:shadow-blue-400 focus:border-2 outline-none ${validationErrors.roles_to_hire && 'border-red-500'}`}
-                        type="text"
+                        className={`mt-2 w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 ${validationErrors.roles_to_hire ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+                            }`}
                         name="roles_to_hire"
                         value={formData.roles_to_hire}
                         onChange={handleChange}
-                        placeholder='e.g Digital Assitant'
-                    />
-                    {validationErrors.roles_to_hire && <p className="text-red-500 absolute text-[16px] font-medium">{validationErrors.roles_to_hire}</p>}
+                        placeholder="e.g Digital Assistant"
+                        rows="4"
+                    ></textarea>
+                    {validationErrors.roles_to_hire && <p className="text-red-500 mt-1 text-sm">{validationErrors.roles_to_hire}</p>}
                 </div>
-                <div
-                    className={`m-5 mt-10 border-black/20 border p-5 rounded-2xl ${validationErrors.meeting && 'border-red-500'}`}
-                >
-                    <label className="text-[17px] sv:text-[19px] ms:text-[18px] mo:text-[21px] font-normal" htmlFor="email">
-                        Schedule a Meeting <span className='text-red-500'>*</span>
-                    </label><br />
 
-                    <input
-                        type="text"
-                        name="meeting_title"
-                        placeholder="Meeting Title"
-                        value={formData.meeting_title}
-                        onChange={handleChange}
-                        className={`py-[8px] w-full pl-[15px] mt-3 rounded-[12px] text-[16px] border-black/20 border focus:border-blue-400 focus:shadow focus:shadow-blue-400 focus:border-2 outline-none ${validationErrors.meeting_title && 'border-red-500'}`}
-                    />
-                    {validationErrors.meeting_title && (
-                        <p className="text-red-500 absolute text-[16px] font-medium">{validationErrors.meeting_start}</p>
-                    )}
+                <div className={`p-5 border rounded-2xl ${validationErrors.meeting && 'border-red-500'}`}>
+                    <label className="block text-xl font-semibold text-gray-700">Book a Discovery Call</label>
 
-                    <div className='flex mq:flex-row flex-col items-center w-full mq:gap-20 my-5'>
-                        <div className='w-full'>
-                            <label className="block text-lg" htmlFor="meeting_start">Starts at <span className="text-red-500">*</span></label>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-5">
+                        <div>
+                            <label className="block text-lg font-medium text-gray-700">
+                                Starts at
+                            </label>
                             <input
                                 type="datetime-local"
                                 name="meeting_start"
                                 value={formData.meeting_start}
                                 onChange={handleChange}
-                                className={`py-[8px] w-full pl-[15px] mt-2 rounded-[12px] text-[16px] border-black/20 border focus:border-blue-400 focus:shadow focus:shadow-blue-400 focus:border-2 outline-none ${validationErrors.meeting_start && 'border-red-500'}`}
+                                className={`mt-2 w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 ${validationErrors.meeting_start ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+                                    }`}
                             />
-                            {validationErrors.meeting_start && (
-                                <p className="text-red-500 absolute text-[16px] font-medium">{validationErrors.meeting_start}</p>
-                            )}
+                            {/* {validationErrors.meeting_start && <p className="text-red-500 mt-1 text-sm">{validationErrors.meeting_start}</p>} */}
                         </div>
-                        <div className='w-full'>
-                            <label className="block text-lg" htmlFor="meeting_end">Ends at <span className="text-red-500">*</span></label>
+
+                        <div>
+                            <label className="block text-lg font-medium text-gray-700">
+                                Ends at
+                            </label>
                             <input
                                 type="datetime-local"
                                 name="meeting_end"
                                 value={formData.meeting_end}
                                 onChange={handleChange}
-                                className={`py-[8px] w-full pl-[15px] mt-2 rounded-[12px] text-[16px] border-black/20 border focus:border-blue-400 focus:shadow focus:shadow-blue-400 focus:border-2 outline-none ${validationErrors.meeting_end && 'border-red-500'}`}
+                                className={`mt-2 w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 ${validationErrors.meeting_end ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+                                    }`}
                             />
-                            {validationErrors.meeting_end && (
-                                <p className="text-red-500 absolute text-[16px] font-medium">{validationErrors.meeting_end}</p>
-                            )}
+                            {/* {validationErrors.meeting_end && <p className="text-red-500 mt-1 text-sm">{validationErrors.meeting_end}</p>} */}
                         </div>
                     </div>
                 </div>
-                <div className="mx-5 my-3">
-                    <label className="text-[17px] sv:text-[19px] ms:text-[18px] mo:text-[21px] font-semibold" htmlFor="phoneNumber">How did you hear about us?</label><br />
+
+                <div>
+                    <label className="block text-lg font-medium text-gray-700">
+                        How did you hear about us?
+                    </label>
                     <select
-                        className="custom-select py-[8px] w-full pl-[15px] pr-[40px] mt-3 rounded-[12px] text-[16px] border border-black/20 focus:border-blue-400 focus:shadow focus:shadow-blue-400 focus:border-2 outline-none"
+                        className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
                         name="heard_about_us"
                         value={formData.heard_about_us}
                         onChange={handleChange}
-                        id=""
                     >
                         <option value="">Select...</option>
                         <option value="twitter">Twitter</option>
@@ -305,16 +285,16 @@ const Register = () => {
                     </select>
                 </div>
 
-                <div className="mx-5 mt-5">
+                <div>
                     <button
                         type="submit"
-                        className='py-[8px] w-[100%] rounded-[12px] font-semibold sw:text-[18px] bg-blue-500 text-white button-transition'
+                        className="w-full py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition duration-300 disabled:opacity-60"
                         disabled={loading}
                     >
                         {loading ? (
-                            <>
-                                <div className="spinner"></div> Submitting...
-                            </>
+                            <span className="flex items-center justify-center">
+                                <div className="spinner mr-2"></div> Submitting...
+                            </span>
                         ) : (
                             'Submit'
                         )}
@@ -322,6 +302,7 @@ const Register = () => {
                 </div>
             </form>
         </div>
+
     )
 }
 

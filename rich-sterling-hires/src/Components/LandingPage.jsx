@@ -200,7 +200,7 @@ const LandingPage = () => {
     }, []);
 
     return (
-        <div>
+        <div className='my-6'>
             <div className='flex overflow-hidden justify-between md:px-[75px] px-5 z-50 bg-white text-[#0066FF]'>
                 <a href="/">
                     <img onClick={() => window.scrollTo(0, 0)} src={group} className='w-[130px] h-[40px]' alt="" />
