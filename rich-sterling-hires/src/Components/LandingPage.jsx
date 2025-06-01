@@ -377,7 +377,7 @@ const LandingPage = () => {
                         <img src={profession === 'dev' ? arrowUp : arrowDown} className='sp:size-[40px] size-[35px]' alt="" />
                     </button>
                     {(profession === 'design' || profession === 'admin' || profession === 'market') && (
-                        <button onClick={() => setProfession('design')} className='flex items-center justify-between w-full text-white bg-[#0066FF] mt-8 gap-2 border-[1.2px] cursor-pointer border-[#0066FF] p-1 pl-5 rounded-[50px]'>
+                        <button onClick={() => setProfession('design')} className='flex mq:hidden items-center justify-between w-full text-white bg-[#0066FF] mt-8 gap-2 border-[1.2px] cursor-pointer border-[#0066FF] p-1 pl-5 rounded-[50px]'>
                             <div className='text-[16px] font-bold flex relative items-center gap-2'>
                                 <img className='sp:size-5 size-5' src={frame2} alt="" />
                                 <p className='sp:text-[18px] text-[17px]'>Design & Creative</p>
@@ -386,7 +386,7 @@ const LandingPage = () => {
                         </button>
                     )}
                     {(profession === 'admin' || profession === 'market') && (
-                        <button onClick={() => setProfession('admin')} className='flex items-center justify-between w-full text-white bg-[#0066FF] mt-4 gap-2 border-[1.2px] cursor-pointer border-[#0066FF] p-1 pl-5 rounded-[50px]'>
+                        <button onClick={() => setProfession('admin')} className='flex mq:hidden items-center justify-between w-full text-white bg-[#0066FF] mt-4 gap-2 border-[1.2px] cursor-pointer border-[#0066FF] p-1 pl-5 rounded-[50px]'>
                             <div className='text-[16px] font-bold flex relative items-center gap-2'>
                                 <img className='sp:size-5 size-5' src={frame3} alt="" />
                                 <p className='sp:text-[18px] text-[17px]'>Administrative Support</p>
@@ -395,7 +395,7 @@ const LandingPage = () => {
                         </button>
                     )}
                     {profession === 'market' && (
-                        <button onClick={() => setProfession('market')} className='flex items-center justify-between w-full text-white bg-[#0066FF] mt-4 gap-2 border-[1.2px] cursor-pointer border-[#0066FF] p-1 pl-5 rounded-[50px]'>
+                        <button onClick={() => setProfession('market')} className='flex mq:hidden items-center justify-between w-full text-white bg-[#0066FF] mt-4 gap-2 border-[1.2px] cursor-pointer border-[#0066FF] p-1 pl-5 rounded-[50px]'>
                             <div className='text-[16px] font-bold flex relative items-center gap-2'>
                                 <img className='sp:size-5 size-5' src={frame4} alt="" />
                                 <p className='sp:text-[18px] text-[17px]'>Marketing & Digital Growth</p>
