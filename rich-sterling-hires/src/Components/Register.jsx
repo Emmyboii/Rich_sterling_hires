@@ -106,6 +106,7 @@ const Register = () => {
         // Prepare Google Calendar event data
         const event = {
             summary: formData.meeting_title,
+            description: `Meeting with ${formData.full_name} from ${formData.company_name}`,
             start: {
                 dateTime: new Date(formData.meeting_start).toISOString(),
                 timeZone: 'Africa/Lagos', // Set appropriate time zone
@@ -124,40 +125,24 @@ const Register = () => {
         };
 
         try {
-            const response = await axios.post('https://app-as-as-a-service-4d3b0169afc7.herokuapp.com/submit_feedback',submissionData);
+            const response = await axios.post('https://app-as-as-a-service-4d3b0169afc7.herokuapp.com/submit_feedback', submissionData);
 
-            if (response.status === 200) {
-                setFormData({
-                    full_name: '',
-                    work_email: '',
-                    company_name: '',
-                    roles_to_hire: '',
-                    heard_about_us: '',
-                    meeting_title: '',
-                    meeting_start: '',
-                    meeting_end: ''
-                });
-
-                console.log(response.data);
-                navigate('/success');
-            } else {
-                console.log("Backend response error:", response.data);
-                alert("Form submission failed.");
+            if (response.status !== 200) {
+                alert("Form submission to Jotform failed. Please try again.");
+                return;
             }
 
             // Ensure Google API is initialized
             const initialized = await ensureGapiInitialized();
             if (!initialized) {
-                setLoading(false);
+                alert("Failed to initialize Google API. Please try again.");
                 return;
             }
 
             // Sign in if not already signed in
             const authInstance = gapi.auth2.getAuthInstance();
-
             if (!authInstance) {
                 alert("Google Auth instance not found. Please try again later.");
-                setLoading(false);
                 return;
             }
 
@@ -168,12 +153,31 @@ const Register = () => {
             // Use the helper to insert the event
             await createGoogleCalendarEvent(event);
 
-            alert("Your meeting has been scheduled! We’ve sent you a calendar invite. Please check your email and accept it to add it to your calendar.");
+            setFormData({
+                full_name: '',
+                work_email: '',
+                company_name: '',
+                roles_to_hire: '',
+                heard_about_us: '',
+                meeting_title: '',
+                meeting_start: '',
+                meeting_end: ''
+            });
 
+            alert("Your meeting has been scheduled! We’ve sent you a calendar invite. Please check your email and accept it to add it to your calendar.");
+            navigate('/success');
 
         } catch (error) {
-            console.error("Error during submission:", error);
-            alert("Something went wrong. Please try again.");
+            if (error.response) {
+                console.error("Jotform submission error:", error.response.data);
+                alert("Form submission failed: " + (error.response.data.message || "Unknown error"));
+            } else if (error.message && (error.message.includes("gapi") || error.message.includes("calendar"))) {
+                console.error("Google Calendar error:", error);
+                alert("Scheduling the meeting failed. Please try again later.");
+            } else {
+                console.error("Unexpected error:", error);
+                alert("An unexpected error occurred. Please try again.");
+            }
         } finally {
             setLoading(false);
         }
@@ -253,8 +257,8 @@ const Register = () => {
                         <p className="text-red-500 absolute text-[16px] font-medium">{validationErrors.meeting_start}</p>
                     )}
 
-                    <div className='flex items-center w-full gap-20 my-5'>
-                        <div>
+                    <div className='flex mq:flex-row flex-col items-center w-full mq:gap-20 my-5'>
+                        <div className='w-full'>
                             <label className="block text-lg" htmlFor="meeting_start">Starts at <span className="text-red-500">*</span></label>
                             <input
                                 type="datetime-local"
@@ -267,7 +271,7 @@ const Register = () => {
                                 <p className="text-red-500 absolute text-[16px] font-medium">{validationErrors.meeting_start}</p>
                             )}
                         </div>
-                        <div>
+                        <div className='w-full'>
                             <label className="block text-lg" htmlFor="meeting_end">Ends at <span className="text-red-500">*</span></label>
                             <input
                                 type="datetime-local"
