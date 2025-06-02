@@ -1,15 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import group from '../Images/Logo.png';
 import send from '../Images/Send.png';
 import coin from '../Images/Coins.png';
 import { AiFillInstagram } from 'react-icons/ai';
-import { FaLinkedinIn, FaYoutube } from 'react-icons/fa';
-import { FaXTwitter } from 'react-icons/fa6';
+import { FaFacebook, FaYoutube } from 'react-icons/fa';
 
 const Pricing = () => {
+
+    const [scroll, setScroll] = useState(false)
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScroll(window.scrollY > 10)
+        }
+
+        window.addEventListener('scroll', handleScroll)
+
+        handleScroll();
+
+        return () => window.removeEventListener('resize', handleScroll);
+    }, [])
+
     return (
         <div className='my-6'>
-            <div className='flex overflow-hidden justify-between md:px-[75px] px-5 z-50 bg-white text-[#0066FF]'>
+            <div className={`flex overflow-hidden sticky top-0 py-3 transition-all duration-200 justify-between md:px-[75px] px-5 z-50 bg-white text-[#0066FF] ${scroll ? 'shadow-lg' : 'shadow-none'}`}>
                 <a href="/">
                     <img onClick={() => window.scrollTo(0, 0)} src={group} className='w-[130px] h-[40px]' alt="" />
                 </a>
@@ -118,129 +132,61 @@ const Pricing = () => {
                 </div>
                 <p className='text-center text-[20px] font-normal italic mt-7 px-2'>“Rates are indicative and may vary based on requirements.”</p>
             </div>
-            <div className='mx-5 mt-20 block sp:hidden'>
-                <div className='flex justify-between'>
-                    <a href="/">
+            <div className='mx-5 mt-10 block'>
+                <div className='flex flex-col gap-3 justify-between'>
+                    <a href="/" className='flex flex-col'>
                         <img onClick={() => window.scrollTo(0, 0)} src={group} className='w-[130px] h-[40px]' alt="" />
+                        <p className='text-[#0066FF] font text-[20px] font-medium'>Vetted, Professional African Talent</p>
                     </a>
-                    <div className='flex items-center gap-5 text-[24px] text-[#002B6B]'>
-                        <a href="/"><AiFillInstagram /></a>
-                        <a href="/"><FaLinkedinIn /></a>
-                        <a href="/"><FaXTwitter /></a>
-                        <a href="/"><FaYoutube /></a>
+                    <div className='flex sp:hidden items-center gap-5 text-[24px] text-[#002B6B]'>
+                        <a href="https://www.instagram.com/richsterlinghires?igsh=YzljYTk1ODg3Zg=="><AiFillInstagram /></a>
+                        <a href="https://youtube.com/@richsterlinghires?si=BHT3aw1otLMmfVRr"><FaYoutube /></a>
+                        <a href="https://www.facebook.com/RichSterlingHires"><FaFacebook /></a>
                     </div>
                 </div>
-                <div className='flex justify-between items-start gap-10 mt-5'>
+                <div className='flex sm:flex-row flex-col justify-between items-start sm:gap-10 gap-5 mt-5 sp:mt-0'>
                     <div className='w-full'>
-                        <p className='text-[14px] mt-3 font-normal font-jakarta'><span className='font-bold font-manrope'>Corporate Head Office</span>: <br className='sa:hidden block' /> New york City, Lagos Nigeria, Nairobi Kenya.</p>
+                        <p className='text-[14px] mt-3 font-normal font-jakarta'><span className='font-bold font-manrope'>Corporate Head Office</span>: <br className='sa:hidden block' /> 509 Means St NW, Atlanta, Ga 30313, United States.</p>
                         <div className='mt-4 flex flex-col gap-2'>
-                            <p className='text-[14px] font-normal font-jakarta'><span className='font-bold font-manrope'>Phone</span>: 843-496-7759</p>
-                            <p className='text-[14px] font-normal font-jakarta'><span className='font-bold font-manrope'>Fax</span>: 02-222264303</p>
-                            <p className='text-[14px] font-normal font-jakarta'><span className='font-bold font-manrope'>Email</span>: info@richsterling.com</p>
+                            <p className='text-[14px]  font-normal font-jakarta'><span className='font-bold font-manrope'>Email</span>: info@richsterling.com</p>
+                            <p className='text-[14px]  font-normal font-jakarta'><span className='font-bold font-manrope'>Phone number</span>: +19432324429</p>
+                        </div>
+                        <div className='sp:flex hidden mt-4 items-center gap-5 text-[24px] text-[#002B6B]'>
+                            <a href="https://www.instagram.com/richsterlinghires?igsh=YzljYTk1ODg3Zg=="><AiFillInstagram /></a>
+                            <a href="https://youtube.com/@richsterlinghires?si=BHT3aw1otLMmfVRr"><FaYoutube /></a>
+                            <a href="https://www.facebook.com/RichSterlingHires"><FaFacebook /></a>
                         </div>
                     </div>
-                    <div className='flex flex-col mt-2 gap-[13px] text-[15px] text-[#414D60] font-normal w-1/2'>
+                    <div className='sm:flex hidden flex-col mt-2 gap-[13px] text-[15px] text-[#414D60] font-normal w-1/2'>
                         <h1 className='text-[18px] text-[#1E242C] font-bold'>Quick Links</h1>
-                        <a href="#pricing">
-                            <p>Pricing</p>
-                        </a>
-                        <a href="#careers">
-                            <p>Сareers</p>
-                        </a>
-                        <a href="/contact">
-                            <p>Contact Us</p>
-                        </a>
+                        <a href='#why'>Why Hire From Us</a>
+                        <a href='/pricing'>Price Guide</a>
+                        <a href='#careers'>Talents we offer</a>
+                        <a href='#testimonials'>Client Testimonial</a>
                     </div>
-                </div>
-                <div className='flex justify-between mt-7'>
-                    <div className='flex flex-col gap-[13px] text-[15px] text-[#414D60] font-normal xl:w-[150px]'>
-                        <h1 className='text-[18px] text-[#1E242C] font-bold'>Others</h1>
-                        <a href="#steps">
-                            <p>How it works</p>
-                        </a>
-                        <a href="/t&c">
-                            <p>Terms and condition</p>
-                        </a>
-                        <a href="/privacy">
-                            <p>Privacy Policy</p>
-                        </a>
-                        <a href="/about">
-                            <p>About Us</p>
-                        </a>
+                    <div className='sm:flex hidden flex-col mt-2 gap-[13px] text-[15px] text-[#414D60] font-normal w-1/2'>
+                        <h1 className='text-[18px] text-[#1E242C] font-bold'>Qthers</h1>
+                        <a href='#faqs'>FAQs</a>
+                        <a href='mailto:info@richsterling.com'>Contact Us</a>
+                        <a href='#register'>Book A Call</a>
                     </div>
-                    <div className='flex flex-col gap-[13px] text-[15px] text-[#414D60] font-normal xl:w-[150px]'>
-                        <h1 className='text-[18px] text-[#1E242C] font-bold'>About us</h1>
-                        <p>Company milestone</p>
-                        <p>Web mail</p>
-                        <p>Board of Directors</p>
-                        <p>Senior Management</p>
-                    </div>
-                </div>
-                <p className='text-[15px] text-center mt-10 text-[#002B6B] font-normal'>©2025 All rights reserved</p>
-            </div>
-            <div className='relative mt-[100px] sp:flex hidden'>
-                {/* <img className='w-full top- blur-[20px] absolute' src={SH} alt="" /> */}
-                <div className='md:mx-[60px] mx-5 w-[90%] absolute top-0'>
-                    <div className='flex mp:flex-row flex-col gap-10 mp:gap-0 justify-between'>
-                        <div className='mp:w-[60%] flex flex-col sp:items-start items-center'>
-                            <a href="/">
-                                <img onClick={() => window.scrollTo(0, 0)} src={group} className='w-[130px] h-[40px]' alt="" />
-                            </a>
-                            <p className='text-[14px] mt-3 font-normal text- font-jakarta'><span className='font-bold font-manrope'>Corporate Head Office</span>: <br className='sa:hidden block' /> New york City, Lagos Nigeria, Nairobi Kenya.</p>
-                            <div className='mt-4 flex flex-col gap-2'>
-                                <p className='text-[14px] font-normal text-center sa:text-start font-jakarta'><span className='font-bold font-manrope'>Phone</span>: <br className='sa:hidden block' /> 843-496-7759</p>
-                                <p className='text-[14px] font-normal text-center sa:text-start font-jakarta'><span className='font-bold font-manrope'>Fax</span>: <br className='sa:hidden block' /> 02-222264303</p>
-                                <p className='text-[14px] font-normal text-center sa:text-start font-jakarta'><span className='font-bold font-manrope'>Email</span>: <br className='sa:hidden block' /> info@richsterling.com</p>
-                            </div>
+                    <div className='flex w-full items-start justify-center sm:hidden'>
+                        <div className='flex flex-col mt-2 gap-[13px] text-[15px] text-[#414D60] font-normal w-full'>
+                            <h1 className='text-[18px] text-[#1E242C] font-bold'>Quick Links</h1>
+                            <a href='#why'>Why Hire From Us</a>
+                            <a href='/pricing'>Price Guide</a>
+                            <a href='#careers'>Talents we offer</a>
+                            <a href='#testimonials'>Client Testimonial</a>
                         </div>
-                        <div className='flex sa:flex-row flex-col flex-wrap gap-10 items-center text-center sa:text-start sa:items-start sa:justify-between w-full mp:w-[60%]'>
-                            <div className='flex flex-col gap-[13px] text-[13px] text-[#414D60] font-normal xl:w-[150px]'>
-                                <h1 className='text-[17px] text-[#1E242C] font-bold'>Quick Links</h1>
-                                <a href="#pricing">
-                                    <p>Pricing</p>
-                                </a>
-                                <a href="#careers">
-                                    <p>Сareers</p>
-                                </a>
-                                <a href="/contact">
-                                    <p>Contact Us</p>
-                                </a>
-                            </div>
-                            <div className='flex flex-col gap-[13px] text-[13px] text-[#414D60] font-normal xl:w-[150px]'>
-                                <h1 className='text-[17px] text-[#1E242C] font-bold'>Others</h1>
-                                <a href="#steps">
-                                    <p>How it works</p>
-                                </a>
-                                <a href="/t&c">
-                                    <p>Terms and condition</p>
-                                </a>
-                                <a href="/privacy">
-                                    <p>Privacy Policy</p>
-                                </a>
-                                <a href="/about">
-                                    <p>About Us</p>
-                                </a>
-                            </div>
-                            <div className='flex flex-col gap-[13px] text-[13px] text-[#414D60] font-normal xl:w-[150px]'>
-                                <h1 className='text-[17px] text-[#1E242C] font-bold'>About us</h1>
-                                <p>Company milestone</p>
-                                <p>Web mail</p>
-                                <p>Board of Directors</p>
-                                <p>Senior Management</p>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div className='flex sr:flex-row flex-col gap-5 items-center justify-between mt-16 mb-10'>
-                        <p className='text-[15px] text-[#002B6B] font-normal'>©2025 All rights reserved</p>
-                        <div className='flex items-center gap-5 text-[24px] text-[#002B6B]'>
-                            <a href="/"><AiFillInstagram /></a>
-                            <a href="/"><FaLinkedinIn /></a>
-                            <a href="/"><FaXTwitter /></a>
-                            <a href="/"><FaYoutube /></a>
+                        <div className='flex flex-col mt-2 gap-[13px] text-[15px] text-[#414D60] font-normal w-full'>
+                            <h1 className='text-[18px] text-[#1E242C] font-bold'>Qthers</h1>
+                            <a href='#faqs'>FAQs</a>
+                            <a href='mailto:info@richsterling.com'>Contact Us</a>
+                            <a href='#register'>Book A Call</a>
                         </div>
                     </div>
                 </div>
+                <p className='text-[15px] mt-10 text-center text-[#002B6B] font-normal'>©2025 All rights reserved</p>
             </div>
         </div>
     )

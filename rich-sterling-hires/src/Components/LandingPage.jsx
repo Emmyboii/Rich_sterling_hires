@@ -1128,6 +1128,7 @@ const LandingPage = () => {
                         <p className='text-[14px] mt-3 font-normal font-jakarta'><span className='font-bold font-manrope'>Corporate Head Office</span>: <br className='sa:hidden block' /> 509 Means St NW, Atlanta, Ga 30313, United States.</p>
                         <div className='mt-4 flex flex-col gap-2'>
                             <p className='text-[14px]  font-normal font-jakarta'><span className='font-bold font-manrope'>Email</span>: info@richsterling.com</p>
+                            <p className='text-[14px]  font-normal font-jakarta'><span className='font-bold font-manrope'>Phone number</span>: +19432324429</p>
                         </div>
                         <div className='sp:flex hidden mt-4 items-center gap-5 text-[24px] text-[#002B6B]'>
                             <a href="https://www.instagram.com/richsterlinghires?igsh=YzljYTk1ODg3Zg=="><AiFillInstagram /></a>
