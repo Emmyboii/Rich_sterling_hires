@@ -4,7 +4,7 @@ import 'aos/dist/aos.css';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { FaLinkedinIn, FaRegCheckCircle, FaStar, FaYoutube } from "react-icons/fa";
+import { FaFacebook, FaLinkedinIn, FaRegCheckCircle, FaStar, FaYoutube } from "react-icons/fa";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaCheck, FaPlus, FaXTwitter } from "react-icons/fa6";
 import group from '../Images/Logo.png';
@@ -62,6 +62,7 @@ import SH from '../Images/Sterling Hires.png'
 import small from '../Images/small.png'
 import small3 from '../Images/small3.png'
 import ReactPlayer from 'react-player/youtube';
+import Register from './Register';
 
 const CustomPrevArrow = (props) => {
     const { onClick } = props;
@@ -225,7 +226,7 @@ const LandingPage = () => {
                 <a href="/">
                     <img onClick={() => window.scrollTo(0, 0)} src={group} className='w-[130px] h-[40px]' alt="" />
                 </a>
-                <a href='/register' target='_blank'>
+                <a href='#register'>
                     <button className='flex items-center justify-center gap-2 bg-white border-[1.2px] z-50 cursor-pointer border-[#0066FF] p-1 pl-5 rounded-[50px]'>
                         <p className='text-[16px] font-bold font-manrope'>Get Started</p>
                         <img src={send} className='size-[40px]' alt="" />
@@ -244,7 +245,7 @@ const LandingPage = () => {
                     <p data-aos='fade-up' data-aos-delay='300' className='xl:text-[20px] px-5 text-[16px] font-medium mt-3 text-center mp:text-start'>
                         Rich Sterling Hires connects you with exceptional African professionals who deliver outstanding results at a fraction of the costs
                     </p>
-                    <a href='/register' target='_blank'>
+                    <a href='#register'>
                         <button data-aos='fade-up' data-aos-delay='500' className='flex items-center justify-center text-[#0066FF] bg-white mt-5 gap-2 border-[1.2px] cursor-pointer border-[#0066FF] p-1 pl-5 rounded-[50px]'>
                             <p className='text-[16px] font-bold font-manrope'>Start Hiring Now</p>
                             <img src={send} className='size-[40px]' alt="" />
@@ -262,11 +263,11 @@ const LandingPage = () => {
                     </div>
                     <div className='mt-10'>
                         <p data-aos='zoom-in' data-aos-delay='500' className='text-[20px] text-center lk:text-start font-medium'>Trusted by top companies</p>
-                        <div className='flex flex-wrap justify-center sp:justify-start gap-10 items-center'>
+                        <div className='flex flex-wrap justify-center sp:justify-start mq:gap-10 gap-3 items-center'>
                             <img data-aos='fade-up' data-aos-delay='100' className='lg:w-[70px] lg:h-[30px] h-[20px]' src={Group1} alt="" />
-                            <img data-aos='fade-up' data-aos-delay='200' className='lg:w-[100px] w-[80px] lg:h-[30px] h-[20px]' src={Group2} alt="" />
-                            <img data-aos='fade-up' data-aos-delay='300' className='lg:-[150px] w-[110px] lg:h-[50px] h-[40px]' src={Group3} alt="" />
-                            <img data-aos='fade-up' data-aos-delay='400' className='lg:w-[120px] w-[90px] lg:h-[40px] h-[30px]' src={Group4} alt="" />
+                            <img data-aos='fade-up' data-aos-delay='200' className='lg:w-[100px] w-[75px] lg:h-[30px] h-[15px]' src={Group2} alt="" />
+                            <img data-aos='fade-up' data-aos-delay='300' className='lg:-[150px] w-[90px] lg:h-[50px] h-[30px]' src={Group3} alt="" />
+                            <img data-aos='fade-up' data-aos-delay='400' className='lg:w-[120px] w-[75px] lg:h-[40px] h-[20px]' src={Group4} alt="" />
                         </div>
                     </div>
 
@@ -291,7 +292,7 @@ const LandingPage = () => {
                 </div>
             </div>
 
-            <div className='font-manrope overflow-hidden sm:px-[75px] px-5 my-16'>
+            <div id='why' className='font-manrope overflow-hidden sm:px-[75px] px-5 my-16'>
                 <h1 data-aos='zoom-in' className='font-semibold text-[25px] mq:text-[30px] leading-8 text-center text-[#002B6B]'>
                     Why Leading US Companies Choose<br className='sm:block hidden' /> Rich Sterling Hires
                 </h1>
@@ -353,7 +354,7 @@ const LandingPage = () => {
                         </p>
                     </div>
                 </div>
-                <a href='/register' target='_blank'>
+                <a href='#register'>
                     <button data-aos='fade-up' className='flex items-center justify-center mx-auto text-white bg-[#0066FF] mt-10 gap-2 border-[1.2px] cursor-pointer border-[#0066FF] p-1 pl-5 rounded-[50px]'>
                         <p className='text-[16px] font-bold font-manrope'>Start Hiring Now</p>
                         <img src={send2} className='size-[40px]' alt="" />
@@ -635,7 +636,7 @@ const LandingPage = () => {
                     <div className='flex sa:flex-row flex-col sa:gap-2 gap-5 mt-12 mp:w-[50%] relative'>
                         <img data-aos='zoom-in' className='xl:w-[270px] sa:block hidden w-[200px] h-[300px] 2xl:w-[90%] 2xl:h-[90%] object-cover rounded-[20px] xl:h-[400px]' src={Man6} alt="" />
                         <img data-aos='zoom-in' className='xl:w-[270px] sa:w-[200px] h-[400px] 2xl:w-full 2xl:h-full object-cover rounded-[20px] xl:h-[500px]' src={Woman6} alt="" />
-                        <div className='flex sa:absolute z-50 bg-white bottom-[2%] 2xl:bottom-12 gap-4 2xl:w-[50%] items-center rounded-[20px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] shadow-[#c9d6e8] p-4'>
+                        <div className='flex sa:absolute z-30 bg-white bottom-[2%] 2xl:bottom-12 gap-4 2xl:w-[50%] items-center rounded-[20px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] shadow-[#c9d6e8] p-4'>
                             <img className='size-[40px] object-cover rounded-full' src={client1} alt="" />
                             <img className='size-[40px] ml-[-20px] rounded-full' src={client2} alt="" />
                             <img className='size-[40px] ml-[-20px] rounded-full' src={Woman7} alt="" />
@@ -647,14 +648,14 @@ const LandingPage = () => {
                         </div>
                     </div>
                 </div>
-                <a href='/register' target='_blank'>
+                <a href='#register'>
                     <button data-aos='fade-up' data-aos-delay='200' className='flex items-center justify-center mx-auto text-white bg-[#0066FF] mt-10 gap-2 border-[1.2px] cursor-pointer border-[#0066FF] p-1 pl-5 rounded-[50px]'>
                         <p className='text-[16px] font-bold font-manrope'>Get Started Now</p>
                         <img src={send2} className='size-[40px]' alt="" />
                     </button>
                 </a>
             </div>
-            <div className='mp:px-[90px] overflow-hidden px-5 py-10'>
+            <div id='testimonials' className='mp:px-[90px] overflow-hidden px-5 py-10'>
                 <h1 data-aos='zoom-out' className='font-semibold text-[30px] leading-10 text-center text-[#002B6B]'>
                     What our Clients are Saying
                 </h1>
@@ -859,7 +860,7 @@ const LandingPage = () => {
                         <p className='text-[17px] font-medium'><span className='text-[#0066FF]'>1000+</span> Vetted African Professionals</p>
                     </div>
                 </div>
-                <a href='/register' target='_blank'>
+                <a href='#register'>
                     <button data-aos='fade-up' className='flex items-center justify-center text-[#0066FF] bg-white mt-14 mx-auto gap-2 border-[1.2px] cursor-pointer border-[#0066FF] p-1 pl-5 rounded-[50px]'>
                         <p className='text-[16px] font-bold font-manrope'>Start Hiring Now</p>
                         <img src={send} className='size-[40px]' alt="" />
@@ -906,9 +907,9 @@ const LandingPage = () => {
                         </div>
                     </div>
                     <div data-aos='fade-down' data-aos-delay='1000' className='bg-[#0066FF] shadow-lg shadow-black/30 text-white rounded-[20px] p-5 font-manrope'>
-                        <p>Start Hiring with Us</p>
-                        <p className='text-[70px] font-semibold'>$700/<span className='text-[40px]'>month</span></p>
-                        <div className='flex flex-col gap-3'>
+                        <p>Start Hiring with us from</p>
+                        <p className='sm:text-[70px] sa:text-[50px] text-[40px] font-semibold'>$4.38/<span className='sm:text-[40px] sa:text-[26px] text-[20px]'>talent hourly</span></p>
+                        <div className='flex flex-col gap-3 mt-1'>
                             <p className='flex items-center gap-3'><FaRegCheckCircle /> Huge Cost Savings</p>
                             <p className='flex items-center gap-3'><FaRegCheckCircle /> Access to Vetted Talent</p>
                             <p className='flex items-center gap-3'><FaRegCheckCircle /> End-to-End Admin Support</p>
@@ -922,7 +923,8 @@ const LandingPage = () => {
                     </div>
                 </div>
             </div>
-            <div className='lg:px-[60px] overflow-hidden px-5 pt-12'>
+            <Register />
+            <div id='faqs' className='lg:px-[60px] overflow-hidden px-5 pt-12'>
                 <h1 data-aos='zoom-out' className='font-semibold flex items-center justify-center gap-2 sp:text-[33px] sr:text-[25px] text-[20px] leading-10 text-[#002B6B]'>
                     Frequently Asked Questions
                     <img className='sp:size-[34px] sr:size-[26px] size-[21px]' src={question} alt="" />
@@ -1053,7 +1055,7 @@ const LandingPage = () => {
                             </div>
                         </div>
                     </div>
-                    <a href='/register' target='_blank'>
+                    <a href='#register'>
                         <button data-aos='fade-up' className='flex items-center justify-center text-[#0066FF] mt-14 mx-auto gap-2 border-[1.2px] cursor-pointer border-[#0066FF] p-1 pl-5 rounded-[50px]'>
                             <p className='text-[16px] font-bold font-manrope'>Contact Us for more Questions</p>
                             <img src={send} className='size-[40px]' alt="" />
@@ -1101,7 +1103,7 @@ const LandingPage = () => {
                     <p className='text-[18px] font-normal mp:mt-7 mt-3'>Join dozens of forward-thinking companies already saving thousands while scaling faster.</p>
                     <img className='absolute top-0 mp:w-[170px] w-[140px] right-[20%]' src={element1} alt="" />
                     <img className='absolute bottom-0 mp:w-[170px] w-[140px] right-[4%]' src={element2} alt="" />
-                    <a href='/register' target='_blank'>
+                    <a href='#register'>
                         <button className='flex items-center justify-center text-white bg-[#0066FF] z-50 mt-5 gap-2 border-[1.2px] cursor-pointer border-[#0066FF] p-1 pl-5 rounded-[50px]'>
                             <p className='text-[16px] font-medium font-manrope'>Get Started Today</p>
                             <img src={send2} className='size-[40px] z-50' alt="" />
@@ -1109,130 +1111,62 @@ const LandingPage = () => {
                     </a>
                 </div>
             </div>
-            <div className='mx-5 mt-10 block sp:hidden'>
-                <div className='flex justify-between'>
-                    <a href="/">
+            <div className='mx-5 mt-10 block'>
+                <div className='flex flex-col gap-3 justify-between'>
+                    <a href="/" className='flex flex-col'>
                         <img onClick={() => window.scrollTo(0, 0)} src={group} className='w-[130px] h-[40px]' alt="" />
+                        <p className='text-[#0066FF] font text-[20px] font-medium'>Vetted, Professional African Talent</p>
                     </a>
-                    <div className='flex items-center gap-5 text-[24px] text-[#002B6B]'>
-                        <a href="/"><AiFillInstagram /></a>
-                        <a href="/"><FaLinkedinIn /></a>
-                        <a href="/"><FaXTwitter /></a>
-                        <a href="/"><FaYoutube /></a>
+                    <div className='flex sp:hidden items-center gap-5 text-[24px] text-[#002B6B]'>
+                        <a href="https://www.instagram.com/richsterlinghires?igsh=YzljYTk1ODg3Zg=="><AiFillInstagram /></a>
+                        <a href="https://youtube.com/@richsterlinghires?si=BHT3aw1otLMmfVRr"><FaYoutube /></a>
+                        <a href="https://www.facebook.com/RichSterlingHires"><FaFacebook /></a>
                     </div>
                 </div>
-                <div className='flex justify-between items-start gap-10 mt-5'>
+                <div className='flex sm:flex-row flex-col justify-between items-start sm:gap-10 gap-5 mt-5 sp:mt-0'>
                     <div className='w-full'>
-                        <p className='text-[14px] mt-3 font-normal font-jakarta'><span className='font-bold font-manrope'>Corporate Head Office</span>: <br className='sa:hidden block' /> New york City, Lagos Nigeria, Nairobi Kenya.</p>
+                        <p className='text-[14px] mt-3 font-normal font-jakarta'><span className='font-bold font-manrope'>Corporate Head Office</span>: <br className='sa:hidden block' /> 509 Means St NW, Atlanta, Ga 30313, United States.</p>
                         <div className='mt-4 flex flex-col gap-2'>
-                            <p className='text-[14px] font-normal font-jakarta'><span className='font-bold font-manrope'>Phone</span>: 843-496-7759</p>
-                            <p className='text-[14px] font-normal font-jakarta'><span className='font-bold font-manrope'>Fax</span>: 02-222264303</p>
-                            <p className='text-[14px] font-normal font-jakarta'><span className='font-bold font-manrope'>Email</span>: info@richsterling.com</p>
+                            <p className='text-[14px]  font-normal font-jakarta'><span className='font-bold font-manrope'>Email</span>: info@richsterling.com</p>
+                        </div>
+                        <div className='sp:flex hidden mt-4 items-center gap-5 text-[24px] text-[#002B6B]'>
+                            <a href="https://www.instagram.com/richsterlinghires?igsh=YzljYTk1ODg3Zg=="><AiFillInstagram /></a>
+                            <a href="https://youtube.com/@richsterlinghires?si=BHT3aw1otLMmfVRr"><FaYoutube /></a>
+                            <a href="https://www.facebook.com/RichSterlingHires"><FaFacebook /></a>
                         </div>
                     </div>
-                    <div className='flex flex-col mt-2 gap-[13px] text-[15px] text-[#414D60] font-normal w-1/2'>
+                    <div className='sm:flex hidden flex-col mt-2 gap-[13px] text-[15px] text-[#414D60] font-normal w-1/2'>
                         <h1 className='text-[18px] text-[#1E242C] font-bold'>Quick Links</h1>
-                        <a href="#pricing">
-                            <p>Pricing</p>
-                        </a>
-                        <a href="#careers">
-                            <p>Сareers</p>
-                        </a>
-                        <a href="/contact">
-                            <p>Contact Us</p>
-                        </a>
+                        <a href='#why'>Why Hire From Us</a>
+                        <a href='/pricing'>Price Guide</a>
+                        <a href='#careers'>Talents we offer</a>
+                        <a href='#testimonials'>Client Testimonial</a>
+                    </div>
+                    <div className='sm:flex hidden flex-col mt-2 gap-[13px] text-[15px] text-[#414D60] font-normal w-1/2'>
+                        <h1 className='text-[18px] text-[#1E242C] font-bold'>Qthers</h1>
+                        <a href='#faqs'>FAQs</a>
+                        <a href='mailto:info@richsterling.com'>Contact Us</a>
+                        <a href='#register'>Book A Call</a>
+                    </div>
+                    <div className='flex w-full items-start justify-center sm:hidden'>
+                        <div className='flex flex-col mt-2 gap-[13px] text-[15px] text-[#414D60] font-normal w-full'>
+                            <h1 className='text-[18px] text-[#1E242C] font-bold'>Quick Links</h1>
+                            <a href='#why'>Why Hire From Us</a>
+                            <a href='/pricing'>Price Guide</a>
+                            <a href='#careers'>Talents we offer</a>
+                            <a href='#testimonials'>Client Testimonial</a>
+                        </div>
+                        <div className='flex flex-col mt-2 gap-[13px] text-[15px] text-[#414D60] font-normal w-full'>
+                            <h1 className='text-[18px] text-[#1E242C] font-bold'>Qthers</h1>
+                            <a href='#faqs'>FAQs</a>
+                            <a href='mailto:info@richsterling.com'>Contact Us</a>
+                            <a href='#register'>Book A Call</a>
+                        </div>
                     </div>
                 </div>
-                <div className='flex justify-between mt-7'>
-                    <div className='flex flex-col gap-[13px] text-[15px] text-[#414D60] font-normal xl:w-[150px]'>
-                        <h1 className='text-[18px] text-[#1E242C] font-bold'>Others</h1>
-                        <a href="#steps">
-                            <p>How it works</p>
-                        </a>
-                        <a href="/t&c">
-                            <p>Terms and condition</p>
-                        </a>
-                        <a href="/privacy">
-                            <p>Privacy Policy</p>
-                        </a>
-                        <a href="/about">
-                            <p>About Us</p>
-                        </a>
-                    </div>
-                    <div className='flex flex-col gap-[13px] text-[15px] text-[#414D60] font-normal xl:w-[150px]'>
-                        <h1 className='text-[18px] text-[#1E242C] font-bold'>About us</h1>
-                        <p>Company milestone</p>
-                        <p>Web mail</p>
-                        <p>Board of Directors</p>
-                        <p>Senior Management</p>
-                    </div>
-                </div>
-                <p className='text-[15px] text-center mt-10 text-[#002B6B] font-normal'>©2025 All rights reserved</p>
+                <p className='text-[15px] mt-10 text-center text-[#002B6B] font-normal'>©2025 All rights reserved</p>
             </div>
-            <div className='relative mt-10 sp:flex hidden'>
-                {/* <img className='w-full top- blur-[20px] absolute' src={SH} alt="" /> */}
-                <div className='md:mx-[60px] mx-5 w-[90%] absolute top-0'>
-                    <div className='flex mp:flex-row flex-col gap-10 mp:gap-0 justify-between'>
-                        <div className='mp:w-[60%] flex flex-col sp:items-start items-center'>
-                            <a href="/">
-                                <img onClick={() => window.scrollTo(0, 0)} src={group} className='w-[130px] h-[40px]' alt="" />
-                            </a>
-                            <p className='text-[14px] mt-3 font-normal text- font-jakarta'><span className='font-bold font-manrope'>Corporate Head Office</span>: <br className='sa:hidden block' /> New york City, Lagos Nigeria, Nairobi Kenya.</p>
-                            <div className='mt-4 flex flex-col gap-2'>
-                                <p className='text-[14px] font-normal text-center sa:text-start font-jakarta'><span className='font-bold font-manrope'>Phone</span>: <br className='sa:hidden block' /> 843-496-7759</p>
-                                <p className='text-[14px] font-normal text-center sa:text-start font-jakarta'><span className='font-bold font-manrope'>Fax</span>: <br className='sa:hidden block' /> 02-222264303</p>
-                                <p className='text-[14px] font-normal text-center sa:text-start font-jakarta'><span className='font-bold font-manrope'>Email</span>: <br className='sa:hidden block' /> info@richsterling.com</p>
-                            </div>
-                        </div>
-                        <div className='flex sa:flex-row flex-col flex-wrap gap-10 items-center text-center sa:text-start sa:items-start sa:justify-between w-full mp:w-[60%]'>
-                            <div className='flex flex-col gap-[13px] text-[13px] text-[#414D60] font-normal xl:w-[150px]'>
-                                <h1 className='text-[17px] text-[#1E242C] font-bold'>Quick Links</h1>
-                                <a href="#pricing">
-                                    <p>Pricing</p>
-                                </a>
-                                <a href="#careers">
-                                    <p>Сareers</p>
-                                </a>
-                                <a href="/contact">
-                                    <p>Contact Us</p>
-                                </a>
-                            </div>
-                            <div className='flex flex-col gap-[13px] text-[13px] text-[#414D60] font-normal xl:w-[150px]'>
-                                <h1 className='text-[17px] text-[#1E242C] font-bold'>Others</h1>
-                                <a href="#steps">
-                                    <p>How it works</p>
-                                </a>
-                                <a href="/t&c">
-                                    <p>Terms and condition</p>
-                                </a>
-                                <a href="/privacy">
-                                    <p>Privacy Policy</p>
-                                </a>
-                                <a href="/about">
-                                    <p>About Us</p>
-                                </a>
-                            </div>
-                            <div className='flex flex-col gap-[13px] text-[13px] text-[#414D60] font-normal xl:w-[150px]'>
-                                <h1 className='text-[17px] text-[#1E242C] font-bold'>About us</h1>
-                                <p>Company milestone</p>
-                                <p>Web mail</p>
-                                <p>Board of Directors</p>
-                                <p>Senior Management</p>
-                            </div>
-                        </div>
 
-                    </div>
-                    <div className='flex sr:flex-row flex-col gap-5 items-center justify-between mt-16 mb-10'>
-                        <p className='text-[15px] text-[#002B6B] font-normal'>©2025 All rights reserved</p>
-                        <div className='flex items-center gap-5 text-[24px] text-[#002B6B]'>
-                            <a href="/"><AiFillInstagram /></a>
-                            <a href="/"><FaLinkedinIn /></a>
-                            <a href="/"><FaXTwitter /></a>
-                            <a href="/"><FaYoutube /></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div >
     )
 }

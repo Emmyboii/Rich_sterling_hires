@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { gapi } from "gapi-script";
@@ -52,6 +52,13 @@ const Register = () => {
         setValidationErrors(errors);
         return Object.keys(errors).length === 0;
     };
+
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = 'https://assets.calendly.com/assets/external/widget.js';
+        script.async = true;
+        document.body.appendChild(script);
+    }, []);
 
 
     const handleSubmit = async (e) => {
@@ -160,10 +167,10 @@ const Register = () => {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100 py-10 px-4">
+        <div id='register' className="flex items-center justify-center min-h-screen bg-gray-100 py-10 px-4">
             <form
                 onSubmit={handleSubmit}
-                className="w-full max-w-3xl bg-white rounded-3xl shadow-lg p-8 space-y-6"
+                className="w-full max-w-3xl bg-white rounded-3xl shadow-lg sk:p-8 p-4 space-y-6"
             >
                 <h2 className="text-3xl font-semibold text-gray-800 text-center">Get Started</h2>
 
@@ -229,60 +236,13 @@ const Register = () => {
                     {validationErrors.roles_to_hire && <p className="text-red-500 mt-1 text-sm">{validationErrors.roles_to_hire}</p>}
                 </div>
 
-                <div className={`p-5 border rounded-2xl ${validationErrors.meeting && 'border-red-500'}`}>
-                    <label className="block text-xl font-semibold text-gray-700">Book a Discovery Call</label>
+                <div className={`p-5 border rounded-2xl`}>
+                    <label className="block text-xl text-center font-semibold text-gray-700">Book a Discovery Call</label>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-5">
-                        <div>
-                            <label className="block text-lg font-medium text-gray-700">
-                                Starts at
-                            </label>
-                            <input
-                                type="datetime-local"
-                                name="meeting_start"
-                                value={formData.meeting_start}
-                                onChange={handleChange}
-                                className={`mt-2 w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 ${validationErrors.meeting_start ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
-                                    }`}
-                            />
-                            {/* {validationErrors.meeting_start && <p className="text-red-500 mt-1 text-sm">{validationErrors.meeting_start}</p>} */}
-                        </div>
-
-                        <div>
-                            <label className="block text-lg font-medium text-gray-700">
-                                Ends at
-                            </label>
-                            <input
-                                type="datetime-local"
-                                name="meeting_end"
-                                value={formData.meeting_end}
-                                onChange={handleChange}
-                                className={`mt-2 w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 ${validationErrors.meeting_end ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
-                                    }`}
-                            />
-                            {/* {validationErrors.meeting_end && <p className="text-red-500 mt-1 text-sm">{validationErrors.meeting_end}</p>} */}
-                        </div>
+                    <div
+                        className="calendly-inline-widget calendly-wrapper"
+                        data-url="https://calendly.com/rcwickles">
                     </div>
-                </div>
-
-                <div>
-                    <label className="block text-lg font-medium text-gray-700">
-                        How did you hear about us?
-                    </label>
-                    <select
-                        className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        name="heard_about_us"
-                        value={formData.heard_about_us}
-                        onChange={handleChange}
-                    >
-                        <option value="">Select...</option>
-                        <option value="twitter">Twitter</option>
-                        <option value="instagram">Instagram</option>
-                        <option value="facebook">Facebook</option>
-                        <option value="google">Google</option>
-                        <option value="colleague">Colleague</option>
-                        <option value="podcast">Podcast</option>
-                    </select>
                 </div>
 
                 <div>

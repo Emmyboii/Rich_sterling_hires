@@ -8,6 +8,30 @@
   font-family: 'DM Serif Display', Georgia, sans-serif;
 }
 
+.font {
+  font-family: 'Poppins', sans-serif;
+}
+
+.calendly-wrapper {
+  min-width: 320px;
+  height: 630px;
+}
+
+@media (max-width: 768px) {
+  .calendly-wrapper {
+    height: 450px;
+    /* or whatever height you prefer */
+  }
+}
+
+@media (max-width: 480px) {
+  .calendly-wrapper {
+    height: 350px;
+  }
+}
+
+
+
 .slick-dots li button:before {
   color: #bbb;
   opacity: 1;

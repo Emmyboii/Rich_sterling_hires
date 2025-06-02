@@ -13,7 +13,7 @@ const Pricing = () => {
                 <a href="/">
                     <img onClick={() => window.scrollTo(0, 0)} src={group} className='w-[130px] h-[40px]' alt="" />
                 </a>
-                <a href='/register' target='_blank'>
+                <a href='#register'>
                     <button className='flex items-center justify-center gap-2 bg-white border-[1.2px] z-50 cursor-pointer border-[#0066FF] p-1 pl-5 rounded-[50px]'>
                         <p className='text-[16px] font-bold font-manrope'>Get Started</p>
                         <img src={send} className='size-[40px]' alt="" />
