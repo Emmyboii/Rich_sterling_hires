@@ -240,10 +240,10 @@ const LandingPage = () => {
                         <p className='text-center sm:text-[15px] text-[13px]'>Our clients save an average of 70% on hiring costs</p>
                     </div>
                     <p data-aos='fade-up' data-aos-delay='100' className='xl:text-[64px] sm:text-[50px] text-[30px] text-[#002B6B] text-center mp:text-start sm:leading-[70px] px-2 sr:leading-[40px] leading-[35px] mt-6 font-semibold'>
-                        Join 136+ Companies Cutting Costs by 70% with Elite African Talent
+                        Join 136+ Companies Cutting Costs by 70% with Elite Overseas Talent
                     </p>
                     <p data-aos='fade-up' data-aos-delay='300' className='xl:text-[20px] px-5 text-[16px] font-medium mt-3 text-center mp:text-start'>
-                        Rich Sterling Hires connects you with exceptional African professionals who deliver outstanding results at a fraction of the costs
+                        Rich Sterling Hires connects you with exceptional professionals who deliver outstanding results at a fraction of the costs.
                     </p>
                     <a href='#register'>
                         <button data-aos='fade-up' data-aos-delay='500' className='flex items-center justify-center text-[#0066FF] bg-white mt-5 gap-2 border-[1.2px] cursor-pointer border-[#0066FF] p-1 pl-5 rounded-[50px]'>
@@ -303,7 +303,7 @@ const LandingPage = () => {
                             <p className='text-[18px] font-semibold'>Save Up to 70% on Hiring Costs</p>
                         </div>
                         <p className='text-[17px] font-normal mt-1'>
-                            Our African professionals deliver the same or better quality work at a fraction of
+                            Our Elite professionals deliver the same or better quality work at a fraction of
                             US salary rates. The average company saves $38,000 per hire while maintaining or improving
                             quality standards.
                         </p>
@@ -325,14 +325,14 @@ const LandingPage = () => {
                         </div>
                         <p className='text-[17px] font-normal mt-1'>
                             We handle everything from legal compliance to payment structures and time zone coordination.
-                            Your new team members integrate smoothly with your existing processes and culture
+                            Your new team members integrate smoothly with your existing processes and culture.
                         </p>
                     </div>
                     <div data-aos='flip-up' data-aos-delay='100' className='shadow-[0_1px_20px_rgba(0,0,0,0.2)] hidden mq:border-none border-[1.7px] border-[#6C7787] w-full sm:w-[48%] lg:w-[30%] px-3 shadow-[#002b6b53] rounded-[25px] p-5 mq:flex flex-col items-center gap-3'>
                         <img src={Dollar} className='size-[20px]' alt="" />
                         <p className='text-[19px] px-10 font-semibold text-center'>Save Up to 70% on Hiring Costs</p>
                         <p className='text-[15px] text-center'>
-                            Our African professionals deliver the same or better quality work at a fraction of
+                            Our Elite professionals deliver the same or better quality work at a fraction of
                             US salary rates. The average company saves $38,000 per hire while maintaining or improving
                             quality standards.
                         </p>
@@ -350,7 +350,7 @@ const LandingPage = () => {
                         <p className='text-[19px] px-1 font-semibold text-center'>Effortless Global Team Building</p>
                         <p className='text-[15px] text-center'>
                             We handle everything from legal compliance to payment structures and time zone coordination.
-                            Your new team members integrate smoothly with your existing processes and culture
+                            Your new team members integrate smoothly with your existing processes and culture.
                         </p>
                     </div>
                 </div>
@@ -363,7 +363,7 @@ const LandingPage = () => {
             </div>
             <div id='careers' className='md:px-[75px] overflow-hidden px-5 my-16'>
                 <h1 data-aos='zoom-in' className='font-semibold mq:text-[30px] text-[25px] mq:leading-10 text-center text-[#002B6B]'>
-                    World-Class African Talent <br className='sp:block hidden' /> Across Key Disciplines
+                    Overseas Talent <br className='sp:block hidden' /> Across Key Disciplines
                 </h1>
                 <p data-aos="fade-left" className='font-normal text-[14px] mq:text-[16px] mt-4 text-center text-[#000000]'>
                     Whatever your business needs, we have thoroughly vetted professionals ready to deliver <br className='xl:block hidden' />
@@ -448,7 +448,7 @@ const LandingPage = () => {
                 </h1>
                 <p data-aos="fade-left" className='font-normal sm:mx-[90px] mx-5 mq:text-[20px] text-[17px] mq:leading-8 mt-7 text-center text-[#000000]'>
                     Watch short intro videos of vetted candidates so you can see their communication skills, <br className='xl:block hidden' />
-                    professionalism, and cultural fit
+                    professionalism, and cultural fit.
                 </p>
                 <div className='relative md:mt-16 mp:block hidden'>
                     <img
