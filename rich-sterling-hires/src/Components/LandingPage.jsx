@@ -217,7 +217,7 @@ const LandingPage = () => {
 
         handleScroll();
 
-        return () => window.removeEventListener('resize', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
     }, [])
 
     return (
