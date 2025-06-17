@@ -132,7 +132,7 @@ const Pricing = () => {
                 </div>
                 <p className='text-center text-[20px] font-normal italic mt-7 px-2'>“Rates are indicative and may vary based on requirements.”</p>
             </div>
-            <div className='mx-5 mt-10 block'>
+            <div className='mx-10 mt-14 block'>
                 <div className='flex flex-col gap-3 justify-between'>
                     <a href="/" className='flex flex-col'>
                         <img onClick={() => window.scrollTo(0, 0)} src={group} className='w-[130px] h-[40px]' alt="" />

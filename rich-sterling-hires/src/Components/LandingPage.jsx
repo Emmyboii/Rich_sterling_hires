@@ -906,9 +906,9 @@ const LandingPage = () => {
                             </div>
                         </div>
                     </div>
-                    <div data-aos='fade-down' data-aos-delay='1000' className='bg-[#0066FF] shadow-lg shadow-black/30 text-white rounded-[20px] p-5 font-manrope'>
+                    <div data-aos='fade-down' data-aos-delay='1000' className='bg-[#0066FF] shadow-lg shadow-black/30 text-white rounded-[20px] w-[400px] p-5 font-manrope'>
                         <p>Start Hiring with us from</p>
-                        <p className='sm:text-[70px] sa:text-[50px] text-[40px] font-semibold'>$4.38/<span className='sm:text-[40px] sa:text-[26px] text-[20px]'>talent hourly</span></p>
+                        <p className='text-[40px] sm:text-[50px] font-bold'>$4.38/<span className='text-[23px]'>talent hourly</span></p>
                         <div className='flex flex-col gap-3 mt-1'>
                             <p className='flex items-center gap-3'><FaRegCheckCircle /> Huge Cost Savings</p>
                             <p className='flex items-center gap-3'><FaRegCheckCircle /> Access to Vetted Talent</p>
@@ -1111,7 +1111,7 @@ const LandingPage = () => {
                     </a>
                 </div>
             </div>
-            <div className='mx-5 mt-10 block'>
+            <div className='mx-10 mt-14 block'>
                 <div className='flex flex-col gap-3 justify-between'>
                     <a href="/" className='flex flex-col'>
                         <img onClick={() => window.scrollTo(0, 0)} src={group} className='w-[130px] h-[40px]' alt="" />
